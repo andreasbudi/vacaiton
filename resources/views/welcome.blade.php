@@ -42,7 +42,7 @@
 									<i class="m-menu__link-icon flaticon-folder"></i>
 								</span>
 								<span class="m-widget17__subtitle">
-									My Leaves History
+									My Leaves Historys
 								</span>
 							
 								</a>
