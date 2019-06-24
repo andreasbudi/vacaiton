@@ -18,24 +18,25 @@
             </div>
         @endif
 
-        <table class="table table-hover table-sm">
+    
+        <table class="table table-hover table-sm" >
             <tr>
-                <th width="50px"><b>No.</b></th>
-                <th>From</th>
-                <th>To</th>
-                <th>Duration (Days)</th>
-                <th>Reason</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th width="50px"style="text-align:center;"><b>No.</b></th>
+                <th style="text-align:center;">From</th>
+                <th style="text-align:center;">To</th>
+                <th style="text-align:center;">Duration (Days)</th>
+                <th style="text-align:center;">Reason</th>
+                <th style="text-align:center;">Status</th>
+                <th style="text-align:center;">Action</th>
             </tr>
 
             @foreach ($leaves as $leave)
                 <tr>
-                    <td><b>{{++$i}}.</b></td>
-                    <td>{{$leave->from}}</td>
-                    <td>{{$leave->to}}</td>
-                    <td>{{$leave->duration}}</td>
-                    <td>{{$leave->reason}}</td>
+                    <td style="text-align:center;"><b>{{++$i}}.</b></td>
+                    <td style="text-align:center;">{{$leave->from}}</td>
+                    <td style="text-align:center;">{{$leave->to}}</td>
+                    <td style="text-align:center;">{{$leave->duration}}</td>
+                    <td style="text-align:center;">{{$leave->reason}}</td>
                     <th>
                             @if($leave->status == true)
                                 <span class="label label-info">Approved</span>

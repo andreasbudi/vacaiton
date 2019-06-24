@@ -51,9 +51,8 @@
                                             <textarea class="form-control" name="reason" rows="2" cols="80"></textarea>
                                         </div>
                                         <div class="col-md-12">
-                                        <a href="../../index.php" class="btn btn-sm btn-success">Back</a>
                                         <button type="submit" value="send" class="btn btn-sm btn-primary">Submit</button>
-                                    </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -75,10 +74,12 @@
                         </div>
                         <div class="m-portlet__body">
                             <div class="m-widget3">
-                                    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;
+                                    {{-- <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;
                                     ctz=Asia%2FJakarta&amp;src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%237986CB&amp;
-                                    showNav=1&amp;showPrint=0&amp;showTabs=1&amp;showCalendars=1&amp;showTz=0" style="border-width:0" width="700" height="600" frameborder="0" scrolling="no"></iframe>
-                            </div>
+                                    showNav=1&amp;showPrint=0&amp;showTabs=1&amp;showCalendars=1&amp;showTz=0" style="border-width:0" width="700" height="600" frameborder="0" scrolling="no"></iframe> --}}
+                                    <div id="m_calendar"></div>
+                            
+                                </div>
                         </div>
                     </div>
                     <!--end:: Widgets/Support Tickets -->

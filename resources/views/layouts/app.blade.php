@@ -42,7 +42,7 @@
 						<div class="m-stack__item m-brand  m-brand--skin-dark ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="../../index.php" class="m-brand__logo-wrapper">
+									<a href="/home" class="m-brand__logo-wrapper">
 										<img alt="" src="../../assets/demo/default/media/img/logo/logo_default_dark.png"/>
 									</a>
 								</div>
@@ -57,11 +57,7 @@
 										<span></span>
 									</a>
 									<!-- END -->
-									<!-- BEGIN: Responsive Header Menu Toggler -->
-									<a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
-										<span></span>
-									</a>
-									<!-- END -->
+								
 									<!-- BEGIN: Topbar Toggler -->
 									<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
 										<i class="flaticon-more"></i>
@@ -150,9 +146,6 @@
 																<span class="m-card-user__name m--font-weight-500">
 																	{{{ (Auth::user()->name) }}}
 																</span>
-																<a href="" class="m-card-user__email m--font-weight-300 m-link">
-																	{{{ (Auth::user()->email) }}}
-																</a>
 															</div>
 														</div>
 													</div>
@@ -260,7 +253,7 @@
 							</li>
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{ route('employee.create')}}" class="m-menu__link ">
-									<i class="m-menu__link-icon flaticon-folder"></i>
+									<i class="m-menu__link-icon la la-user-plus"></i>
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
@@ -282,10 +275,6 @@
 										<div class="m-subheader ">
 												<div class="d-flex align-items-center">
 													<div class="mr-auto">
-														<h3 class="m-subheader__title ">
-															Dashboard
-														</h3>
-														<br><br>
 														<h3 class="m-subheader__title ">
 															Hi, {{{ (Auth::user()->name) }}}
 														</h3>
@@ -326,7 +315,8 @@
 
         <script src="../../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
         <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
-        <script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<script src="../../assets/demo/default/custom/components/calendar/basic.js" type="text/javascript"></script>
 	</body>
 	<!-- end::Body -->
 </html>
