@@ -81,7 +81,7 @@
                                     @enderror
                             </div>
 
-                            {{-- <div class="col-md-12">
+                            <div class="col-md-12">
                                     <strong>Supervised By :</strong>
                                     <select name="manager_id" id="manager_id" class="form-control">
                                         @foreach ($managers as $manager)
@@ -94,7 +94,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                            </div> --}}
+                            </div>
                     
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">

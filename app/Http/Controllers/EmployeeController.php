@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\User;
+use App\Supervisor;
 
 class EmployeeController extends Controller
 {
@@ -19,7 +21,10 @@ class EmployeeController extends Controller
     public function create()
     {
 
-        return view('employee.add');
+        $managers = Supervisor::all();
+        $user = new User();
+
+        return view('employee.add',compact('managers','user'));
     }
 
     /**
@@ -36,7 +41,16 @@ class EmployeeController extends Controller
             'password' => 'required'
         ]);
 
-        User::create($request->all());
+
+        $employeeData = new User();
+        $employeeData->name = $request->name;
+        $employeeData->department = $request->department;
+        $employeeData->email = $request->email;
+        $employeeData->password = Hash::make($request->password);
+        $employeeData->leaves_available = $request->leaves_available;
+        $employeeData['manager_id'] = $request->manager_id;
+        $employeeData->save();
+
         return redirect()->back();
     }
 }

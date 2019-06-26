@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supervisor extends Model
 {
-    public function employeesupervisor()
+    public function employees()
     {
         return $this->hasMany(User::class);
     }
