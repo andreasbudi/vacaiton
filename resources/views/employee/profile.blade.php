@@ -39,6 +39,21 @@
                                     <strong>Leaves Available :</strong>
                                     <input type="text" class="form-control " value="{{{ (Auth::user()->leaves_available) }}}" disabled>
                             </div>
+
+                            {{-- <div class="col-md-12">
+                                    <strong>Role :</strong>
+                                    
+                                    $user = User::find(1);
+                                    echo $book->author->name;
+                                    <input type="text" class="form-control " value="{{{ (users()->roles->name_role) }}}" disabled>
+                            </div>
+
+                            <div class="col-md-12">
+                                    <strong>Supervisor :</strong>
+                                    <input type="text" class="form-control " value="{{{ (Auth::user()->supervisors->name) }}}" disabled>
+                            </div> --}}
+
+                            
                         </form>
                     </div>
                 </div>
