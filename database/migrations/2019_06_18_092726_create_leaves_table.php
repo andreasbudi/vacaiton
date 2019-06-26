@@ -14,13 +14,19 @@ class CreateLeavesTable extends Migration
     public function up()
     {
         Schema::create('leaves', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->date('from');
             $table->date('to');
             $table->integer('duration');
+            $table->integer('user_id')->nullable()->unsigned();
             $table->string('reason');
             $table->boolean('status')->default('0');
             $table->timestamps();
+            
+        });
+
+        Schema::table('leaves', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

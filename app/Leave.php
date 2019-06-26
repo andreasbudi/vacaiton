@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Leave extends Model
 {
-    protected $fillable = ['from', 'to', 'duration', 'reason'];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_id');
+    }
+
+    public function statuses()
+    {
+        return $this->belongsToMany('App\Status', 'user_statuses', 'leave_id', 'status_id');
+    }
+
+    protected $fillable = ['from', 'to', 'duration', 'reason', 'status'];
 }

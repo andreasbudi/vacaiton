@@ -22,12 +22,11 @@
         <table class="table table-hover table-sm" >
             <tr>
                 <th width="50px"style="text-align:center;"><b>No.</b></th>
-                <th style="text-align:center;">From</th>
-                <th style="text-align:center;">To</th>
-                <th style="text-align:center;">Duration (Days)</th>
-                <th style="text-align:center;">Reason</th>
-                <th style="text-align:center;">Status</th>
-                <th style="text-align:center;">Action</th>
+                <th style="text-align:center;width:200px;">From</th>
+                <th style="text-align:center;width:200px;">To</th>
+                <th style="text-align:center;width:200px;">Duration</th>
+                <th style="text-align:center; width:100px;">Reason</th>
+                <th style="text-align:center; width:300px;">Status</th>
             </tr>
 
             @foreach ($leaves as $leave)
@@ -35,18 +34,18 @@
                     <td style="text-align:center;"><b>{{++$i}}.</b></td>
                     <td style="text-align:center;">{{$leave->from}}</td>
                     <td style="text-align:center;">{{$leave->to}}</td>
-                    <td style="text-align:center;">{{$leave->duration}}</td>
+                    <td style="text-align:center;">{{$leave->duration}} days</td>
                     <td style="text-align:center;">{{$leave->reason}}</td>
                     <th>
                             @if($leave->status == true)
                                 <span class="label label-info">Approved</span>
                             @else
-                                <span class="label label-danger">Waiting to be Approve</span>
+                                <center><span class="label label-danger">Waiting for Approval</span></center>
                             @endif
     
                         </th>
                     <td>
-                        <form action="{{ route('leave.destroy', $leave->id)}}" method="post">
+                        <form action="{{ route('leave.destroy', $leave->id)}}" method="post" style="width:180px;">
                             <a class="btn btn-sm btn-success" href="{{route('leave.show',$leave->id)}}">Show</a>
                             <a class="btn btn-sm btn-warning" href="{{route('leave.edit',$leave->id)}}">Edit</a>
                             @csrf

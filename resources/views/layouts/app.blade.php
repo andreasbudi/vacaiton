@@ -144,7 +144,7 @@
 															</div>
 															<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
-																	{{{ (Auth::user()->name) }}}
+																	{{-- {{{ (Auth::user()->name) }}} --}}
 																</span>
 															</div>
 														</div>
@@ -276,7 +276,7 @@
 												<div class="d-flex align-items-center">
 													<div class="mr-auto">
 														<h3 class="m-subheader__title ">
-															Hi, {{{ (Auth::user()->name) }}}
+															{{-- Hi, {{{ (Auth::user()->name) }}} --}}
 														</h3>
 													</div>
 												

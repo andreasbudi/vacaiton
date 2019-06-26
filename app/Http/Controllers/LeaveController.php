@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMail;
 use App\Leave;
 class LeaveController extends Controller
@@ -54,7 +55,14 @@ class LeaveController extends Controller
 
         Mail::to('andreas.b365@gmail.com')->send(new SendMail($data));
 
-        Leave::create($request->all());
+        $leaveData = new Leave();
+        $leaveData->from = $request->from;
+        $leaveData->to = $request->to;
+        $leaveData->duration = $request->duration;
+        $leaveData['user_id'] = Auth::user()->id;
+        $leaveData->reason = $request->reason;
+        $leaveData->save();
+        
         return redirect()->route('leave.index')
                         ->with('success', 'You have submit New Leave Please Wait To Approve');
     }

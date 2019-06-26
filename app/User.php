@@ -5,10 +5,24 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id');
+    }
+
+    public function employeesupervisor()
+    {
+        return $this->belongsTo(Supervisor::class);
+    }
+
+    public function leaves()
+    {
+        return $this->belongsToMany(Leave::class, 'user_id');
+    }
+
     use Notifiable;
 
     /**
@@ -17,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nip', 'name', 'department', 'email', 'password', 'leaves_available'
+        'name', 'department', 'email','email_verified_at', 'password', 'leaves_available', 'manager_id',
     ];
 
     /**
@@ -29,7 +43,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
+        /**
      * The attributes that should be cast to native types.
      *
      * @var array

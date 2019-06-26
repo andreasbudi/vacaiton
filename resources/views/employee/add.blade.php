@@ -16,19 +16,8 @@
             <div class="m-portlet__body">
                 <div class="tab-content">
                     <div class="m-widget2">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('employee.store') }}">
                             @csrf
-                    
-                            <div class="col-md-12">
-                                    <strong>NIP :</strong>
-                                    <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" required autocomplete="nip" autofocus>
-                
-                                    @error('nip')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                            </div>
                             
                             <div class="col-md-12">
                                     <strong>Name :</strong>
@@ -44,7 +33,7 @@
                     
                             <div class="col-md-12">
                                     <strong>Department :</strong>
-                                        <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
+                                        <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('name') }}" required autocomplete="name" autofocus>
                     
                                     @error('department')
                                         <span class="invalid-feedback" role="alert">
@@ -56,7 +45,7 @@
                             <div class="col-md-12">
                                     <strong>E-mail :</strong>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                    
+
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -67,7 +56,7 @@
                             <div class="col-md-12">
                                     <strong>Password :</strong>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                    
+
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -78,6 +67,7 @@
                             <div class="col-md-12">
                                     <strong>Confirm Password :</strong>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                          
                             </div>
                     
                             <div class="col-md-12">
@@ -90,9 +80,26 @@
                                         </span>
                                     @enderror
                             </div>
+
+                            {{-- <div class="col-md-12">
+                                    <strong>Supervised By :</strong>
+                                    <select name="manager_id" id="manager_id" class="form-control">
+                                        @foreach ($managers as $manager)
+                                        <option value="{{$manager->id}}">{{$manager->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('manager_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div> --}}
                     
                             <div class="col-md-12">
-                                    <button type="submit" value="send" class="btn btn-sm btn-primary">{{ __('Register') }}</button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
                             </div>
                         </form>
                     </div>
