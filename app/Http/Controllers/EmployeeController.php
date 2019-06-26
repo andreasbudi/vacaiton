@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\User;
 use App\Supervisor;
+use App\Role;
 
 class EmployeeController extends Controller
 {
@@ -21,10 +22,11 @@ class EmployeeController extends Controller
     public function create()
     {
 
+        $roles = Role::all();
         $managers = Supervisor::all();
         $user = new User();
 
-        return view('employee.add',compact('managers','user'));
+        return view('employee.add',compact('roles','managers','user'));
     }
 
     /**
@@ -48,6 +50,7 @@ class EmployeeController extends Controller
         $employeeData->email = $request->email;
         $employeeData->password = Hash::make($request->password);
         $employeeData->leaves_available = $request->leaves_available;
+        $employeeData['role_id'] = $request->role_id;
         $employeeData['manager_id'] = $request->manager_id;
         $employeeData->save();
 

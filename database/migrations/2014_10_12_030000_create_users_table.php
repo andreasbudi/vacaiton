@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('leaves_available')->nullable();
+            $table->integer('role_id')->nullable()->unsigned();
             $table->integer('manager_id')->nullable()->unsigned();
             $table->rememberToken();
             $table->timestamps();
@@ -28,7 +29,8 @@ class CreateUsersTable extends Migration
         });
         Schema::table('users', function (Blueprint $table) {
      
-            $table->foreign('manager_id')->references('id')->on('supervisors');
+            $table->foreign('role_id')->references('id')->on('supervisors');
+            $table->foreign('manager_id')->references('id')->on('roles');
     
         });
     }

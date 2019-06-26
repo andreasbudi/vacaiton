@@ -82,6 +82,20 @@
                             </div>
 
                             <div class="col-md-12">
+                                    <strong>Role :</strong>
+                                    <select name="role_id" id="role_id" class="form-control">
+                                        @foreach ($roles as $role)
+                                        <option value="{{$role->id}}">{{$role->name_role}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('role_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
+                            <div class="col-md-12">
                                     <strong>Supervised By :</strong>
                                     <select name="manager_id" id="manager_id" class="form-control">
                                         @foreach ($managers as $manager)

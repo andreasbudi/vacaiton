@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     public function roles()
     {
-        return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id');
+        return $this->belongsTo(Role::class);
     }
 
     public function supervisors()
@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'department', 'email','email_verified_at', 'password', 'leaves_available', 'manager_id',
+        'name', 'department', 'email','email_verified_at', 'password', 'leaves_available', 'role_id','manager_id',
     ];
 
     /**
