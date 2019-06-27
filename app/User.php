@@ -15,7 +15,7 @@ class User extends Authenticatable
 
     public function supervisors()
     {
-        return $this->belongsTo(Supervisor::class);
+        return $this->belongsTo(Supervisor::class, 'manager_id');
     }
 
     public function leaves()

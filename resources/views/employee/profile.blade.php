@@ -42,17 +42,13 @@
 
                             <div class="col-md-12">
                                     <strong>Role :</strong>
-                                 
-                                 <input type="text" class="form-control " value="{{Auth::user()->roles()->first()->name_role}}" disabled>
-                                 
-                                
-                                    
+                                    <input type="text" class="form-control " value="{{Auth::user()->roles()->first()->name_role}}" disabled>     
                             </div>
 
-                            {{-- <div class="col-md-12">
+                            <div class="col-md-12">
                                     <strong>Supervisor :</strong>
-                                    <input type="text" class="form-control " value="{{{ (Auth::user()->supervisors->name) }}}" disabled>
-                            </div> --}}
+                                    <input type="text" class="form-control " value="{{{ (Auth::user()->supervisors()->first()->name) }}}" disabled>
+                            </div>
 
                             
                         </form>
