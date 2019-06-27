@@ -1,16 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> there where some problems with your input.<br>
-                <ul>
-                    @foreach ($errors as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+
+
+        <div class="col-md-10">
+            <h5>You have {{(Auth::user()->leaves_available)}} Leaves Available</h5>
+        </div>
 
         <div class="row">
                 <div class="col-xl-6">
@@ -29,11 +24,20 @@
                             <div class="tab-content">
                                 <div class="m-widget2">
                                     <form action="{{route('leave.store')}}" method="post">
+
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> there where some problems with your input.<br>
+                                            <ul>
+                                                @foreach ($errors as $error)
+                                                    <li>{{$error}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
                                         @csrf
-                                        {{-- <div class="col-md-12">
-                                            <strong>Leaves :</strong>
-                                            <input type="text" name="leaves_available" class="form-control">
-                                        </div> --}}
+
                                         <div class="col-md-12">
                                             <strong>From :</strong>
                                             <input type="date" name="from" class="form-control">
