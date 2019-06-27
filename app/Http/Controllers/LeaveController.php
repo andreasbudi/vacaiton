@@ -104,11 +104,13 @@ class LeaveController extends Controller
         $request->validate([
             'from' => 'required',
             'to' => 'required',
+            'duration' => 'required',
             'reason' => 'required'
         ]);
         $leave = Leave::find($id);
         $leave->from = $request->get('from');
         $leave->to = $request->get('to');
+        $leave->duration = $request->get('duration');
         $leave->reason = $request->get('reason');
         $leave->save();
         return redirect()->route('leave.index')

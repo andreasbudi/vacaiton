@@ -36,11 +36,23 @@
                                         </div> --}}
                                         <div class="col-md-12">
                                             <strong>From :</strong>
-                                            <input type="date" name="from" class="form-control">
+                                            <input type="date" name="from" class="form-control @error('from') is-invalid @enderror" required autocomplete="from" autofocus>
+
+                                             @error('from')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                            <input type="date" name="to" class="form-control">
+                                            <input type="date" name="to" class="form-control @error('from') is-invalid @enderror" required autocomplete="to" autofocus>
+
+                                             @error('to')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12">
                                             <strong>Duration (Day) :</strong>
@@ -48,7 +60,13 @@
                                         </div>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
-                                            <textarea class="form-control" name="reason" rows="2" cols="80"></textarea>
+                                            <textarea class="form-control @error('reason') is-invalid @enderror" required autocomplete="reason" autofocus name="reason" rows="2" cols="80"></textarea>
+
+                                             @error('reason')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                             @enderror
                                         </div>
                                         <div class="col-md-12">
                                         <button type="submit" value="send" class="btn btn-sm btn-primary">Submit</button>
