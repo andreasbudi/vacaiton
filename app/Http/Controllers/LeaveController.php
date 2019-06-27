@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\SendMail;
+use App\Mail\SendMailClient;
+use App\Mail\SendMailSpv;
 use App\Leave;
 use App\User;
 use Carbon\Carbon;
@@ -48,7 +49,7 @@ class LeaveController extends Controller
             'reason' => 'required'
         ]);
 
-        $data = array(
+        $dataClient = array(
             'from' => $request->from,
             'to' => $request->to,
             'duration' => $request->duration,
@@ -56,7 +57,7 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
-        $data2 = array(
+        $dataSpv = array(
             'from' => $request->from,
             'to' => $request->to,
             'duration' => $request->duration,
@@ -64,11 +65,10 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
-
-        $user = User::find(2)->email;
         if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
-             Mail::to(Auth::user()->email)->send(new SendMail($data));
-             Mail::to($user)->send(new SendMail($data2));
+             $user = User::find(2)->email;
+             Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+             Mail::to($user)->send(new SendMailSpv($dataSpv));
         }
 
         $leaveData = new Leave();

@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMail extends Mailable
+class SendMailSpv extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +18,9 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($dataSpv)
     {
-        $this->data = $data;
+        $this->dataSpv = $dataSpv;
     }
 
     /**
@@ -30,6 +30,6 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('New Leave created')->view('dynamic_email_client')->with('data',$this->data);
+        return $this->from('difinite2255@gmail.com')->subject('New Leave created')->view('dynamic_email_spv')->with('dataSpv',$this->dataSpv);
     }
 }
