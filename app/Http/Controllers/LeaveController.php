@@ -16,7 +16,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::latest()->paginate(5);
+        $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
+
         return view('leave.index', compact('leaves'))
                     ->with('i',(request()->input('page',1) -1) *5); 
     }

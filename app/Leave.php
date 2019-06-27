@@ -17,5 +17,5 @@ class Leave extends Model
         return $this->belongsToMany('App\Status', 'user_statuses', 'leave_id', 'status_id');
     }
 
-    protected $fillable = ['from', 'to', 'duration', 'reason', 'status'];
+    protected $fillable = ['from', 'to', 'duration','user_id', 'reason', 'status'];
 }
