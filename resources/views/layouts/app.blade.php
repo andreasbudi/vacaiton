@@ -251,6 +251,9 @@
 									</span>
 								</a>
 							</li>
+							@if (Auth::user()->role_id == '4')
+							
+
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{ route('employee.create')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon la la-user-plus"></i>
@@ -264,6 +267,9 @@
 									</span>
 								</a>
 							</li>
+
+							@endif
+							
 							
 						</ul>
 					</div>
