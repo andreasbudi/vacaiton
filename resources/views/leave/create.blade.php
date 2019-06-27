@@ -42,20 +42,24 @@
                                             <strong>From :</strong>
                                             <input type="date" name="from" class="form-control">
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
                                             <input type="date" name="to" class="form-control">
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
-                                            <strong>Duration (Day) :</strong>
+                                            <strong>Duration :</strong>
                                             <input type="text" name="duration" class="form-control">
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
                                             <textarea class="form-control" name="reason" rows="2" cols="80"></textarea>
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
-                                        <button type="submit" value="send" class="btn btn-sm btn-primary">Submit</button>
+                                        <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
                                         </div>
                                     </form>
                                 </div>

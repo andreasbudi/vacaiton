@@ -212,6 +212,8 @@
 		 data-menu-scrollable="false" data-menu-dropdown-timeout="500"  
 		>
 						<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+							@if (Auth::user()->role_id == '1' || Auth::user()->role_id == '2' || Auth::user()->role_id == '3')
+
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a href="/home" class="m-menu__link ">
 									<i class="m-menu__link-icon fa fa-glass"></i>
@@ -251,9 +253,8 @@
 									</span>
 								</a>
 							</li>
-							@if (Auth::user()->role_id == '4')
+							@else
 							
-
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{ route('employee.create')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon la la-user-plus"></i>

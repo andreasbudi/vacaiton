@@ -1,9 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-	<div class="col-md-10">
-	<h5>You have {{(Auth::user()->leaves_available)}} Leaves Available</h5>
-	</div>
+
+	@if (Auth::user()->role_id == 4) 
+		<div class="col-md-10">
+		<h5>You have {{(Auth::user()->leaves_available)}} Leaves Available</h5>
+		</div>
+	@endif
 	<div class="col-xl-16">
 		<!--begin:: Widgets/Activity-->
 		<div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light ">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMail;
 use App\Leave;
+use Carbon\Carbon;
 class LeaveController extends Controller
 {
     /**
@@ -115,8 +116,6 @@ class LeaveController extends Controller
                         ->with('success', 'Leave form updated successfully');
     }
 
-    
-
     /**
      * Remove the specified resource from storage.
      *
@@ -129,5 +128,10 @@ class LeaveController extends Controller
         $leave->delete();
         return redirect()->route('leave.index')
                         ->with('success','Leave form have been canceled');
+    }
+
+    public function calculateDate()
+    {
+      //
     }
 }
