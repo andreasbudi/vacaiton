@@ -35,7 +35,7 @@
                                     <input type="text" class="form-control " value="{{{ (Auth::user()->department) }}}" disabled>
                             </div>
                     
-                            @if (!Auth::user()->role_id == '4')
+                            @if (Auth::user()->role_id != '4')
                             <div class="col-md-12">
                                     <strong>Leaves Available :</strong>
                                     <input type="text" class="form-control " value="{{{ (Auth::user()->leaves_available) }}}" disabled>
@@ -47,7 +47,7 @@
                                     <input type="text" class="form-control " value="{{Auth::user()->roles()->first()->name_role}}" disabled>     
                             </div>
 
-                            @if (!Auth::user()->role_id == '4')
+                            @if (Auth::user()->role_id != '4')
                             <div class="col-md-12">
                                     <strong>Supervisor :</strong>
                                     <input type="text" class="form-control " value="{{{ (Auth::user()->supervisors()->first()->name) }}}" disabled>
