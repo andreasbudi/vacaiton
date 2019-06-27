@@ -30,6 +30,6 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('levkajohn@gmail.com')->subject('New Mail')->view('dynamic_email_template')->with('data',$this->data);
+        return $this->from('difinite2255@gmail.com')->subject('New Leave created')->view('dynamic_email_client')->with('data',$this->data);
     }
 }
