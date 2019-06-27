@@ -24,9 +24,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/profile', function () {
-    return view('employee/profile');
-});
+Route::get('/profile', 'EmployeeController@profile');
 
 Route::get('/logout','HomeController@logout');
 

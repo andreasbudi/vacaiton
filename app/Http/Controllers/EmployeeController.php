@@ -24,9 +24,20 @@ class EmployeeController extends Controller
 
         $roles = Role::all();
         $managers = Supervisor::all();
-        $user = new User();
 
-        return view('employee.add',compact('roles','managers','user'));
+        return view('employee.add',compact('roles','managers'));
+    }
+      /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+
+        $users = User::all();
+        $roles = Role::all();
+        return view('employee.profile',compact('users','roles'));
     }
 
     /**

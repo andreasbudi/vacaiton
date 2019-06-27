@@ -40,15 +40,16 @@
                                     <input type="text" class="form-control " value="{{{ (Auth::user()->leaves_available) }}}" disabled>
                             </div>
 
-                            {{-- <div class="col-md-12">
+                            <div class="col-md-12">
                                     <strong>Role :</strong>
+                                 
+                                 <input type="text" class="form-control " value="{{Auth::user()->roles()->first()->name_role}}" disabled>
+                                 
+                                
                                     
-                                    $user = User::find(1);
-                                    echo $book->author->name;
-                                    <input type="text" class="form-control " value="{{{ (users()->roles->name_role) }}}" disabled>
                             </div>
 
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                     <strong>Supervisor :</strong>
                                     <input type="text" class="form-control " value="{{{ (Auth::user()->supervisors->name) }}}" disabled>
                             </div> --}}
