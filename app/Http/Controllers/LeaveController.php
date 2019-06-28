@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\SendMail;
+use App\Mail\SendMailClient;
+use App\Mail\SendMailSpv;
 use App\Leave;
+use App\User;
+use Carbon\Carbon;
 class LeaveController extends Controller
 {
     /**
@@ -46,7 +49,7 @@ class LeaveController extends Controller
             'reason' => 'required'
         ]);
 
-        $data = array(
+        $dataClient = array(
             'from' => $request->from,
             'to' => $request->to,
             'duration' => $request->duration,
@@ -54,7 +57,19 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
-        Mail::to('andreas.b365@gmail.com')->send(new SendMail($data));
+        $dataSpv = array(
+            'from' => $request->from,
+            'to' => $request->to,
+            'duration' => $request->duration,
+            'reason' => $request->reason,
+            'status' => $request->status
+        );
+
+        if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
+             $user = User::find(2)->email;
+             Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+             Mail::to($user)->send(new SendMailSpv($dataSpv));
+        }
 
         $leaveData = new Leave();
         $leaveData->from = $request->from;
@@ -117,8 +132,6 @@ class LeaveController extends Controller
                         ->with('success', 'Leave form updated successfully');
     }
 
-    
-
     /**
      * Remove the specified resource from storage.
      *
@@ -131,5 +144,10 @@ class LeaveController extends Controller
         $leave->delete();
         return redirect()->route('leave.index')
                         ->with('success','Leave form have been canceled');
+    }
+
+    public function calculateDate()
+    {
+      //
     }
 }

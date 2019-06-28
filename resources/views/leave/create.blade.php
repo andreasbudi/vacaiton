@@ -1,16 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> there where some problems with your input.<br>
-                <ul>
-                    @foreach ($errors as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+
+
+        <div class="col-md-10">
+            <h5>You have {{(Auth::user()->leaves_available)}} Leaves Available</h5>
+        </div>
 
         <div class="row">
                 <div class="col-xl-6">
@@ -29,47 +24,60 @@
                             <div class="tab-content">
                                 <div class="m-widget2">
                                     <form action="{{route('leave.store')}}" method="post">
+
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> there where some problems with your input.<br>
+                                            <ul>
+                                                @foreach ($errors as $error)
+                                                    <li>{{$error}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
                                         @csrf
-                                        {{-- <div class="col-md-12">
-                                            <strong>Leaves :</strong>
-                                            <input type="text" name="leaves_available" class="form-control">
-                                        </div> --}}
+
                                         <div class="col-md-12">
                                             <strong>From :</strong>
                                             <input type="date" name="from" class="form-control @error('from') is-invalid @enderror" required autocomplete="from" autofocus>
 
-                                             @error('from')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            @error('from')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                             @enderror
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                            <input type="date" name="to" class="form-control @error('from') is-invalid @enderror" required autocomplete="to" autofocus>
+                                            <input type="date" name="to" class="form-control @error('to') is-invalid @enderror" required autocomplete="to" autofocus>
 
-                                             @error('to')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            @error('to')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                             @enderror
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
-                                            <strong>Duration (Day) :</strong>
+                                            <strong>Duration :</strong>
                                             <input type="text" name="duration" class="form-control">
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
                                             <textarea class="form-control @error('reason') is-invalid @enderror" required autocomplete="reason" autofocus name="reason" rows="2" cols="80"></textarea>
 
-                                             @error('reason')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                             @enderror
+                                            @error('reason')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
+                                        <br>
                                         <div class="col-md-12">
-                                        <button type="submit" value="send" class="btn btn-sm btn-primary">Submit</button>
+                                        <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
                                         </div>
                                     </form>
                                 </div>

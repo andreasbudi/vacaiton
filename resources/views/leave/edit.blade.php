@@ -295,19 +295,19 @@
 
 					@error('from')
                         <span class="invalid-feedback" role="alert">
-                    		<strong>{{ $message }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
-        			@enderror
+                	@enderror
                 </div>
                 <div class="col-md-12">
                     <strong>To :</strong>
-                    <input type="date" name="to" class="form-control" value="{{$leave->to}}" required autocomplete="to" autofocus>
+                    <input type="date" name="to" class="form-control @error('to') is-invalid @enderror" value="{{$leave->to}}" required autocomplete="to" autofocus> 
 
 					@error('to')
                         <span class="invalid-feedback" role="alert">
-                    		<strong>{{ $message }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
-        			@enderror
+                	@enderror
                 </div>
                 <div class="col-md-12">
                     <strong>Duration :</strong>
@@ -317,11 +317,11 @@
                     <strong>Reason :</strong>
                        <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80" required autocomplete="reason" autofocus>{{$leave->reason}}</textarea>
 
-					   @error('reason')
-                        <span class="invalid-feedback" role="alert">
-                    		<strong>{{ $message }}</strong>
-                        </span>
-        			   @enderror
+					@error('reason')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+            		@enderror
                 </div>
                 <div class="col-md-12">
                     <a href="{{route('leave.index')}}" class="btn btn-sm btn-success">Back</a>

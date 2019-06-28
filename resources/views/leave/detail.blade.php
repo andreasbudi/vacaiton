@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="from-group">
                         <strong>Duration :</strong>
-                        {{$leave->duration}} days
+                        {{$leave->duration}}
                     </div>
                 </div>
                 <div class="col-md-12">
