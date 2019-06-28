@@ -211,6 +211,7 @@ class UserTableSeeder extends Seeder
         $testStaff->department = 'testing';
         $testStaff->email = 'levkajohn@gmail.com';
         $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
         $testStaff->role_id = '1';
         $testStaff->manager_id = '2';
         $testStaff->save();
@@ -220,7 +221,9 @@ class UserTableSeeder extends Seeder
         $testSpv->department = 'testing';
         $testSpv->email = 'andreas.b365@gmail.com';
         $testSpv->password = bcrypt('adminadmin');
+        $testSpv->leaves_available = '12';
         $testSpv->role_id = '2';
+        $testSpv->manager_id = '2';
         $testSpv->save();
     }
 }
