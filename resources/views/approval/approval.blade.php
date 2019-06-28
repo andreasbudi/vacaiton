@@ -34,8 +34,9 @@
                     <td style="text-align:center;">{{$leave->duration}} days</td>
                     <td style="text-align:center;">{{$leave->reason}}</td>
                     <td>
+
                         <form style="width:180px;">
-                            <a class="btn btn-sm btn-success" value="send" href="{{route('approval.edit',$leave->id)}}">Approve</a>
+                            <a class="btn btn-sm btn-success" value="send" href="{{route('approval.show',$leave->id)}}">Approve</a>
                             <a class="btn btn-sm btn-danger" value="send" href="{{route('approval.edit',$leave->id)}}">Reject</a>
                         </form>
                     </td>

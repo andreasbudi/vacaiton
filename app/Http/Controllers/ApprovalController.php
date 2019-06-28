@@ -51,7 +51,8 @@ class ApprovalController extends Controller
      */
     public function show($id)
     {
-        //
+        $leave = Leave::find($id);
+        return view('approval.approvalacc', compact('leave'));
     }
 
     /**
@@ -63,7 +64,7 @@ class ApprovalController extends Controller
     public function edit($id)
     {
         $leave = Leave::find($id);
-        return view('leave.edit', compact('leave'));
+        return view('approval.approvalrej', compact('leave'));
     }
 
     /**
@@ -75,10 +76,22 @@ class ApprovalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'status' => 'required'
+        ]);
 
-    
+        $leave = Leave::find($id);
+        $leave->status = $request->get('status');
+
+        if($leave->save()){
+            return redirect()->route('approval.index')
+                        ->with('success', 'Leave Approved');
+
+        }else{
+            return redirect()->route('approval.index')
+                        ->with('error', 'Failed approve. Please try again');
+        }      
+    }
 
     /**
      * Remove the specified resource from storage.
