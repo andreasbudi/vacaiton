@@ -6,10 +6,6 @@
             <div class="col-md-10">
                 <h3>My Leaves History</h3>
             </div>
-            <div class="col-sm-2">
-                <a class="btn btn-sm btn-success" href="{{ route('leave.create')}}">Apply Leaves</a>
-            </div>
-            
         </div>
 
         @if ($message = Session::get('success'))
@@ -27,6 +23,7 @@
                 <th style="text-align:center;width:200px;">Duration</th>
                 <th style="text-align:center; width:100px;">Reason</th>
                 <th style="text-align:center; width:300px;">Status</th>
+                <th style="text-align:center;"></th>
             </tr>
 
             @foreach ($leaves as $leave)

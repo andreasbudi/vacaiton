@@ -7,6 +7,7 @@
 		</div>
 	@endif
 	<div class="col-xl-16">
+
 		<!--begin:: Widgets/Activity-->
 		<div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light ">
 			<div class="m-portlet__head">

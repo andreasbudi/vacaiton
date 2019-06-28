@@ -207,13 +207,33 @@ class UserTableSeeder extends Seeder
         $admin->save();
 
         $testStaff = new User();
-        $testStaff->name = 'testStaff';
+        $testStaff->name = 'testStaff1';
         $testStaff->department = 'testing';
-        $testStaff->email = 'levkajohn@gmail.com';
+        $testStaff->email = 'test1@gmail.com';
         $testStaff->password = bcrypt('adminadmin');
         $testStaff->leaves_available = '12';
         $testStaff->role_id = '1';
         $testStaff->manager_id = '2';
+        $testStaff->save();
+      
+        $testStaff = new User();
+        $testStaff->name = 'testStaff2';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test2@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '2';
+        $testStaff->save();
+
+        $testStaff = new User();
+        $testStaff->name = 'testStaff3';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test3@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '1';
         $testStaff->save();
 
         $testSpv = new User();
