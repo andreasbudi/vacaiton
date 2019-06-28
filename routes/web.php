@@ -25,12 +25,12 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/profile', 'EmployeeController@profile');
-
 Route::get('/logout','HomeController@logout');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('leave/send', 'LeaveController@send');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('leave','LeaveController');
 Route::resource('employee','EmployeeController');
-Route::post('leave/send', 'LeaveController@send');
+Route::resource('approval','ApprovalController');
