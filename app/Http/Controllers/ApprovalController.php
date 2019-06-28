@@ -13,7 +13,7 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
+        $leaves = Leave::latest()->paginate(5);
         return view('approval.approval', compact('leaves'))
                     ->with('i',(request()->input('page',1) -1) *5);
     }

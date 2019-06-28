@@ -225,5 +225,13 @@ class UserTableSeeder extends Seeder
         $testSpv->role_id = '2';
         $testSpv->manager_id = '2';
         $testSpv->save();
+
+        $testManager = new User();
+        $testManager->name = 'testManager';
+        $testManager->department = 'testing';
+        $testManager->email = 'anjeaye@gmail.com';
+        $testManager->password = bcrypt('adminadmin');
+        $testManager->role_id = '3';
+        $testManager->save();
     }
 }
