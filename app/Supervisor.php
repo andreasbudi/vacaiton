@@ -2,7 +2,7 @@
 
 namespace App;
 
-
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Supervisor extends Model
@@ -12,12 +12,14 @@ class Supervisor extends Model
         return $this->hasMany(User::class);
     }
 
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name_supervisor',
     ];
 }

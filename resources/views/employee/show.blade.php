@@ -24,7 +24,7 @@
                 <th style="text-align:center;width:200px;">Email</th>
                 <th style="text-align:center; width:300px;">Leaves Available</th>
                 <th style="text-align:center; width:300px;">Role</th>
-                {{-- <th style="text-align:center; width:300px;">Supervisor</th> --}}
+                <th style="text-align:center; width:300px;">Supervisor</th>
             </tr>
 
             @foreach ($employees as $employee)
@@ -35,7 +35,7 @@
                     <td style="text-align:center;">{{$employee->email}}</td>
                     <td style="text-align:center;">{{$employee->leaves_available}}</td>
                     <td style="text-align:center;">{{$employee->roles->name_role}}</td>
-                    {{-- <td style="text-align:center;">{{$employee->manager_id->supervisors->name}}</td> --}}
+                    <td style="text-align:center;">{{@$employee->supervisors->name_supervisor}}</td>
                     <td>
                         {{-- <form action="{{ route('leave.destroy', $leave->id)}}" method="post" style="width:180px;">
                             <a class="btn btn-sm btn-success" href="{{route('leave.show',$leave->id)}}">Show</a>

@@ -13,15 +13,15 @@ class SupervisorTableSeeder extends Seeder
     public function run()
     {
         $spv = new Supervisor();
-        $spv->name = 'Andika';
+        $spv->name_supervisor = 'Andika';
         $spv->save();
 
         $spv = new Supervisor();
-        $spv->name = 'Alex';
+        $spv->name_supervisor = 'Alex';
         $spv->save();
 
         $spv = new Supervisor();
-        $spv->name = 'Margaret';
+        $spv->name_supervisor = 'Margaret';
         $spv->save();
     }
 }
