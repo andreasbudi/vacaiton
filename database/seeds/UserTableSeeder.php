@@ -198,13 +198,13 @@ class UserTableSeeder extends Seeder
         // $manager->role_id = '3';
         // $manager->save();
 
-        // $admin = new User();
-        // $admin->name = 'admin';
-        // $admin->department = 'Administrator';
-        // $admin->email = 'admin@difinite.com';
-        // $admin->password = bcrypt('adminadmin');
-        // $admin->role_id = '4';
-        // $admin->save();
+        $admin = new User();
+        $admin->name = 'admin';
+        $admin->department = 'Administrator';
+        $admin->email = 'admin@difinite.com';
+        $admin->password = bcrypt('adminadmin');
+        $admin->role_id = '4';
+        $admin->save();
 
         $testStaff = new User();
         $testStaff->name = 'testStaff';

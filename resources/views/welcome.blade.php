@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-	@if (Auth::user()->role_id != 4) 
+	@if (Auth::user()->role_id != 3 && Auth::user()->role_id != 4) 
 		<div class="col-md-10">
 		<h5>You have {{(Auth::user()->leaves_available)}} Leaves Available</h5>
 		</div>
