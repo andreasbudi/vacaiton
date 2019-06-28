@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\User;
 use App\Supervisor;
 use App\Role;
+use App\Leave;
 
 class EmployeeController extends Controller
 {
@@ -66,5 +67,19 @@ class EmployeeController extends Controller
         $employeeData->save();
 
         return redirect()->back();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        $employees = User::latest()->paginate(5);
+
+        return view('employee.show', compact('employees'))
+                    ->with('i',(request()->input('page',1) -1) *5); 
     }
 }
