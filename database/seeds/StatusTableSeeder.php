@@ -17,7 +17,11 @@ class StatusTableSeeder extends Seeder
         $waiting_status->save();
 
         $approval_status = new Status();
-        $approval_status->name_status = 'Approved by ';
+        $approval_status->name_status = 'Approved';
+        $approval_status->save();
+       
+        $approval_status = new Status();
+        $approval_status->name_status = 'Rejected';
         $approval_status->save();
     }
 }

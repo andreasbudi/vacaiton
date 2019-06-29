@@ -23,6 +23,7 @@
                 <th style="text-align:center;width:200px;">To</th>
                 <th style="text-align:center;width:200px;">Duration</th>
                 <th style="text-align:center; width:100px;">Reason</th>
+                <th style="text-align:center; width:100px;">Status</th>
             </tr>
 
             @foreach ($getStaffs as $getStaff)
@@ -33,6 +34,7 @@
                     <td style="text-align:center;">{{$getStaff->to}}</td>
                     <td style="text-align:center;">{{$getStaff->duration}} days</td>
                     <td style="text-align:center;">{{$getStaff->reason}}</td>
+                    <td style="text-align:center;">{{$getStaff->status}}</td>
                     <td>
 
                         <form style="width:180px;">

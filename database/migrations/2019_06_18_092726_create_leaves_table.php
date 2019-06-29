@@ -19,7 +19,7 @@ class CreateLeavesTable extends Migration
             $table->date('to');
             $table->integer('duration');
             $table->string('reason');
-            $table->boolean('status')->default('0');
+            $table->integer('status')->default('1');
             $table->integer('user_id')->nullable()->unsigned();
             $table->integer('role_id')->nullable()->unsigned();
             $table->integer('manager_id')->nullable()->unsigned();

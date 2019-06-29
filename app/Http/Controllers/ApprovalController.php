@@ -43,27 +43,6 @@ class ApprovalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -72,7 +51,16 @@ class ApprovalController extends Controller
     public function show($id)
     {
         $leave = Leave::find($id);
-        return view('approval.approvalacc', compact('leave'));
+        $leave->status = 2;
+        $leave->save();
+        if($leave->status == 2){
+            return redirect()->route('approval.index')
+                        ->with('success', 'Leave Approved');
+
+        }else{
+            return redirect()->route('approval.index')
+                        ->with('error', 'Failed approve. Please try again');
+        }   
     }
 
     /**
@@ -84,33 +72,16 @@ class ApprovalController extends Controller
     public function edit($id)
     {
         $leave = Leave::find($id);
-        return view('approval.approvalrej', compact('leave'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'status' => 'required'
-        ]);
-
-        $leave = Leave::find($id);
-        $leave->status = $request->get('status');
-
-        if($leave->save()){
+        $leave->status = 3;
+        $leave->save();
+        if($leave->status == 3){
             return redirect()->route('approval.index')
-                        ->with('success', 'Leave Approved');
+                        ->with('success','Leave Rejected');
 
         }else{
             return redirect()->route('approval.index')
                         ->with('error', 'Failed approve. Please try again');
-        }      
+        }   
     }
 
     /**

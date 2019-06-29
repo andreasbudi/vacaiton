@@ -34,10 +34,12 @@
                     <td style="text-align:center;">{{$leave->duration}} days</td>
                     <td style="text-align:center;">{{$leave->reason}}</td>
                     <th>
-                            @if($leave->status == true)
-                                <span class="label label-info">Approved</span>
-                            @else
-                                <center><span class="label label-danger">Waiting for Approval</span></center>
+                            @if($leave->status == 1)
+                            <center><span class="label label-info">Waiting for Approval</span></center>
+                            @elseif($leave->status == 2)
+                            <center><span class="label label-danger">Approved</span></center>
+                            @elseif($leave->status == 3)
+                            <center><span class="label label-danger">Rejected</span></center>
                             @endif
     
                         </th>

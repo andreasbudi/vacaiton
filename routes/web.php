@@ -35,3 +35,5 @@ Auth::routes();
 Route::resource('leave','LeaveController');
 Route::resource('employee','EmployeeController');
 Route::resource('approval','ApprovalController');
+Route::resource('approval\approve','ApprovalController@approve');
+Route::resource('approval\reject','ApprovalController@reject');
