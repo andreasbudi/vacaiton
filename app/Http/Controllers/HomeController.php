@@ -31,8 +31,8 @@ class HomeController extends Controller
         if($getRole == 1 || $getRole == 2){
         return view('welcome');
         }else if($getRole == 3){
-        $leaves = Leave::latest()->paginate(5);
-        return view('approval.approval', compact('leaves'))
+        $getStaffs = Leave::latest()->paginate(5);
+        return view('approval.approval', compact('getStaffs'))
                     ->with('i',(request()->input('page',1) -1) *5);
         }else if($getRole == 4){
         $employees = User::latest()->paginate(5);

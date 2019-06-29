@@ -18,15 +18,19 @@ class CreateLeavesTable extends Migration
             $table->date('from');
             $table->date('to');
             $table->integer('duration');
-            $table->integer('user_id')->nullable()->unsigned();
             $table->string('reason');
             $table->boolean('status')->default('0');
+            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('role_id')->nullable()->unsigned();
+            $table->integer('manager_id')->nullable()->unsigned();
             $table->timestamps();
             
         });
 
         Schema::table('leaves', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('manager_id')->references('id')->on('supervisors');
         });
     }
 

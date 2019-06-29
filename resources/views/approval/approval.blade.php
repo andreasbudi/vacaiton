@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h3>Waiting For Approve</h3>
+                <h3>Waiting For Approval</h3>
             </div>  
         </div>
 
@@ -25,19 +25,19 @@
                 <th style="text-align:center; width:100px;">Reason</th>
             </tr>
 
-            @foreach ($leaves as $leave)
+            @foreach ($getStaffs as $getStaff)
                 <tr>
                     <td style="text-align:center;"><b>{{++$i}}.</b></td>
-                    <td style="text-align:center;">{{$leave->user_id}}</td>
-                    <td style="text-align:center;">{{$leave->from}}</td>
-                    <td style="text-align:center;">{{$leave->to}}</td>
-                    <td style="text-align:center;">{{$leave->duration}} days</td>
-                    <td style="text-align:center;">{{$leave->reason}}</td>
+                    <td style="text-align:center;">{{$getStaff->user_id}}</td>
+                    <td style="text-align:center;">{{$getStaff->from}}</td>
+                    <td style="text-align:center;">{{$getStaff->to}}</td>
+                    <td style="text-align:center;">{{$getStaff->duration}} days</td>
+                    <td style="text-align:center;">{{$getStaff->reason}}</td>
                     <td>
 
                         <form style="width:180px;">
-                            <a class="btn btn-sm btn-success" value="send" href="{{route('approval.show',$leave->id)}}">Approve</a>
-                            <a class="btn btn-sm btn-danger" value="send" href="{{route('approval.edit',$leave->id)}}">Reject</a>
+                            <a class="btn btn-sm btn-success" value="send" href="{{route('approval.show',$getStaff->id)}}">Approve</a>
+                            <a class="btn btn-sm btn-danger" value="send" href="{{route('approval.edit',$getStaff->id)}}">Reject</a>
                         </form>
                     </td>
                 </tr>

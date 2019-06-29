@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMail;
 use App\Leave;
+use App\User;
 
 class ApprovalController extends Controller
 {
@@ -17,9 +18,28 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
-        return view('approval.approval', compact('leaves'))
-                    ->with('i',(request()->input('page',1) -1) *5);
+        //masuk sebagai spv bisa liat approval
+        if(Auth::user()->manager_id == 1){
+            $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
+                            ->where('role_id',1)->paginate(5);
+            return view('approval.approval', compact('getStaffs'))
+            ->with('i',(request()->input('page',1) -1) *5);
+
+        }elseif(Auth::user()->manager_id == 2){
+            $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
+                            ->where('role_id',1)->paginate(5);
+            return view('approval.approval', compact('getStaffs'))
+            ->with('i',(request()->input('page',1) -1) *5);
+        }elseif(Auth::user()->manager_id == 3){
+            $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
+                            ->where('role_id',1)->paginate(5);
+            return view('approval.approval', compact('getStaffs'))
+            ->with('i',(request()->input('page',1) -1) *5);
+        }elseif(empty(Auth::user()->manager_id)){
+            $getStaffs = Leave::latest()->paginate(5);
+            return view('approval.approval', compact('getStaffs'))
+            ->with('i',(request()->input('page',1) -1) *5);
+        }
     }
 
     /**

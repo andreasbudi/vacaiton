@@ -10,4 +10,9 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function leaves()
+    {
+        return $this->belongsToMany(Leave::class, 'role_id');
+    }
 }

@@ -18,11 +18,6 @@ class User extends Authenticatable
         return $this->belongsTo(Supervisor::class, 'manager_id');
     }
 
-    public function leaves()
-    {
-        return $this->belongsToMany(Leave::class, 'user_id');
-    }
-
     use Notifiable;
 
     /**

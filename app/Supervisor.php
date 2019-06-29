@@ -12,6 +12,11 @@ class Supervisor extends Model
         return $this->hasMany(User::class);
     }
 
+    public function leaves()
+    {
+        return $this->belongsToMany(Leave::class, 'manager_id');
+    }
+
     use Notifiable;
 
     /**

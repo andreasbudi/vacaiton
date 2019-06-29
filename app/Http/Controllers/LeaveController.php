@@ -75,8 +75,10 @@ class LeaveController extends Controller
         $leaveData->from = $request->from;
         $leaveData->to = $request->to;
         $leaveData->duration = $request->duration;
-        $leaveData['user_id'] = Auth::user()->id;
         $leaveData->reason = $request->reason;
+        $leaveData['user_id'] = Auth::user()->id;
+        $leaveData['role_id'] = Auth::user()->role_id;
+        $leaveData['manager_id'] = Auth::user()->manager_id;
         $leaveData->save();
         
         return redirect()->route('leave.index')
