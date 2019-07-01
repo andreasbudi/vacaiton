@@ -43,13 +43,27 @@
                                         </div>
                                         <br>
                                         <div class="col-md-12">
-                                            <strong>To :</strong>
-                                            <input type="date" name="to" class="form-control">
+                                            <strong>Duration :</strong>
+                                            <select name="duration" id="duration" class="form-control">
+                                            <script>
+                                            (function() { // don't leak
+                                                var elm = document.getElementById('duration'), // get the select
+                                                    df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+                                                for (var i = 1; i <= 12; i++) { // loop, i like 42.
+                                                    var option = document.createElement('option'); // create the option element
+                                                    option.value = i; // set the value property
+                                                    option.appendChild(document.createTextNode(i + " days")); // set the textContent in a safe way.
+                                                    df.appendChild(option); // append the option to the document fragment
+                                                }
+                                                elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
+                                            }());    
+                                            </script>
+                                            </select>
                                         </div>
                                         <br>
                                         <div class="col-md-12">
-                                            <strong>Duration :</strong>
-                                            <input type="text" name="duration" class="form-control">
+                                            <strong>To :</strong>
+                                            <input type="date" name="to" class="form-control">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
