@@ -37,7 +37,6 @@
                                         @endif
 
                                         @csrf
-
                                         <div class="col-md-12">
                                             <strong>From :</strong>
                                             <input type="date" name="from" class="form-control">

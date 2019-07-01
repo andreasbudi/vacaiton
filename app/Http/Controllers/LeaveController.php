@@ -67,8 +67,8 @@ class LeaveController extends Controller
 
         if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
              $user = User::find(2)->email;
-             Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-             Mail::to($user)->send(new SendMailSpv($dataSpv));
+            //  Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+            //  Mail::to($user)->send(new SendMailSpv($dataSpv));
         }
 
         $leaveData = new Leave();

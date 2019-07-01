@@ -34,9 +34,9 @@ class ApprovalController extends Controller
             $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
                             ->where('role_id',1)->paginate(5);
             return view('approval.approval', compact('getStaffs'))
-            ->with('i',(request()->input('page',1) -1) *5);
+                            ->with('i',(request()->input('page',1) -1) *5);
         }elseif(empty(Auth::user()->manager_id)){
-            $getStaffs = Leave::latest()->paginate(5);
+            $getStaffs = Leave::with('users')->paginate(5);
             return view('approval.approval', compact('getStaffs'))
             ->with('i',(request()->input('page',1) -1) *5);
         }
