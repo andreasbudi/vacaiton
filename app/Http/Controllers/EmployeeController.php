@@ -65,7 +65,8 @@ class EmployeeController extends Controller
         $employeeData['manager_id'] = $request->manager_id;
         $employeeData->save();
 
-        return redirect()->back();
+        return redirect()->route('home')
+                        ->with('success','Employee have been added');
     }
 
     /**
@@ -112,10 +113,10 @@ class EmployeeController extends Controller
         $employee = User::find($id);
         $employee->department = $request->get('department');
         $employee->email = $request->get('email');
-        $employee->leaves_availabe = $request->get('leave_available');
+        $employee->leaves_availabe = $request->get('leaves_available');
         $employee->role_id = $request->get('role_id');
         $employee->manager_id = $request->get('manager_id');
-        $leave->save();
+        $employee->save();
         return redirect()->route('home')
                         ->with('success', 'Employee updated successfully');
     }
