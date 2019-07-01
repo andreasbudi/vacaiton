@@ -66,7 +66,7 @@ class ApprovalController extends Controller
         );
 
         if($leave->status == 2){
-            Mail::to($user)->send(new SendApprove($data));
+            // Mail::to($user)->send(new SendApprove($data));
             return redirect()->route('approval.index')
                         ->with('success', 'Leave Approved');
 
@@ -99,7 +99,7 @@ class ApprovalController extends Controller
         );
 
         if($leave->status == 3){
-            Mail::to($user)->send(new SendReject($data));
+            // Mail::to($user)->send(new SendReject($data));
             return redirect()->route('approval.index')
                         ->with('success','Leave Rejected');
 

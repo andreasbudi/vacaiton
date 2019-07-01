@@ -24,6 +24,7 @@
                 <th style="text-align:center;width:200px;">Duration</th>
                 <th style="text-align:center; width:300px;">Reason</th>
                 <th style="text-align:center; width:100px;">Status</th>
+                <th style="text-align:center; width:100px;"></th>
             </tr>
 
             @foreach ($getStaffs as $getStaff)
