@@ -39,13 +39,13 @@
                           
             <div class="col-md-12">
                     <strong>E-mail :</strong>
-                     {{--   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{employee->email}}" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$employee->email}}" required autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror --}}
+                            @enderror 
             </div>
                          
             <div class="col-md-12">
@@ -63,7 +63,7 @@
                 	<strong>Role :</strong>
                       {{--  <select name="role_id" id="role_id" class="form-control">
                             @foreach ($roles as $role)
-                            <option value="{{$role->id}}">{{$role->name_role}}</option>
+                            <option value="{{$employee->roles->name_role}}">{{$role->name_role}}</option>
                             @endforeach
                         </select>
 
@@ -78,7 +78,7 @@
                 	<strong>Supervised By :</strong>
                       {{--  <select name="manager_id" id="manager_id" class="form-control">
                             @foreach ($managers as $manager)
-                            <option value="{{$manager->id}}">{{$manager->name}}</option>
+                            <option value="{{@$employee->supervisors->name_supervisor}}">{{$manager->name}}</option>
                             @endforeach
                         </select>
 

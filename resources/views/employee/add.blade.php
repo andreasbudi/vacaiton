@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="col-xl-12" style="width:800px;">
+    <div class="col-xl-12" style="width:800px; height:700px;">
         <!--begin:: Widgets/Tasks -->
         <div class="m-portlet m-portlet--full-height ">
             <div class="m-portlet__head">
@@ -30,7 +30,6 @@
                                     @enderror
                             </div>
                             
-                    
                             <div class="col-md-12">
                                     <strong>Department :</strong>
                                         <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -41,7 +40,7 @@
                                         </span>
                                     @enderror
                             </div>
-                    
+                          
                             <div class="col-md-12">
                                     <strong>E-mail :</strong>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -52,7 +51,7 @@
                                         </span>
                                     @enderror
                             </div>
-                    
+                            
                             <div class="col-md-12">
                                     <strong>Password :</strong>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -63,13 +62,13 @@
                                         </span>
                                     @enderror
                             </div>
-                    
+                       
                             <div class="col-md-12">
                                     <strong>Confirm Password :</strong>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                           
                             </div>
-                    
+                         
                             <div class="col-md-12">
                                     <strong>Leaves Available :</strong>
                                     <input id="leaves_available" type="text" class="form-control @error('leaves_available') is-invalid @enderror" name="leaves_available" value="{{ old('leaves_available') }}" required autocomplete="leaves_available" autofocus>
@@ -80,7 +79,7 @@
                                         </span>
                                     @enderror
                             </div>
-
+                            
                             <div class="col-md-12">
                                     <strong>Role :</strong>
                                     <select name="role_id" id="role_id" class="form-control">
@@ -95,6 +94,7 @@
                                         </span>
                                     @enderror
                             </div>
+                         
                             <div class="col-md-12">
                                     <strong>Supervised By :</strong>
                                     <select name="manager_id" id="manager_id" class="form-control">
@@ -109,9 +109,9 @@
                                         </span>
                                     @enderror
                             </div>
-                    
+                            <br>
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" style="float: right;">
                                     {{ __('Register') }}
                                 </button>
                             </div>
