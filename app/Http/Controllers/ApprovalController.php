@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\SendMail;
+use App\Mail\SendApprove;
+use App\Mail\SendReject;
 use App\Leave;
 use App\User;
 
@@ -53,7 +54,19 @@ class ApprovalController extends Controller
         $leave = Leave::find($id);
         $leave->status = 2;
         $leave->save();
+
+        $user = $leave->users->email;
+
+        $data = array(
+            'from' => $leave->from,
+            'to' => $leave->to,
+            'duration' => $leave->duration,
+            'reason' => $leave->reason,
+            'status' => $leave->status
+        );
+
         if($leave->status == 2){
+            Mail::to($user)->send(new SendApprove($data));
             return redirect()->route('approval.index')
                         ->with('success', 'Leave Approved');
 
@@ -74,7 +87,19 @@ class ApprovalController extends Controller
         $leave = Leave::find($id);
         $leave->status = 3;
         $leave->save();
+
+        $user = $leave->users->email;
+
+        $data = array(
+            'from' => $leave->from,
+            'to' => $leave->to,
+            'duration' => $leave->duration,
+            'reason' => $leave->reason,
+            'status' => $leave->status
+        );
+
         if($leave->status == 3){
+            Mail::to($user)->send(new SendReject($data));
             return redirect()->route('approval.index')
                         ->with('success','Leave Rejected');
 

@@ -65,11 +65,25 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
-        if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
-             $user = User::find(2)->email;
-            //  Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-            //  Mail::to($user)->send(new SendMailSpv($dataSpv));
-        }
+        // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
+        //      $user = 'andika.pranata@difinite.com';
+        //         Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+        //         Mail::to($user)->send(new SendMailSpv($dataSpv));
+        // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
+        //     $user = 'alexander.arda@difinite.com';
+        //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+        //        Mail::to($user)->send(new SendMailSpv($dataSpv));
+        // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 3) {
+        //     $user = 'margaret.pratiwi@difinite.com';
+        //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+        //        Mail::to($user)->send(new SendMailSpv($dataSpv));
+        // }
+
+            // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
+            //     $user = 'andreas.b365@gmail.com';
+            //         // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+            //         Mail::to($user)->send(new SendMailSpv($dataSpv));
+            // }
 
         $leaveData = new Leave();
         $leaveData->from = $request->from;
