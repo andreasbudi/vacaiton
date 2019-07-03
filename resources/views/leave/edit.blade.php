@@ -31,13 +31,13 @@
 								@method('PUT')
 								<div class="col-md-12">
 									<strong>From :</strong>
-									<input type="date" name="from" class="form-control" value="{{$leave->from}}">
+								<input type="date" name="from" id="from" value="{{$leave->from}}" class="form-control">
 								</div>
 								<br>
 								<div class="col-md-12">
 									<strong>Duration :</strong>
 									{{-- <input type="text" name="duration" id="duration" class="form-control"> --}}
-									<select name="duration" id="duration" class="form-control" value="{{$leave->duration}}" onchange="run(this.value)">
+								<select name="duration" id="duration" class="form-control" onchange="run(this.value)">
 									<script>
 									function run(val) {
 										var formDuration = document.getElementById("duration");
@@ -81,7 +81,7 @@
 								<br>
 								<div class="col-md-12">
 									<strong>To :</strong>
-									<input type="date" name="to" class="form-control" value="{{$leave->to}}">
+									<input type="text" name="to" id="to" value="{{$leave->to}}" class="form-control">
 								</div>
 								<br>
 								<div class="col-md-12">
