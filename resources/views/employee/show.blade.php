@@ -37,14 +37,12 @@
                     <td style="text-align:center;">{{$employee->roles->name_role}}</td>
                     <td style="text-align:center;">{{@$employee->supervisors->name_supervisor}}</td>
                     <td>
-                        {{-- <form action="{{ route('leave.destroy', $leave->id)}}" method="post" style="width:180px;">
-                            <a class="btn btn-sm btn-success" href="{{route('leave.show',$leave->id)}}">Show</a>
-                            <a class="btn btn-sm btn-warning" href="{{route('leave.edit',$leave->id)}}">Edit</a>
+                        <form action="{{ route('employee.destroy', $employee->id)}}" method="post" style="width:180px;">
+                            <a class="btn btn-sm btn-warning" href="{{route('employee.edit',$employee->id)}}">Edit</a> 
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        
-                        </form> --}}
+                        </form>
                     </td>
                 </tr>
                 
