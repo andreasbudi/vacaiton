@@ -68,7 +68,8 @@
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                           
                             </div>
-                         
+
+                            @if (Auth::user()->role_id != '3' && Auth::user()->role_id != '4')
                             <div class="col-md-12">
                                     <strong>Leaves Available :</strong>
                                     <input id="leaves_available" type="text" class="form-control @error('leaves_available') is-invalid @enderror" name="leaves_available" value="{{ old('leaves_available') }}" required autocomplete="leaves_available" autofocus>
@@ -94,7 +95,8 @@
                                         </span>
                                     @enderror
                             </div>
-                         
+
+
                             <div class="col-md-12">
                                     <strong>Supervised By :</strong>
                                     <select name="manager_id" id="manager_id" class="form-control">
@@ -109,12 +111,15 @@
                                         </span>
                                     @enderror
                             </div>
+
                             <br>
+
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" style="float: right;">
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
