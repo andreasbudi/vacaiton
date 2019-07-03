@@ -44,19 +44,18 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Duration :</strong>
-                                            <input type="text" name="duration" id="duration" class="form-control">
-                                            {{-- <select name="duration" id="duration" class="form-control" onchange="run(this.value)">
+                                            {{-- <input type="text" name="duration" id="duration" class="form-control"> --}}
+                                            <select name="duration" id="duration" class="form-control" onchange="run(this.value)">
                                             <script>
                                             function run(val) {
                                                 var formDuration = document.getElementById("duration");
                                                 var getDuration = formDuration.options[formDuration.selectedIndex].value;
-                                                // alert(getDuration);
 
                                                 document.getElementById("from").addEventListener("change", function() {
                                                 var input = new Date(this.value);
                                                 var newdate = new Date(input);
                                                 var temp = newdate.getDate();
-                                                var calculate = temp + getDuration;
+                                                var calculate = temp + parseInt(getDuration);
                                                 newdate.setDate(calculate);
                                                 var dd = newdate.getDate();
                                                 var mm = newdate.getMonth() + 1;
@@ -67,7 +66,7 @@
                                                 if (mm < 10) {
                                                 mm = '0' + mm;
                                                 } 
-                                                var someFormattedDate = mm + '/' + dd + '/' + yyyy;
+                                                var someFormattedDate = yyyy + '/' + mm + '/' + dd;
                                                 document.getElementById('to').value = someFormattedDate;
                                                 });
                                             }
@@ -84,13 +83,14 @@
                                          
                                             }()); 
                                             </script>
-                                            </select> --}}
+                                            </select>
+                                            
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                            <input type="date" name="to" id="to" class="form-control">
-                                            {{-- <input type="text" name="to" id="to" class="form-control"> --}}
+                                            {{-- <input type="date" name="to" id="to" class="form-control"> --}}
+                                            <input type="text" name="to" id="to" data-id="someFormattedDate" class="form-control">
                                         </div>
                                         <br>
                                         <div class="col-md-12">

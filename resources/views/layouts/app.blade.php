@@ -78,60 +78,10 @@
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
-										
-										<li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
-											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
-												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
-												<span class="m-nav__link-icon">
-													<i class="flaticon-music-2"></i>
-												</span>
-											</a>
-											<div class="m-dropdown__wrapper" style="width:295px;">
-												{{-- <span class="m-dropdown__arrow m-dropdown__arrow--center"></span> --}}
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
-														<span class="m-dropdown__header-title">
-															9 New
-														</span>
-														<span class="m-dropdown__header-subtitle">
-															User Notifications
-														</span>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-                                                            <div class="m-list-timeline__items">
-                                                                <div class="m-list-timeline__item">
-                                                                    <span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-                                                                    <a href="" class="m-list-timeline__text">
-                                                                        New order received
-                                                                    </a>
-                                                                    <span class="m-list-timeline__time">
-                                                                        Just now
-                                                                    </span>
-                                                                </div>
-                                                                <div class="m-list-timeline__item">
-                                                                    <span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
-                                                                    <a href="" class="m-list-timeline__text">
-                                                                        New invoice received
-                                                                    </a>
-                                                                    <span class="m-list-timeline__time">
-                                                                        20 mins
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										
 										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
 													<img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
-												</span>
-												<span class="m-topbar__username m--hide">
-													Nick
 												</span>
 											</a>
 											<div class="m-dropdown__wrapper" style="width:295px;">
@@ -399,6 +349,7 @@
         <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/demo/default/custom/components/calendar/basic.js" type="text/javascript"></script>
+		<script src="../../assets/demo/default/custom/components/datatables/base/responsive-columns.js" type="text/javascript"></script>
 	</body>
 	<!-- end::Body -->
 </html>
