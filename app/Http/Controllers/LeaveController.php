@@ -65,22 +65,38 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
-        if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
-             $user = User::find(2)->email;
-             Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-             Mail::to($user)->send(new SendMailSpv($dataSpv));
-        }
+        // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
+        //      $user = 'andika.pranata@difinite.com';
+        //         Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+        //         Mail::to($user)->send(new SendMailSpv($dataSpv));
+        // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
+        //     $user = 'alexander.arda@difinite.com';
+        //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+        //        Mail::to($user)->send(new SendMailSpv($dataSpv));
+        // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 3) {
+        //     $user = 'margaret.pratiwi@difinite.com';
+        //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+        //        Mail::to($user)->send(new SendMailSpv($dataSpv));
+        // }
+
+            // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
+            //     $user = 'andreas.b365@gmail.com';
+            //         // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+            //         Mail::to($user)->send(new SendMailSpv($dataSpv));
+            // }
 
         $leaveData = new Leave();
         $leaveData->from = $request->from;
         $leaveData->to = $request->to;
         $leaveData->duration = $request->duration;
-        $leaveData['user_id'] = Auth::user()->id;
         $leaveData->reason = $request->reason;
+        $leaveData['user_id'] = Auth::user()->id;
+        $leaveData['role_id'] = Auth::user()->role_id;
+        $leaveData['manager_id'] = Auth::user()->manager_id;
         $leaveData->save();
         
         return redirect()->route('leave.index')
-                        ->with('success', 'You have submit New Leave Please Wait To Approve');
+                        ->with('success', 'You have submit new leave. Please wait to approve');
     }
 
     /**
@@ -119,7 +135,6 @@ class LeaveController extends Controller
         $request->validate([
             'from' => 'required',
             'to' => 'required',
-            'duration' => 'required',
             'reason' => 'required'
         ]);
         $leave = Leave::find($id);
