@@ -40,10 +40,11 @@
 								<select name="duration" id="duration" class="form-control" onchange="run(this.value)">
 									<script>
 									function run(val) {
+										document.getElementById("from").addEventListener("click", function() {
 										var formDuration = document.getElementById("duration");
 										var getDuration = formDuration.options[formDuration.selectedIndex].value;
 
-										document.getElementById("from").addEventListener("change", function() {
+										
 										var input = new Date(this.value);
 										var newdate = new Date(input);
 										var temp = newdate.getDate();
