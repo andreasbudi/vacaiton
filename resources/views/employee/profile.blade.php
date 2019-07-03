@@ -1,7 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
-
 <div class="col-xl-12" style="width:800px;">
         <!--begin:: Widgets/Tasks -->
         <div class="m-portlet m-portlet--full-height ">
@@ -66,6 +64,6 @@
             </div>
         </div>
         <!--end:: Widgets/Tasks -->
-    </div>
+</div>
 @endsection
 

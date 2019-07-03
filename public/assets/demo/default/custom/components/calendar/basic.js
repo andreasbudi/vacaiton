@@ -17,94 +17,94 @@ var CalendarBasic = {
             events: [{
                 title: "New Year's Day",
                 start:  "2019-01-01",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "New Year's Day",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Chinese New Year",
                 start:  "2019-02-05",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Chinese New Year",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Bali Hindu New Year",
                 start:  "2019-03-07",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Bali Hindu New Year",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Isra Mi'raj",
                 start:  "2019-04-03",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Isra Mi'raj",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Good Friday",
                 start:  "2019-04-19",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Good Friday",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Labour Day",
                 start:  "2019-05-01",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Labour Day",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Waisak Day",
                 start:  "2019-05-19",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Waisak Day",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Ascension Day of Jesus Christ",
                 start:  "2019-05-30",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Ascension Day of Jesus Christ",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Pancasila Day",
                 start:  "2019-06-01",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Pancasila Day",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Lebaran Holiday",
                 start:  "2019-06-03",
                 end: "2019-06-04",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Lebaran Holiday",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Hari Raya Idul Fitri",
                 start:  "2019-06-05",
                 end: "2019-06-06",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Hari Raya Idul Fitri",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Lebaran Holiday",
                 start:  "2019-06-07",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Lebaran Holiday",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Idul Adha",
                 start:  "2019-08-11",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Idul Adha",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Independence Day",
                 start:  "2019-08-17",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Independence Day",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Islamic New Year",
                 start:  "2019-09-01",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Islamic New Year",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Prophet Muhammad's Birthday",
                 start:  "2019-11-09",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Prophet Muhammad's Birthday",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Christmas Holiday",
                 start:  "2019-12-24",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Christmas Holiday",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             },{
                 title: "Christmas Day",
                 start:  "2019-12-25",
-                description: "Lorem ipsum dolor sit incid idunt ut",
+                description: "Christmas Day",
                 className: "m-fc-event--danger m-fc-event--solid-warning"
             }],
             eventRender: function(e, t) {
