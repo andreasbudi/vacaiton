@@ -79,52 +79,7 @@
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
 										
-										<li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
-											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
-												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
-												<span class="m-nav__link-icon">
-													<i class="flaticon-music-2"></i>
-												</span>
-											</a>
-											<div class="m-dropdown__wrapper" style="width:295px;">
-												{{-- <span class="m-dropdown__arrow m-dropdown__arrow--center"></span> --}}
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
-														<span class="m-dropdown__header-title">
-															9 New
-														</span>
-														<span class="m-dropdown__header-subtitle">
-															User Notifications
-														</span>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-                                                            <div class="m-list-timeline__items">
-                                                                <div class="m-list-timeline__item">
-                                                                    <span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-                                                                    <a href="" class="m-list-timeline__text">
-                                                                        New order received
-                                                                    </a>
-                                                                    <span class="m-list-timeline__time">
-                                                                        Just now
-                                                                    </span>
-                                                                </div>
-                                                                <div class="m-list-timeline__item">
-                                                                    <span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
-                                                                    <a href="" class="m-list-timeline__text">
-                                                                        New invoice received
-                                                                    </a>
-                                                                    <span class="m-list-timeline__time">
-                                                                        20 mins
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										
+										{{--buat dropdown profil--}}
 										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
@@ -144,7 +99,7 @@
 															</div>
 															<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
-																	{{-- {{{ (Auth::user()->name) }}} --}}
+																	{{ (Auth::user()->name) }}
 																</span>
 															</div>
 														</div>
@@ -177,9 +132,14 @@
 														
 																<li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
-																	<a href="{{ route('logout')}}" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
-																		Logout
+																	<a href="{{ route('logout')}}" onclick="event.preventDefault(); 
+																	document.getElementById('logout-form').submit();" 
+																	class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+																	Logout
 																	</a>
+																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																	@csrf
+																	</form>
 																</li>
 															</ul>
 														</div>
@@ -212,8 +172,8 @@
 		 data-menu-scrollable="false" data-menu-dropdown-timeout="500"  
 		>
 						<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-							@if (Auth::user()->role_id == '1' || Auth::user()->role_id == '2' || Auth::user()->role_id == '3')
 
+							@if (Auth::user()->role_id == '1')
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a href="/home" class="m-menu__link ">
 									<i class="m-menu__link-icon fa fa-glass"></i>
@@ -253,6 +213,47 @@
 									</span>
 								</a>
 							</li>
+
+							@elseif (Auth::user()->role_id == '2')
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+									<a href="/home" class="m-menu__link ">
+										<i class="m-menu__link-icon fa fa-glass"></i>
+										<span class="m-menu__link-title">
+											<span class="m-menu__link-wrap">
+												<span class="m-menu__link-text">
+													Dashboard
+												</span>
+											
+											</span>
+										</span>
+									</a>
+							</li>
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+								<a  href="{{ route('leave.create')}}" class="m-menu__link ">
+									<i class="m-menu__link-icon flaticon-interface-7"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Apply Form
+											</span>
+										
+										</span>
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+								<a  href="{{route('leave.index')}}" class="m-menu__link ">
+									<i class="m-menu__link-icon flaticon-folder"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												My Leaves History
+											</span>
+									
+										</span>
+									</span>
+								</a>
+							</li>
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{route('approval.index')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon flaticon-folder"></i>
@@ -266,8 +267,36 @@
 									</span>
 								</a>
 							</li>
+
+							@elseif (Auth::user()->role_id == '3')
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+									<a  href="{{route('approval.index')}}" class="m-menu__link ">
+										<i class="m-menu__link-icon flaticon-folder"></i>
+										<span class="m-menu__link-title">
+											<span class="m-menu__link-wrap">
+												<span class="m-menu__link-text">
+													Approval
+												</span>
+										
+											</span>
+										</span>
+									</a>
+								</li>
+
 							@else
-							
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+								<a  href="/show" class="m-menu__link ">
+									<i class="m-menu__link-icon la la-user-plus"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												List Employees
+											</span>
+									
+										</span>
+									</span>
+								</a>
+							</li>
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{ route('employee.create')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon la la-user-plus"></i>
@@ -281,7 +310,6 @@
 									</span>
 								</a>
 							</li>
-
 							@endif
 							
 							
@@ -291,18 +319,7 @@
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-										<!-- BEGIN: Subheader -->
-										<div class="m-subheader ">
-												<div class="d-flex align-items-center">
-													<div class="mr-auto">
-														<h3 class="m-subheader__title ">
-															{{-- Hi, {{{ (Auth::user()->name) }}} --}}
-														</h3>
-													</div>
-												
-												</div>
-											</div>
-											<!-- END: Subheader -->
+	
 					<div class="m-content">
 						<!--Begin::Main Portlet-->
 						<div class="row">
