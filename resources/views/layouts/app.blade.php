@@ -349,7 +349,7 @@
         <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/demo/default/custom/components/calendar/basic.js" type="text/javascript"></script>
-		<script src="../../assets/demo/default/custom/components/datatables/base/responsive-columns.js" type="text/javascript"></script>
+		<script src="../../../assets/demo/default/custom/components/datatables/base/local-sort.js" type="text/javascript"></script>
 	</body>
 	<!-- end::Body -->
 </html>
