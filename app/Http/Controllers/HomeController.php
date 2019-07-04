@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('approval.approval', compact('getStaffs'))
                     ->with('i',(request()->input('page',1) -1) *5);
         }else if($getRole == 4){
-        $employees = User::latest()->paginate(5);
+        $employees = User::latest()->paginate(10);
         return view('employee.show', compact('employees'))
                     ->with('i',(request()->input('page',1) -1) *5); 
         }

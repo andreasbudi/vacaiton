@@ -108,8 +108,7 @@ class EmployeeController extends Controller
         if(Auth::User()->role_id == '4'){
         $request->validate([
             'department' => 'required',
-            'email' => 'required',
-            'role_id' => 'required'
+            'email' => 'required'
         ]);
         $employee = User::find($id);
         $employee->department = $request->get('department');
