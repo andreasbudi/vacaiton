@@ -85,7 +85,7 @@
                                 <td style="text-align:center;">{{$getStaff->users->name}}</td>
                                 <td style="text-align:center;">{{$getStaff->from}}</td>
                                 <td style="text-align:center;">{{$getStaff->to}}</td>
-                                <td style="text-align:center;">{{$getStaff->duration}} days</td>
+                                <td style="text-align:center;">{{$getStaff->duration}} days</td>    
                                 <td style="text-align:center;">{{$getStaff->reason}}</td>
                                 <td style="text-align:center;">{{$getStaff->status}}</td>
                                 <td>

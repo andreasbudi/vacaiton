@@ -35,7 +35,8 @@ class EmployeeController extends Controller
      */
     public function profile()
     {
-        $users = User::all();
+        $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)
+                            ->where('role_id',1);
         $roles = Role::all();
         return view('employee.profile',compact('users','roles'));
     }
