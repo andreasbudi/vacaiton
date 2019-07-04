@@ -5,10 +5,17 @@
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
+                        @if (Auth::user()->role_id == 1) 
                         <h3 class="m-portlet__head-text">
                             Hi, {{(Auth::user()->name)}}<br>
                             There's Your Leaves History
                         </h3>
+
+                        @else
+                        <h3 class="m-portlet__head-text">
+                            There's Your Leaves History
+                        </h3>
+                        @endif
                     </div>
                 </div>
             </div>
