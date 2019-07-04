@@ -26,48 +26,30 @@ var DatatableLocalSortDemo = function() {
                 sortable: !0,
                 pagination: !0,
                 columns: [{
-                    field: "RecordID",
-                    title: "#",
+                    field: "id",
+                    title: "No.",
                     width: 50,
                     sortable: !1,
                     selector: !1,
                     textAlign: "center"
                 }, {
-                    field: "OrderID",
-                    title: "Order ID",
-                    filterable: !1,
-                    template: "{{OrderID}} - {{ShipCountry}}"
-                }, {
-                    field: "TotalPayment",
-                    title: "Payment",
-                    type: "number",
-                    sortCallback: function(t, e, a) {
-                        var l = a.field;
-                        return $(t).sort(function(t, a) {
-                            var i = t[l],
-                                r = a[l];
-                            return isNaN(parseFloat(i)) && null != i && (i = Number(i.replace(/[^0-9\.-]+/g, ""))), isNaN(parseFloat(r)) && null != i && (r = Number(r.replace(/[^0-9\.-]+/g, ""))), i = parseFloat(i), r = parseFloat(r), "asc" === e ? i > r ? 1 : i < r ? -1 : 0 : i < r ? 1 : i > r ? -1 : 0
-                        })
-                    }
-                }, {
-                    field: "ShipDate",
-                    title: "Ship Date",
+                    field: "from",
+                    title: "From",
                     type: "date",
                     format: "MM/DD/YYYY"
                 }, {
-                    field: "PaymentDate",
-                    title: "Payment Date",
-                    width: 150,
+                    field: "to",
+                    title: "To",
                     type: "date",
-                    format: "YYYY-MM-DD HH:mm:ss"
+                    format: "MM/DD/YYYY"
                 }, {
-                    field: "Latitude",
-                    title: "Latitude",
+                    field: "duration",
+                    title: "Duration",
                     type: "number"
                 }, {
-                    field: "Longitude",
-                    title: "Longitude",
-                    type: "number"
+                    field: "reason",
+                    title: "Reason",
+                    type: "text"
                 }, {
                     field: "status",
                     title: "Status",

@@ -94,6 +94,10 @@ class LeaveController extends Controller
         $leaveData['role_id'] = Auth::user()->role_id;
         $leaveData['manager_id'] = Auth::user()->manager_id;
         $leaveData->save();
+
+        $user = new User();
+        $user->leaves_available = Auth::user()->leaves_available - $request->duration;
+        $user->save();
         
         return redirect()->route('leave.index')
                         ->with('success', 'You have submit New Leave Please Wait To Approve');

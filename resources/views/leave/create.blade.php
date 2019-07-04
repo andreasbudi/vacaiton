@@ -48,10 +48,11 @@
                                             <select name="duration" id="duration" class="form-control" onchange="run(this.value)">
                                             <script>
                                             function run(val) {
+                                                document.getElementById("from").addEventListener("click", function() {	
                                                 var formDuration = document.getElementById("duration");
                                                 var getDuration = formDuration.options[formDuration.selectedIndex].value;
-
-                                                document.getElementById("from").addEventListener("change", function() {
+                                                // alert(getDuration);
+                                                
                                                 var input = new Date(this.value);
                                                 var newdate = new Date(input);
                                                 var temp = newdate.getDate();
@@ -67,6 +68,7 @@
                                                 mm = '0' + mm;
                                                 } 
                                                 var someFormattedDate = yyyy + '/' + mm + '/' + dd;
+                                                // var someFormattedDate = mm + '/' + dd + '/' + yyyy;
                                                 document.getElementById('to').value = someFormattedDate;
                                                 });
                                             }
@@ -90,7 +92,7 @@
                                         <div class="col-md-12">
                                             <strong>To :</strong>
                                             {{-- <input type="date" name="to" id="to" class="form-control"> --}}
-                                            <input type="text" name="to" id="to" data-id="someFormattedDate" class="form-control">
+                                            <input type="text" name="to" id="to" class="form-control">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
