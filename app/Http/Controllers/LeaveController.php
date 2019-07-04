@@ -95,7 +95,7 @@ class LeaveController extends Controller
         $leaveData['manager_id'] = Auth::user()->manager_id;
         $leaveData->save();
 
-        $user = new User();
+        $user = User::find(Auth::user()->id);
         $user->leaves_available = Auth::user()->leaves_available - $request->duration;
         $user->save();
         
