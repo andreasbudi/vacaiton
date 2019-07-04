@@ -31,19 +31,18 @@
 								@method('PUT')
 								<div class="col-md-12">
 									<strong>From :</strong>
-								<input type="date" name="from" id="from" value="{{$leave->from}}" class="form-control">
+								<input type="date" name="from" id="from" value="{{$leave->from}}" class="form-control" onchange="run(this.value)">
 								</div>
 								<br>
 								<div class="col-md-12">
 									<strong>Duration :</strong>
 									{{-- <input type="text" name="duration" id="duration" class="form-control"> --}}
-								<select name="duration" id="duration" class="form-control" onchange="run(this.value)">
+								<select name="duration" id="duration" class="form-control">
 									<script>
 									function run(val) {
-										document.getElementById("from").addEventListener("click", function() {
+										document.getElementById("from").addEventListener("click", function() {	
 										var formDuration = document.getElementById("duration");
 										var getDuration = formDuration.options[formDuration.selectedIndex].value;
-
 										
 										var input = new Date(this.value);
 										var newdate = new Date(input);
@@ -60,6 +59,7 @@
 										mm = '0' + mm;
 										} 
 										var someFormattedDate = yyyy + '/' + mm + '/' + dd;
+										// var someFormattedDate = mm + '/' + dd + '/' + yyyy;
 										document.getElementById('to').value = someFormattedDate;
 										});
 									}
