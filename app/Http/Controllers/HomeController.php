@@ -27,20 +27,27 @@ class HomeController extends Controller
     {
 
         $getRole = Auth::user()->role_id;
+        $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
 
-        if($getRole == 1 || $getRole == 2){
-        return view('welcome');
-        }else if($getRole == 3){
+        if($getRole == 1){
+        return view('leave.index', compact('leaves'))
+                    ->with('i',(request()->input('page',1) -1) *5); 
+        }
+        else if($getRole == 2){
         $getStaffs = Leave::latest()->paginate(5);
         return view('approval.approval', compact('getStaffs'))
                     ->with('i',(request()->input('page',1) -1) *5);
-        }else if($getRole == 4){
+        }
+        else if($getRole == 3){
+        $getStaffs = Leave::latest()->paginate(5);
+        return view('approval.approval', compact('getStaffs'))
+                    ->with('i',(request()->input('page',1) -1) *5);
+        }
+        else if($getRole == 4){
         $employees = User::latest()->paginate(10);
         return view('employee.show', compact('employees'))
                     ->with('i',(request()->input('page',1) -1) *5); 
-        }
-        
-        
+        }    
     }
 
     public function logout()
