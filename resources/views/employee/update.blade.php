@@ -50,11 +50,6 @@
                                 </span>
                             @enderror 
             </div>
-                         
-            <div class="col-md-12">
-                    <strong>Leaves Available :</strong>
-                       <input id="leaves_available" type="text" class="form-control" name="leaves_available" value="{{$employee->leaves_available}}">
-            </div>
                             
             <div class="col-md-12">
                 	<strong>Role :</strong>
@@ -70,12 +65,12 @@
                                 </span>
                             @enderror 
             </div>
-                         
+
             <div class="col-md-12">
                 	<strong>Supervised By :</strong>
                       <select name="manager_id" id="manager_id" class="form-control">
                             @foreach ($managers as $manager)
-                            <option value="{{$manager->id}}">{{$manager->name}}</option>
+                            <option value="{{$manager->id}}">{{$manager->name_supervisor}}</option>
                             @endforeach
                         </select>
 
@@ -85,7 +80,12 @@
                                 </span>
                             @enderror
 			</div>
-			
+
+            <div class="col-md-12">
+                    <strong>Leaves Available :</strong>
+                       <input id="leaves_available" type="text" class="form-control" name="leaves_available" value="{{$employee->leaves_available}}">
+            </div>
+
                 <div class="col-md-12">
                     <a href="{{route('home')}}" class="btn btn-sm btn-success">Back</a>
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
@@ -103,16 +103,21 @@
                         	 @enderror 
             </div>  
 
-           {{-- <div class="col-md-12">
-                     <strong>Password :</strong>
-                        <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{$employee->password}}" required autocomplete="password" autofocus>
-                    
-                        	 @error('password')
-                        	     <span class="invalid-feedback" role="alert">
-                        	         <strong>{{ $message }}</strong>
-                        	     </span>
-                        	 @enderror 
-            </div> --}}
+            <div class="col-md-12">
+                    <strong>Password :</strong>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                            @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                  </span>
+                            @enderror
+                </div>
+
+            <div class="col-md-12">
+                     <strong>Confirm Password :</strong>
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            </div>
 
             <div class="col-md-12">
                     <strong>E-mail :</strong>

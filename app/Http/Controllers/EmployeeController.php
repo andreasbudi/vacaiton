@@ -22,7 +22,6 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-
         $roles = Role::all();
         $managers = Supervisor::all();
 
@@ -119,7 +118,6 @@ class EmployeeController extends Controller
         $employee->save();
             return redirect()->route('home')
                         ->with('success', 'Employee updated successfully');
-
         }
         
         else{
@@ -129,6 +127,7 @@ class EmployeeController extends Controller
         ]);
         $employee = User::find($id);
         $employee->name = $request->get('name');
+        $employee->password = Hash::make($request->password);
         $employee->email = $request->get('email');
         $employee->save();
             return redirect()->route('employee.profile')
