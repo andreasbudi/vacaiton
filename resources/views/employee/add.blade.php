@@ -62,27 +62,16 @@
                                         </span>
                                     @enderror
                             </div>
-                       
+
                             <div class="col-md-12">
                                     <strong>Confirm Password :</strong>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                          
                             </div>
-                         
-                            <div class="col-md-12">
-                                    <strong>Leaves Available :</strong>
-                                    <input id="leaves_available" type="text" class="form-control @error('leaves_available') is-invalid @enderror" name="leaves_available" value="{{ old('leaves_available') }}" required autocomplete="leaves_available" autofocus>
-                    
-                                    @error('leaves_available')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                            </div>
-                            
+
                             <div class="col-md-12">
                                     <strong>Role :</strong>
                                     <select name="role_id" id="role_id" class="form-control">
+                                        <option value="">SELECT ROLE</option>
                                         @foreach ($roles as $role)
                                         <option value="{{$role->id}}">{{$role->name_role}}</option>
                                         @endforeach
@@ -94,27 +83,30 @@
                                         </span>
                                     @enderror
                             </div>
-                         
+
                             <div class="col-md-12">
                                     <strong>Supervised By :</strong>
                                     <select name="manager_id" id="manager_id" class="form-control">
+                                        <option value="">SELECT SUPERVISOR</option>
                                         @foreach ($managers as $manager)
-                                        <option value="{{$manager->id}}">{{$manager->name}}</option>
+                                        <option value="{{$manager->id}}">{{$manager->name_supervisor}}</option>
                                         @endforeach
                                     </select>
-
-                                    @error('manager_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                             </div>
+                            
+                            <div class="col-md-12">
+                                    <strong>Leaves Available :</strong>
+                                    <input id="leaves_available" type="text" class="form-control @error('leaves_available') is-invalid @enderror" name="leaves_available" value="{{ old('leaves_available') }}">
+                            </div>
+
                             <br>
+
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" style="float: right;">
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
