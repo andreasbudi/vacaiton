@@ -131,6 +131,7 @@ class EmployeeController extends Controller
         $employee = User::find($id);
         $employee->name = $request->get('name');
         $employee->email = $request->get('email');
+        $employee->password = Hash::make($request->password);
         $employee->save();
             return redirect()->route('employee.profile')
                         ->with('success', 'Employee update successfully');

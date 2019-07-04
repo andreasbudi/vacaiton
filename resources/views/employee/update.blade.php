@@ -51,6 +51,21 @@
                                                     </span>
                                                 @enderror 
                                     </div>
+                                    <div class="col-md-12">
+                                        <strong>Password :</strong>
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                               @error('password')
+                                                   <span class="invalid-feedback" role="alert">
+                                                       <strong>{{ $message }}</strong>
+                                                   </span>
+                                               @enderror
+                                   </div>
+
+                                   <div class="col-md-12">
+                                        <strong>Confirm Password :</strong>
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                     </div>
                                     <br>
                                     <div class="col-md-12">
                                             <button type="submit" class="btn btn-sm btn-primary" style="float:right;">Submit</button>
