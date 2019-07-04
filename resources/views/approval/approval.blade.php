@@ -90,8 +90,16 @@
                                 <td style="text-align:center;">{{$getStaff->status}}</td>
                                 <td>
                                 <form style="width:180px;">
-                                    <a class="btn btn-sm btn-success" value="send" href="{{route('approval.show',$getStaff->id)}}">Approve</a>
+                                    @if($getStaff->status == 1)
+                                    <a class="btn btn-sm btn-success" value="send" href="{{route('approval.show',$getStaff->id)}}" style="margin-left:20px;">Approve</a>
                                     <a class="btn btn-sm btn-danger" value="send" href="{{route('approval.edit',$getStaff->id)}}">Reject</a>
+                                    @elseif($getStaff->status == 2)
+                                    <center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>
+                                    @else
+                                    <center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>
+                                    @endif
+
+                                    
                                 </form>
                                 </td>
                             </tr>
