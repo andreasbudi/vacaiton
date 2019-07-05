@@ -6,7 +6,8 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Approval Form
+                             Hi, {{(Auth::user()->name)}}<br>
+                             Please Approve Your Team Leave Request
                         </h3>
                     </div>
                 </div>

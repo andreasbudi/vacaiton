@@ -1,12 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
-
-        <div class="col-md-10">
-            <h5>You have {{(Auth::user()->leaves_available)}} Leaves Available</h5>
-        </div>
-
         <div class="row">
                 <div class="col-xl-6">
                     <!--begin:: Widgets/Tasks -->
@@ -15,7 +9,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Apply Form
+                                        Apply Form Leave
                                     </h3>
                                 </div>
                             </div>
@@ -117,7 +111,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Calendar
+                                        Calendar Of Holidays
                                     </h3>
                                 </div>
                             </div>

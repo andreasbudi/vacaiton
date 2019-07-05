@@ -6,14 +6,19 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                          
+                         @if (Auth::user()->role_id == '1')
                         <h3 class="m-portlet__head-text">
                             Hi, {{(Auth::user()->name)}}<br>
-                            This is Your Leaves History
+                            This is Your Leaves History and You Have {{(Auth::user()->leaves_available)}} Leave Available
                         </h3>
 
+                         @else 
+                        <h3 class="m-portlet__head-text">
+                            This is Your Leave History and Your Team Leave History
+                        </h3>
                         
-                        
-                        
+                        @endif
+                                                
                     </div>
                 </div>
             </div>
