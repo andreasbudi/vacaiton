@@ -107,7 +107,7 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="/profile" class="m-nav__link">
+																	<a href="{{route('employee.edit',Auth::user())}}" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -316,13 +316,13 @@
 	
 					<div class="m-content">
 						<!--Begin::Main Portlet-->
-						<div class="row">
-                            <div id="app">    
+						
+                                
                                 <main>
                                     @yield('content')
                                 </main>
-                            </div>
-						</div>
+                           
+						
 					</div>
 				</div>
 			</div>

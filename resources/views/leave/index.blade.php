@@ -5,17 +5,15 @@
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
-                        @if (Auth::user()->role_id == 1) 
+                         
                         <h3 class="m-portlet__head-text">
                             Hi, {{(Auth::user()->name)}}<br>
                             There's Your Leaves History
                         </h3>
 
-                        @else
-                        <h3 class="m-portlet__head-text">
-                            There's Your Leaves History
-                        </h3>
-                        @endif
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -98,7 +96,6 @@
                                     </th>
                                 <td>
                                     <form action="{{ route('leave.destroy', $leave->id)}}" method="post" style="width:180px;">
-                                        <a class="btn btn-sm btn-success" href="{{route('leave.show',$leave->id)}}">Show</a>
                                         <a class="btn btn-sm btn-warning" href="{{route('leave.edit',$leave->id)}}">Edit</a>
                                         @csrf
                                         @method('DELETE')

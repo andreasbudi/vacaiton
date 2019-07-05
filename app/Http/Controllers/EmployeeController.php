@@ -91,9 +91,12 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = User::find($id);
+        
+        $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)
+        ->where('role_id',1);
         $roles = Role::all();
         $managers = Supervisor::all();
-        return view('employee.update', compact('employee','roles','managers'));
+        return view('employee.update', compact('employee','roles','managers','users'));
     }
 
     /**
@@ -123,16 +126,12 @@ class EmployeeController extends Controller
         }
         
         else{
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required'
-        ]);
+
+     
         $employee = User::find($id);
-        $employee->name = $request->get('name');
-        $employee->email = $request->get('email');
         $employee->password = Hash::make($request->password);
         $employee->save();
-            return redirect()->route('employee.profile')
+            return redirect()->route('home')
                         ->with('success', 'Employee update successfully');
         } 
     }
