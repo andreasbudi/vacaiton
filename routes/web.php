@@ -12,7 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    if(Auth::user()){
+        if(Auth::user()->role_id == '1' && Auth::user()->role_id == '2'){
+            return view('welcome');
+        }
+        if(Auth::user()->role_id == '3'){
+            return view('welcome');
+        }
+        else{
+            return view('welcome');     
+        }}
+    else{
+            return view('auth/login');
+        } 
 });
 
 Route::get('/login', function () {
@@ -26,6 +38,7 @@ Route::get('/welcome', function () {
 
 Route::get('/profile', 'EmployeeController@profile')->name('employee.profile');
 Route::get('/show', 'EmployeeController@show');
+Route::get('/showsupervisor', 'SupervisorController@show');
 Route::get('/logout','HomeController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('leave/send', 'LeaveController@send');
@@ -35,3 +48,5 @@ Auth::routes();
 Route::resource('leave','LeaveController');
 Route::resource('employee','EmployeeController');
 Route::resource('approval','ApprovalController');
+Route::resource('role', 'RoleController');
+Route::resource('supervisor', 'SupervisorController');

@@ -282,9 +282,8 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												List Employees
+												List Member
 											</span>
-									
 										</span>
 									</span>
 								</a>
@@ -295,13 +294,36 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												Add Employee
+												Add Member
 											</span>
-									
 										</span>
 									</span>
 								</a>
 							</li>
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+								<a  href="/showsupervisor" class="m-menu__link ">
+									<i class="m-menu__link-icon la la-user-plus"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Supervisor
+											</span>
+										</span>
+									</span>
+								</a>
+							</li>
+						{{--	<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+								<a  href="{{ route('role.create')}}" class="m-menu__link ">
+									<i class="m-menu__link-icon la la-user-plus"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Add Role
+											</span>
+										</span>
+									</span>
+								</a>
+							</li> --}}
 							@endif
 							
 							
