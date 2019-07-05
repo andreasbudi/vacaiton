@@ -8,7 +8,7 @@
                          
                         <h3 class="m-portlet__head-text">
                             Hi, {{(Auth::user()->name)}}<br>
-                            There's Your Leaves History
+                            This is Your Leaves History
                         </h3>
 
                         

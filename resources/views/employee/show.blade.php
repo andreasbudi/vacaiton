@@ -6,7 +6,8 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Employees Management
+                                Hi, {{(Auth::user()->name)}}<br>
+                                This is List Member of Difinite 
                             </h3>
                         </div>
                     </div>
