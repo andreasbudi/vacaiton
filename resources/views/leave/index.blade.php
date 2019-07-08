@@ -120,7 +120,7 @@
         </div>
     </div>
 
-    
+    @if (Auth::user()->role_id == '2')
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__head">
@@ -242,5 +242,6 @@
             </div>
         </div>
     </div>
+    @endif
 
 @endsection
