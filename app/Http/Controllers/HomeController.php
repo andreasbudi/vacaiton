@@ -34,9 +34,10 @@ class HomeController extends Controller
                     ->with('i',(request()->input('page',1) -1) *5); 
         }
         else if($getRole == 2){
-        $getStaffs = Leave::latest()->paginate(5);
-        return view('approval.approval', compact('getStaffs'))
-                    ->with('i',(request()->input('page',1) -1) *5);
+        $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
+                            ->where('role_id',1)->paginate(5);
+            return view('approval.approval', compact('getStaffs'))
+            ->with('i',(request()->input('page',1) -1) *5);
         }
         else if($getRole == 3){
         $getStaffs = Leave::latest()->paginate(5);

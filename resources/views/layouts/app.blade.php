@@ -210,7 +210,7 @@
 
 							@elseif (Auth::user()->role_id == '2')
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
-									<a href="/home" class="m-menu__link ">
+									<a href="{{route('approval.index')}}" class="m-menu__link ">
 										<i class="m-menu__link-icon fa fa-glass"></i>
 										<span class="m-menu__link-title">
 											<span class="m-menu__link-wrap">
