@@ -20,9 +20,12 @@ class LeaveController extends Controller
     public function index()
     {
         $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
+        $team_leaves = Leave::where('manager_id', '=', Auth::user()->manager_id)
+                            ->where('role_id',1)->paginate(5);
 
-        return view('leave.index', compact('leaves'))
+        return view('leave.index', compact('leaves','team_leaves'))
                     ->with('i',(request()->input('page',1) -1) *5); 
+
     }
 
     /**
