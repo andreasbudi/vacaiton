@@ -209,7 +209,7 @@ class UserTableSeeder extends Seeder
         $testStaff = new User();
         $testStaff->name = 'testStaff1';
         $testStaff->department = 'testing';
-        $testStaff->email = 'andreas.b365@gmail.com';
+        $testStaff->email = 'test1@gmail.com';
         $testStaff->password = bcrypt('adminadmin');
         $testStaff->leaves_available = '12';
         $testStaff->role_id = '1';
@@ -269,7 +269,7 @@ class UserTableSeeder extends Seeder
         $testManager = new User();
         $testManager->name = 'testManager';
         $testManager->department = 'testing';
-        $testManager->email = 'anjeaye@gmail.com';
+        $testManager->email = 'manager@gmail.com';
         $testManager->password = bcrypt('adminadmin');
         $testManager->role_id = '3';
         $testManager->save();
