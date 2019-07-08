@@ -21,7 +21,9 @@ class LeaveController extends Controller
     {
         $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
         $team_leaves = Leave::where('manager_id', '=', Auth::user()->manager_id)
-                            ->where('role_id',1)->paginate(5);
+                            ->where('role_id',1)
+                            ->where('status', '!=', 1)->paginate(5);
+
 
         return view('leave.index', compact('leaves','team_leaves'))
                     ->with('i',(request()->input('page',1) -1) *5); 
@@ -115,7 +117,10 @@ class LeaveController extends Controller
     public function show($id)
     {
         $leave = Leave::find($id);
-        return view('leave.detail', compact('leave'));
+        $leave->status = 4;
+        $leave->save();
+            return redirect()->route('leave.index')
+                        ->with('success', 'Leave Canceled');
     }
 
     /**

@@ -91,22 +91,29 @@
                                 <td style="text-align:center;">{{$leave->reason}}</td>
                                 <th>
                                         @if($leave->status == 1)
-                                        <center><span class="label label-info">Waiting for Approval</span></center>
+                                        <center><span class="label label-info">Submitted</span></center>
                                         @elseif($leave->status == 2)
                                         <center><span class="label label-danger">Approved</span></center>
                                         @elseif($leave->status == 3)
                                         <center><span class="label label-danger">Rejected</span></center>
+                                        @elseif($leave->status == 4)
+                                        <center><span class="label label-danger">Canceled</span></center>
                                         @endif
                 
                                     </th>
                                 <td>
-                                    <form action="{{ route('leave.destroy', $leave->id)}}" method="post" style="width:180px;">
+                                @if($leave->status == 1)
+                                 <form action="{{ route('leave.show', $leave->id)}}" method="post" style="width:180px;">
                                         <a class="btn btn-sm btn-warning" href="{{route('leave.edit',$leave->id)}}">Edit</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    
-                                    </form>
+                                        <a class="btn btn-sm btn-danger" href="{{route('leave.show',$leave->id)}}">Cancel</a>
+                                 </form>
+                                @elseif($leave->status == 2)
+                                    <center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>
+                                @elseif($leave->status == 3)
+                                    <center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>
+                                @elseif($leave->status == 4)
+                                    <center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>
+                                @endif   
                                 </td>
                             </tr>
                             
@@ -214,23 +221,15 @@
                                 <td style="text-align:center;">{{$leave->reason}}</td>
                                 <th>
                                         @if($leave->status == 1)
-                                        <center><span class="label label-info">Waiting for Approval</span></center>
+                                        <center><span class="label label-info">Submitted</span></center>
                                         @elseif($leave->status == 2)
                                         <center><span class="label label-danger">Approved</span></center>
                                         @elseif($leave->status == 3)
                                         <center><span class="label label-danger">Rejected</span></center>
+                                        @elseif($leave->status == 4)
+                                        <center><span class="label label-danger">Canceled</span></center>
                                         @endif
-                
                                     </th>
-                                <td>
-                                    <form action="{{ route('leave.destroy', $leave->id)}}" method="post" style="width:180px;">
-                                        <a class="btn btn-sm btn-warning" href="{{route('leave.edit',$leave->id)}}">Edit</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    
-                                    </form>
-                                </td>
                             </tr>
                             
                         @endforeach

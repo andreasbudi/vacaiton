@@ -13,7 +13,7 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         $waiting_status = new Status();
-        $waiting_status->name_status = 'Waiting For Approval';
+        $waiting_status->name_status = 'Submitted';
         $waiting_status->save();
 
         $approval_status = new Status();
@@ -22,6 +22,10 @@ class StatusTableSeeder extends Seeder
        
         $approval_status = new Status();
         $approval_status->name_status = 'Rejected';
+        $approval_status->save();
+
+        $approval_status = new Status();
+        $approval_status->name_status = 'Canceled';
         $approval_status->save();
     }
 }
