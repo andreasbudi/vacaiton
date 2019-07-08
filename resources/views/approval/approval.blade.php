@@ -239,8 +239,10 @@
                                             <a class="btn btn-sm btn-danger" value="send" href="{{route('approval.edit',$getStaff->id)}}">Reject</a>
                                             @elseif($getStaff->status == 2)
                                             <center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>
-                                            @else
+                                            @elseif($getStaff->status == 3)
                                             <center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>
+                                            @elseif($getStaff->status == 4)
+                                            <center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>
                                             @endif
         
                                             
@@ -355,8 +357,10 @@
                                     <a class="btn btn-sm btn-danger" value="send" href="{{route('approval.edit',$getStaff->id)}}">Reject</a>
                                     @elseif($getStaff->status == 2)
                                     <center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>
-                                    @else
+                                    @elseif($getStaff->status == 3)
                                     <center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>
+                                    @elseif($getStaff->status == 4)
+                                    <center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>
                                     @endif
 
                                     
