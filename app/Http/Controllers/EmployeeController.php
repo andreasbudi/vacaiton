@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     public function json(){
 
         // spv query leave history dia sendiri
-        $employees = DB::table('users')->join('roles', 'users.role_id', '=', 'roles.id')->join('supervisors', 'users.manager_id', '=', 'supervisors.id')
+        $employees = DB::table('users')->leftjoin('roles', 'users.role_id', '=', 'roles.id')->leftjoin('supervisors', 'users.manager_id', '=', 'supervisors.id')
                 ->select(['users.id','users.name','users.department','users.email','users.leaves_available','roles.name_role','supervisors.name_supervisor']);
         return Datatables::of($employees)
         ->addColumn('action', function ($employees) {
@@ -131,30 +131,56 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::User()->role_id == '4'){
+        $employee = User::find($id);
+
+        if(Auth::user()->role_id == '4' && $employee->role_id == 1){
         $request->validate([
             'department' => 'required',
-            'email' => 'required'
+            'role_id' => 'required',
+            'manager_id' => 'required',
         ]);
-        $employee = User::find($id);
-        $employee->name = $request->get('name');
-        $employee->department = $request->get('department');
-        $employee->email = $request->get('email');
-        $employee->leaves_available = $request->get('leaves_available');
-        $employee['role_id'] = $request->get('role_id');
-        $employee['manager_id'] = $request->get('manager_id');
-        $employee->save();
+            $employee->name = $request->get('name');
+            $employee->department = $request->get('department');
+            $employee->email = $request->get('email');
+            $employee->leaves_available = $request->get('leaves_available');
+            $employee['role_id'] = $request->get('role_id');
+            $employee['manager_id'] = $request->get('manager_id');
+            $employee->save();
             return redirect()->route('home')
                         ->with('success', 'Employee updated successfully');
-
         }
         
+        elseif (Auth::user()->role_id == '4' && $employee->role_id == 2){
+        $request->validate([
+            'department' => 'required',
+            'role_id' => 'required'
+        ]);
+            $employee->name = $request->get('name');
+            $employee->department = $request->get('department');
+            $employee->email = $request->get('email');
+            $employee->leaves_available = $request->get('leaves_available');
+            $employee['role_id'] = $request->get('role_id');
+            $employee->save();
+            return redirect()->route('home')
+                        ->with('success', 'Employee updated successfully');
+        }
+        elseif (Auth::user()->role_id == '4' && $employee->role_id == 3){
+        $request->validate([
+            'department' => 'required',
+            'role_id' => 'required'
+        ]);
+            $employee->name = $request->get('name');
+            $employee->department = $request->get('department');
+            $employee->email = $request->get('email');
+            $employee['role_id'] = $request->get('role_id');
+            $employee->save();
+            return redirect()->route('home')
+                        ->with('success', 'Employee updated successfully');
+        }
         else{
-
-     
-        $employee = User::find($id);
-        $employee->password = Hash::make($request->password);
-        $employee->save();
+            $employee = User::find($id);
+            $employee->password = Hash::make($request->password);
+            $employee->save();
             return redirect()->route('home')
                         ->with('success', 'Employee update successfully');
         } 

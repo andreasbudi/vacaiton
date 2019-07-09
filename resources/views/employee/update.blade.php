@@ -35,7 +35,7 @@
                                         Name:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" >
+                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" required autocomplete="name" autofocus>
                                         
                                     </div>
                             </div>
@@ -44,7 +44,7 @@
                                         Email address:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" >
+                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" required autocomplete="email" autofocus>
                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" >
+                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" required autocomplete="department" autofocus>
                                             @error('department')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
                                             Leaves Available:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" >
+                                            <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" required autocomplete="leaves_available" autofocus>
                                        
                                     </div>
                             </div>
@@ -81,7 +81,7 @@
                                             Role:
                                     </label>
                                     <div class="col-lg-6">
-                                            <select name="role_id" id="role_id" class="form-control">
+                                            <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id" autofocus>
                                                     <option value="">SELECT ROLE</option>
                                                     @foreach ($roles as $role)
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
@@ -95,7 +95,7 @@
                                             Supervisor:
                                     </label>
                                     <div class="col-lg-6">
-                                            <select name="manager_id" id="manager_id" class="form-control">
+                                            <select name="manager_id" id="manager_id" class="form-control" required autocomplete="manager_id" autofocus>
                                                     <option value="">SELECT SUPERVISOR</option>
                                                     @foreach ($managers as $manager)
                                                     <option value="{{$manager->id}}">{{$manager->name_supervisor}}</option>
@@ -110,7 +110,7 @@
                                         Name:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" >
+                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" required autocomplete="name" autofocus>
                                         
                                     </div>
                             </div>
@@ -119,7 +119,7 @@
                                         Email address:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" >
+                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" required autocomplete="email" autofocus>
                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -133,7 +133,7 @@
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" >
+                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" required autocomplete="department" autofocus>
                                             @error('department')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -147,7 +147,7 @@
                                             Leaves Available:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" >
+                                            <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" required autocomplete="leaves_available" autofocus>
                                        
                                     </div>
                             </div>
@@ -156,7 +156,7 @@
                                             Role:
                                     </label>
                                     <div class="col-lg-6">
-                                            <select name="role_id" id="role_id" class="form-control">
+                                            <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id" autofocus>
                                                     <option value="">SELECT ROLE</option>
                                                     @foreach ($roles as $role)
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
@@ -171,7 +171,7 @@
                                         Name:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" >
+                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" required autocomplete="name" autofocus>
                                         
                                     </div>
                             </div>
@@ -180,7 +180,7 @@
                                         Email address:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" >
+                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" required autocomplete="email" autofocus>
                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -194,7 +194,7 @@
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" >
+                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" required autocomplete="department" autofocus>
                                             @error('department')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -209,7 +209,7 @@
                                             Role:
                                     </label>
                                     <div class="col-lg-6">
-                                            <select name="role_id" id="role_id" class="form-control">
+                                            <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id" autofocus>
                                                     <option value="">SELECT ROLE</option>
                                                     @foreach ($roles as $role)
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
