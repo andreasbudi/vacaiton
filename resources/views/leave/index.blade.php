@@ -99,7 +99,7 @@
                             <th>To</th>
                             <th>Duration</th>
                             <th>Reason</th>
-                            <th style="width:15%; text-align:center;">Status</th>
+                            <th style="width:1%; text-align:center;">Status</th>
                         </tr>
                     </thead>
                     </table>
@@ -117,7 +117,7 @@
                                     { data: 'to', name: 'to' },
                                     { data: 'duration', name: 'duration' },
                                     { data: 'reason', name: 'reason' },
-                                    { data: 'name_status', name: 'statuses.name_status' }
+                                    { data: 'action', name: 'action', orderable: false, searchable: false}
                                 ]
                             });
                         });

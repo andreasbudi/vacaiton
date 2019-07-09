@@ -35,7 +35,7 @@
                                         Name:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->name) }}}" >
+                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" >
                                         
                                     </div>
                             </div>
@@ -44,7 +44,7 @@
                                         Email address:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->email) }}}" >
+                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" >
                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->department) }}}" >
+                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" >
                                             @error('department')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
                                             Leaves Available:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->leaves_available) }}}" >
+                                            <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" >
                                        
                                     </div>
                             </div>
@@ -110,7 +110,7 @@
                                         Name:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->name) }}}" >
+                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" >
                                         
                                     </div>
                             </div>
@@ -119,7 +119,7 @@
                                         Email address:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->email) }}}" >
+                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" >
                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -133,7 +133,7 @@
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->department) }}}" >
+                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" >
                                             @error('department')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -147,7 +147,7 @@
                                             Leaves Available:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->leaves_available) }}}" >
+                                            <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" >
                                        
                                     </div>
                             </div>
@@ -171,7 +171,7 @@
                                         Name:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->name) }}}" >
+                                            <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" >
                                         
                                     </div>
                             </div>
@@ -180,7 +180,7 @@
                                         Email address:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->email) }}}" >
+                                            <input type="text" name="email" class="form-control " value="{{{ ($employee->email) }}}" >
                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
@@ -194,7 +194,7 @@
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                            <input type="text" class="form-control " value="{{{ ($employee->department) }}}" >
+                                            <input type="text" name="department" class="form-control " value="{{{ ($employee->department) }}}" >
                                             @error('department')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>

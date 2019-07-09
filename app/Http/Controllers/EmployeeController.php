@@ -137,6 +137,7 @@ class EmployeeController extends Controller
             'email' => 'required'
         ]);
         $employee = User::find($id);
+        $employee->name = $request->get('name');
         $employee->department = $request->get('department');
         $employee->email = $request->get('email');
         $employee->leaves_available = $request->get('leaves_available');

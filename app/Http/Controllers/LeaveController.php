@@ -37,14 +37,14 @@ class LeaveController extends Controller
         public function jsonTeamSpv(){
 
         // spv query leave history dia sendiri
-        $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')->join('statuses', 'leaves.status', '=', 'statuses.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','statuses.name_status'])
+        $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1);
         return Datatables::of($leaves)
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
-            return '<center><span class="label label-info">Submitted</span></center>';
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Submitted</span></center>';
             }elseif($leaves->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($leaves->status == 3){
