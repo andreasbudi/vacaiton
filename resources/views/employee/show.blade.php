@@ -21,41 +21,42 @@
     
                 
                     <!--begin: Datatable -->
-                    <div class="m_datatable" id="ajax_data">
-                        <table class="table table-hover table-sm" >
-                                <tr>
-                                        <th width="150px"style="text-align:center;"><b>No.</b></th>
-                                        <th style="text-align:center;width:200px;">Name</th>
-                                        <th style="text-align:center;width:200px;">Department</th>
-                                        <th style="text-align:center;width:200px;">Email</th>
-                                        <th style="text-align:center; width:300px;">Leaves Available</th>
-                                        <th style="text-align:center; width:300px;">Role</th>
-                                        <th style="text-align:center; width:300px;">Supervisor</th>
-                                        <th></th>
-                                    </tr>
-                        
-                                    @foreach ($employees as $employee)
-                                        <tr>
-                                            <td style="text-align:center;"><b>{{++$i}}.</b></td>
-                                            <td style="text-align:center;">{{$employee->name}}</td>
-                                            <td style="text-align:center;">{{$employee->department}}</td>
-                                            <td style="text-align:center;">{{$employee->email}}</td>
-                                            <td style="text-align:center;">{{$employee->leaves_available}}</td>
-                                            <td style="text-align:center;">{{$employee->roles->name_role}}</td>
-                                            <td style="text-align:center;">{{@$employee->supervisors->name_supervisor}}</td>
-                                            <td>
-                                                <form action="{{ route('employee.destroy', $employee->id)}}" method="post" style="width:180px;">
-                                                    <a class="btn btn-sm btn-warning" href="{{route('employee.edit',$employee->id)}}">Edit</a> 
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        
-                                    @endforeach
-                
+                    <div class="m_datatable" >
+                        <table class="table table-hover table-sm" id="ajax_data" >
+                            <thead>
+                            <tr>
+                                <th><b>No.</b></th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Email</th>
+                                <th>Leaves Available</th>
+                                <th>Role</th>
+                                <th>Supervisor</th>
+                                <th style=" text-align:center;">Action</th>
+                            </tr>
+                        </thead>
                         </table>
+                            @push('scripts')
+                            <script>
+                            $(function() {
+                                $('#ajax_data').DataTable({
+                                    processing: true,
+                                    serverSide: true,
+                                    ajax: 'show/json',
+                                    columns: [
+                                        { data: 'id', name: 'users.id' },
+                                        { data: 'name', name: 'users.name' },
+                                        { data: 'department', name: 'users.department' },
+                                        { data: 'email', name: 'users.email' },
+                                        { data: 'leaves_available', name: 'users.leaves_available' },
+                                        { data: 'name_role', name: 'roles.name_role' },
+                                        { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
+                                        {data: 'action', name: 'action', orderable: false, searchable: false}
+                                    ]
+                                });
+                            });
+                            </script>
+                            @endpush
                     </div>
                     <!--end: Datatable -->
                 

@@ -19,7 +19,7 @@ class CreateLeavesTable extends Migration
             $table->date('to');
             $table->integer('duration');
             $table->string('reason');
-            $table->integer('status')->default('1');
+            $table->integer('status')->default('1')->unsigned();
             $table->integer('user_id')->nullable()->unsigned();
             $table->integer('role_id')->nullable()->unsigned();
             $table->integer('manager_id')->nullable()->unsigned();
@@ -28,6 +28,7 @@ class CreateLeavesTable extends Migration
         });
 
         Schema::table('leaves', function (Blueprint $table) {
+            $table->foreign('status')->references('id')->on('statuses');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('manager_id')->references('id')->on('supervisors');

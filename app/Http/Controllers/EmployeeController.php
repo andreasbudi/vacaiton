@@ -12,9 +12,24 @@ use App\User;
 use App\Supervisor;
 use App\Role;
 use App\Leave;
+use DB;
+use DataTables;
 
 class EmployeeController extends Controller
 {
+    public function json(){
+
+        // spv query leave history dia sendiri
+        $employees = DB::table('users')->join('roles', 'users.role_id', '=', 'roles.id')->join('supervisors', 'users.manager_id', '=', 'supervisors.id')
+                ->select(['users.id','users.name','users.department','users.email','users.leaves_available','roles.name_role','supervisors.name_supervisor']);
+        return Datatables::of($employees)
+        ->addColumn('action', function ($employees) {
+            return '<form action="'.route('employee.destroy', $employees->id).'" method="post"><a class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
+            <a class="btn btn-sm btn-danger" href="'.route('employee.destroy',$employees->id).'">Delete</a></form>';
+        })->make(true);             
+        }
+
+        
       /**
      * Show the form for creating a new resource.
      *
@@ -77,9 +92,17 @@ class EmployeeController extends Controller
      */
     public function show()
     {
-        $employees = User::latest()->paginate(10);
-        return view('employee.show', compact('employees'))
-                    ->with('i',(request()->input('page',1) -1) *5); 
+        return view('employee.show');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('employee.show');
     }
 
     /**
@@ -145,6 +168,8 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $employee = User::find($id);
+        csrf_field;
+        method('DELETE');
         $employee->delete();
         return redirect()->route('home')
                         ->with('success','Employee have been deleted');

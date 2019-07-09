@@ -7,11 +7,51 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendApprove;
 use App\Mail\SendReject;
+use DB;
 use App\Leave;
 use App\User;
+use DataTables;
 
 class ApprovalController extends Controller
 {
+    public function json(){
+        // manager query all leaves
+        if(empty(Auth::user()->manager_id)){
+        $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status'])
+                ->where('leaves.status', '=', 1);
+        return Datatables::of($approval)
+        ->addColumn('action', function ($approval) {
+            if($approval->status == 1){
+            return '<form><a class="btn btn-sm btn-success" value="send" style="margin-left:18%;" href="'.route('approval.show',$approval->id).'">Approve</a>
+            <a class="btn btn-sm btn-danger" value="send" href="'.route('approval.edit',$approval->id).'">Reject</a></form>';
+            }elseif($approval->status == 2){
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
+            }elseif($approval->status == 3){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
+            }elseif($approval->status == 4){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>';
+            }})->make(true);
+        }else{
+        $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id'])
+                ->where('leaves.manager_id', Auth::user()->manager_id)
+                ->where('leaves.role_id',1)
+                ->where('leaves.status', '=', 1);
+        return Datatables::of($approval)
+        ->addColumn('action', function ($approval) {
+            if($approval->status == 1){
+            return '<form><a class="btn btn-sm btn-success" value="send" style="margin-left:18%;" href="'.route('approval.show',$approval->id).'">Approve</a>
+            <a class="btn btn-sm btn-danger" value="send" href="'.route('approval.edit',$approval->id).'">Reject</a></form>';
+            }elseif($approval->status == 2){
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
+            }elseif($approval->status == 3){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
+            }elseif($approval->status == 4){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>';
+            }})->make(true);
+            }
+        }
     /**
      * Display a listing of the resource.
      *
@@ -19,29 +59,10 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        //masuk sebagai spv bisa liat approval
-        if(Auth::user()->manager_id == 1){
-            $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
-                            ->where('role_id',1)->paginate(5);
-            return view('approval.approval', compact('getStaffs'))
-            ->with('i',(request()->input('page',1) -1) *5);
-
-        }elseif(Auth::user()->manager_id == 2){
-            $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
-                            ->where('role_id',1)->paginate(5);
-            return view('approval.approval', compact('getStaffs'))
-            ->with('i',(request()->input('page',1) -1) *5);
-        }elseif(Auth::user()->manager_id == 3){
-            $getStaffs = Leave::where('manager_id', '=', Auth::user()->manager_id)
-                            ->where('role_id',1)->paginate(5);
-            return view('approval.approval', compact('getStaffs'))
-                            ->with('i',(request()->input('page',1) -1) *5);
-        }elseif(empty(Auth::user()->manager_id)){
-            $getStaffs = Leave::with('users')->paginate(5);
-            return view('approval.approval', compact('getStaffs'))
-            ->with('i',(request()->input('page',1) -1) *5);
-        }
+            return view('approval.approval');
     }
+
+
 
     /**
      * Display the specified resource.

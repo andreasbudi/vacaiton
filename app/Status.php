@@ -8,7 +8,7 @@ class Status extends Model
 {
     public function leaves()
     {
-        return $this->belongsToMany('App\Leave', 'user_statuses', 'status_id', 'leave_id');
+        return $this->belongsToMany(Leave::class,'status');
     }
     
     protected $fillable = ['name_status'];

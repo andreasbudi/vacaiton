@@ -9,9 +9,50 @@ use App\Mail\SendMailClient;
 use App\Mail\SendMailSpv;
 use App\Leave;
 use App\User;
-use Carbon\Carbon;
+use DB;
+use DataTables;
+
 class LeaveController extends Controller
 {
+        public function json(){
+
+        // spv query leave history dia sendiri
+        $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status'])
+                ->where('user_id', '=', Auth::user()->id);
+        return Datatables::of($leaves)
+        ->addColumn('action', function ($leaves) {
+            if($leaves->status == 1){
+            return '<form action="'.route('leave.show', $leaves->id).'" method="post" style="width:180px;"><a class="btn btn-sm btn-warning" href="'.route('leave.edit',$leaves->id).'">Edit</a>
+            <a class="btn btn-sm btn-danger" href="'.route('leave.show',$leaves->id).'">Cancel</a></form>';
+            }elseif($leaves->status == 2){
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
+            }elseif($leaves->status == 3){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
+            }elseif($leaves->status == 4){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>';
+            }})->make(true);        
+        }
+
+        public function jsonTeamSpv(){
+
+        // spv query leave history dia sendiri
+        $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')->join('statuses', 'leaves.status', '=', 'statuses.id')
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','statuses.name_status'])
+                ->where('leaves.manager_id', Auth::user()->manager_id)
+                ->where('leaves.role_id',1);
+        return Datatables::of($leaves)
+        ->addColumn('action', function ($leaves) {
+            if($leaves->status == 1){
+            return '<center><span class="label label-info">Submitted</span></center>';
+            }elseif($leaves->status == 2){
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
+            }elseif($leaves->status == 3){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
+            }elseif($leaves->status == 4){
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>';
+            }})->make(true);  
+        }
     /**
      * Display a listing of the resource.
      *

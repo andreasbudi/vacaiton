@@ -14,7 +14,7 @@ class Leave extends Model
 
     public function statuses()
     {
-        return $this->belongsToMany('App\Status', 'user_statuses', 'leave_id', 'status_id');
+        return $this->belongsToMany(Status::class, 'status');
     }
 
     public function supervisors()
