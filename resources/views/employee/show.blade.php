@@ -36,6 +36,7 @@
                             </tr>
                         </thead>
                         </table>
+
                             @push('scripts')
                             <script>
                             $(function() {
@@ -59,7 +60,7 @@
                             @endpush
                     </div>
                     <!--end: Datatable -->
-                
+                    
             </div>
         </div>
 @endsection

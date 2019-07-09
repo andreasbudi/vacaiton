@@ -213,9 +213,4 @@ class LeaveController extends Controller
         return redirect()->route('leave.index')
                         ->with('success','Leave form have been canceled');
     }
-
-    public function calculateDate()
-    {
-      //
-    }
 }

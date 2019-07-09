@@ -22,10 +22,36 @@ class EmployeeController extends Controller
         // spv query leave history dia sendiri
         $employees = DB::table('users')->leftjoin('roles', 'users.role_id', '=', 'roles.id')->leftjoin('supervisors', 'users.manager_id', '=', 'supervisors.id')
                 ->select(['users.id','users.name','users.department','users.email','users.leaves_available','roles.name_role','supervisors.name_supervisor']);
-        return Datatables::of($employees)
+                return Datatables::of($employees)
         ->addColumn('action', function ($employees) {
-            return '<form action="'.route('employee.destroy', $employees->id).'" method="post"><a class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
-            <a class="btn btn-sm btn-danger" href="'.route('employee.destroy',$employees->id).'">Delete</a></form>';
+            
+            return '<a class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
+            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m_modal_5">Delete</button>
+            
+            <div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h7 class="modal-title" id="exampleModalLabel">
+                                Delete this user?
+                            </h7>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
+                            <form action="'.route('employee.destroy', $employees->id).'" method="post">
+                                <button type:"submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>';
         })->make(true);             
         }
 
@@ -113,6 +139,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
+    
         $employee = User::find($id);
         
         $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)
@@ -194,10 +221,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $employee = User::find($id);
-        csrf_field;
-        method('DELETE');
-        $employee->delete();
+        DB::table('users')->delete($id); 
         return redirect()->route('home')
                         ->with('success','Employee have been deleted');
     }

@@ -19,6 +19,7 @@ class CreateLeavesTable extends Migration
             $table->date('to');
             $table->integer('duration');
             $table->string('reason');
+            $table->string('reject_message');
             $table->integer('status')->default('1')->unsigned();
             $table->integer('user_id')->nullable()->unsigned();
             $table->integer('role_id')->nullable()->unsigned();
