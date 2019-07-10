@@ -286,33 +286,7 @@
                                         
                                     </div>
                             </div>
-                            @elseif (Auth::user()->role_id == '2')
-                            <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
-                                            My Team:
-                                    </label>
-                                    @foreach ($users as $user)
-                                    
-                                    <div class="form-group m-form__group row">
-                                        
-                                    <div class="col-lg-6">
-                                    <input type="text" class="form-control " value="{{{ $user->name }}}" disabled>
-                                    </div>
-                                    </div>
-                                    @endforeach
-                                    
-                            </div>
                             @endif
-
-
-
-
-
-
-
-                            
-     
-  
                         </div>
                         <div class="m-form__seperator m-form__seperator--dashed"></div>
                         <div class="m-form__section m-form__section--last">

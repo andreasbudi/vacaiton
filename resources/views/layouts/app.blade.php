@@ -368,8 +368,7 @@
         <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/jquery-ui/jquery-ui.bundle.js" type="text/javascript"></script>
-		{{-- <script src="../../assets/demo/default/custom/components/calendar/basic.js" type="text/javascript"></script> --}}
-		<script src="../../assets/demo/default/custom/components/datatables/base/local-sort.js" type="text/javascript"></script>
+		{{-- <script src="../../assets/demo/default/custom/components/datatables/base/local-sort.js" type="text/javascript"></script> --}}	
 		<script src="../../assets/demo/default/custom/components/calendar/external-events.js" type="text/javascript"></script>
 		<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 		@stack('scripts')

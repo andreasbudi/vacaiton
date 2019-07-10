@@ -26,7 +26,7 @@ class EmployeeController extends Controller
         ->addColumn('action', function ($employees) {
             
             return '<a class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
-            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m_modal_5">Delete</button>
+            <a class="btn btn-sm btn-danger" href="'.route('employee.destroy',$employees->id).'" data-toggle="modal" data-target="#m_modal_5">Delete</a>
             
             <div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -46,7 +46,9 @@ class EmployeeController extends Controller
                                 Close
                             </button>
                             <form action="'.route('employee.destroy', $employees->id).'" method="post">
-                                <button type:"submit" class="btn btn-sm btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                <input type="hidden" name="_method" value="delete" />
+                                <input type="hidden" name="_token" value="'.csrf_token().'">
                             </form>
                         </div>
                     </div>
@@ -221,7 +223,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('users')->delete($id); 
+        $employee = User::find($id);
+        $employee->delete();
         return redirect()->route('home')
                         ->with('success','Employee have been deleted');
     }

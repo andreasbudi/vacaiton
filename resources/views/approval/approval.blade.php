@@ -114,29 +114,24 @@
                                                 <i class="flaticon-add"></i>
                                             </span>
                                             <h3 class="m-portlet__head-text">
-                                                Draggable Events
+                                                All employees
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="m-portlet__body">
-                                    <div id="m_calendar_external_events" class="fc-unthemed">
+                                    <div class="fc-unthemed">
+                                        @foreach ($leaves as $leave)
                                         <div class='fc-event fc-event-external fc-start m-fc-event--primary m--margin-bottom-15' data-color="m-fc-event--primary">
                                             <div class="fc-title">
-                                                <div class="fc-content">
-                                                    Meeting
+                                                <div class="fc-content" style="margin-top:7px;">
+                                                    <p style="font-size:13px;">{{$leave->users->name}}</p>
+                                                    <p>{{$leave->from}} - {{$leave->to}}</p>
+                                                    <p style="font-size:12px;">{{$leave->duration}} days</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="m-separator m-separator--dashed m-separator--space"></div>
-                                        <div>
-                                            <label class="m-checkbox m-checkbox--brand">
-                                                <input type="checkbox" id='m_calendar_external_events_remove'>
-                                                Remove after drop
-                                                <span></span>
-                                            </label>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

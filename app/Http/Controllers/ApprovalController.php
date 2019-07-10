@@ -101,8 +101,9 @@ class ApprovalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-            return view('approval.approval');
+    { 
+        $leaves = Leave::with('users')->where('status',2)->get();
+        return view('approval.approval', compact('leaves'));
     }
 
 
