@@ -24,38 +24,14 @@ class EmployeeController extends Controller
                 ->select(['users.id','users.name','users.department','users.email','users.leaves_available','roles.name_role','supervisors.name_supervisor']);
                 return Datatables::of($employees)
         ->addColumn('action', function ($employees) {
-            
-            return '<a class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
-            <a class="btn btn-sm btn-danger" href="'.route('employee.destroy',$employees->id).'" data-toggle="modal" data-target="#m_modal_5">Delete</a>
-            
-            <div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h7 class="modal-title" id="exampleModalLabel">
-                                Delete this user?
-                            </h7>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">
-                                    &times;
-                                </span>
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
-                                Close
-                            </button>
-                            <form action="'.route('employee.destroy', $employees->id).'" method="post">
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                <input type="hidden" name="_method" value="delete" />
-                                <input type="hidden" name="_token" value="'.csrf_token().'">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>';
-        })->make(true);             
-        }
+            return '<a  style="float:left; width:45%;" class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
+            <form class="delete-form" action="'.route('employee.destroy', $employees->id).'" method="post">
+                <button type="submit" style="float:right; width:45%;" class="btn btn-sm btn-danger">Delete</button>
+                <input type="hidden" name="_token" value="'.csrf_token().'">
+                <input type="hidden" name="_method" value="delete" />
+            </form>';
+        })->make(true);
+    }
 
         
       /**
@@ -107,9 +83,23 @@ class EmployeeController extends Controller
         $employeeData['role_id'] = $request->role_id;
         $employeeData['manager_id'] = $request->manager_id;
         $employeeData->save();
-
-        return redirect()->route('home')
-                        ->with('success','Employee have been added');
+        toastr()->success('Employee added successfully','', [ 
+            "closeButton"       => true,
+            "debug"             => false,
+            "newestOnTop"       => false,
+            "progressBar"       => false,
+            "positionClass"     => "toast-top-center",
+            "preventDuplicates" => false,
+            "onclick"           => null,
+            "showDuration"      => "300",
+            "hideDuration"      => "1000",
+            "timeOut"           => "3000",
+            "extendedTimeOut"   => "1000",
+            "showEasing"        => "swing",
+            "hideEasing"        => "linear",
+            "showMethod"        => "slideDown",
+            "hideMethod"        => "slideUp"]);
+        return redirect()->route('home');
     }
 
     /**
@@ -175,8 +165,23 @@ class EmployeeController extends Controller
             $employee['role_id'] = $request->get('role_id');
             $employee['manager_id'] = $request->get('manager_id');
             $employee->save();
-            return redirect()->route('home')
-                        ->with('success', 'Employee updated successfully');
+            toastr()->success('Employee updated successfully','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('home');
         }
         
         elseif (Auth::user()->role_id == '4' && $employee->role_id == 2){
@@ -190,8 +195,23 @@ class EmployeeController extends Controller
             $employee->leaves_available = $request->get('leaves_available');
             $employee['role_id'] = $request->get('role_id');
             $employee->save();
-            return redirect()->route('home')
-                        ->with('success', 'Employee updated successfully');
+            toastr()->success('Employee updated successfully','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('home');
         }
         elseif (Auth::user()->role_id == '4' && $employee->role_id == 3){
         $request->validate([
@@ -203,15 +223,45 @@ class EmployeeController extends Controller
             $employee->email = $request->get('email');
             $employee['role_id'] = $request->get('role_id');
             $employee->save();
-            return redirect()->route('home')
-                        ->with('success', 'Employee updated successfully');
+            toastr()->success('Employee updated successfully','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('home');
         }
         else{
             $employee = User::find($id);
             $employee->password = Hash::make($request->password);
             $employee->save();
-            return redirect()->route('home')
-                        ->with('success', 'Employee update successfully');
+            toastr()->success('Password updated successfully','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('home');
         } 
     }
 
@@ -225,8 +275,24 @@ class EmployeeController extends Controller
     {
         $employee = User::find($id);
         $employee->delete();
-        return redirect()->route('home')
-                        ->with('success','Employee have been deleted');
+        toastr()->success('Employee deleted successfully','', [ 
+        "closeButton"       => true,
+        "debug"             => false,
+        "newestOnTop"       => false,
+        "progressBar"       => false,
+        "positionClass"     => "toast-top-center",
+        "preventDuplicates" => false,
+        "onclick"           => null,
+        "showDuration"      => "300",
+        "hideDuration"      => "1000",
+        "timeOut"           => "3000",
+        "extendedTimeOut"   => "1000",
+        "showEasing"        => "swing",
+        "hideEasing"        => "linear",
+        "showMethod"        => "slideDown",
+        "hideMethod"        => "slideUp"]);
+
+        return redirect()->route('home');
     }
 
 }

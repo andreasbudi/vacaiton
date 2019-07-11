@@ -99,7 +99,9 @@
                                 </div>
                             </div>
                             <div class="m-portlet__body">
-                                <div id="m_calendar"></div>
+                                {{-- <div id="m_calendar"></div> --}}
+                                {{-- {!! $calendar->calendar() !!}
+                                {!! $calendar->script() !!} --}}
                             </div>
                         </div>
                         <!--end::Portlet-->

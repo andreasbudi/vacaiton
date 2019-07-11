@@ -144,9 +144,25 @@ class LeaveController extends Controller
         $user = User::find(Auth::user()->id);
         $user->leaves_available = Auth::user()->leaves_available - $request->duration;
         $user->save();
-        
-        return redirect()->route('leave.index')
-                        ->with('success', 'You have submit New Leave Please Wait To Approve');
+        toastr()->success('New leave created successfully','', [ 
+            "closeButton"       => true,
+            "debug"             => false,
+            "newestOnTop"       => false,
+            "progressBar"       => false,
+            "positionClass"     => "toast-top-center",
+            "preventDuplicates" => false,
+            "onclick"           => null,
+            "showDuration"      => "300",
+            "hideDuration"      => "1000",
+            "timeOut"           => "3000",
+            "extendedTimeOut"   => "1000",
+            "showEasing"        => "swing",
+            "hideEasing"        => "linear",
+            "showMethod"        => "slideDown",
+            "hideMethod"        => "slideUp"]);
+        return redirect()->route('leave.index');
+
+                        
     }
 
     /**
@@ -160,8 +176,23 @@ class LeaveController extends Controller
         $leave = Leave::find($id);
         $leave->status = 4;
         $leave->save();
-            return redirect()->route('leave.index')
-                        ->with('success', 'Leave Canceled');
+        toastr()->success('Leave canceled successfully','', [ 
+            "closeButton"       => true,
+            "debug"             => false,
+            "newestOnTop"       => false,
+            "progressBar"       => false,
+            "positionClass"     => "toast-top-center",
+            "preventDuplicates" => false,
+            "onclick"           => null,
+            "showDuration"      => "300",
+            "hideDuration"      => "1000",
+            "timeOut"           => "3000",
+            "extendedTimeOut"   => "1000",
+            "showEasing"        => "swing",
+            "hideEasing"        => "linear",
+            "showMethod"        => "slideDown",
+            "hideMethod"        => "slideUp"]);
+            return redirect()->route('leave.index');
     }
 
     /**
@@ -196,8 +227,23 @@ class LeaveController extends Controller
         $leave->duration = $request->get('duration');
         $leave->reason = $request->get('reason');
         $leave->save();
-        return redirect()->route('leave.index')
-                        ->with('success', 'Leave form updated successfully');
+        toastr()->success('Leave updated successfully','', [ 
+            "closeButton"       => true,
+            "debug"             => false,
+            "newestOnTop"       => false,
+            "progressBar"       => false,
+            "positionClass"     => "toast-top-center",
+            "preventDuplicates" => false,
+            "onclick"           => null,
+            "showDuration"      => "300",
+            "hideDuration"      => "1000",
+            "timeOut"           => "3000",
+            "extendedTimeOut"   => "1000",
+            "showEasing"        => "swing",
+            "hideEasing"        => "linear",
+            "showMethod"        => "slideDown",
+            "hideMethod"        => "slideUp"]);
+        return redirect()->route('leave.index');
     }
 
     /**

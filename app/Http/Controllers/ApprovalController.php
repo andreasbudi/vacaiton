@@ -25,7 +25,6 @@ class ApprovalController extends Controller
             if($approval->status == 1){
             return '<a class="btn btn-sm btn-success" value="send" style="margin-left:18%;" href="'.route('approval.show',$approval->id).'">Approve</a>
             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m_modal_4">Reject</button>
-
             <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg" role="document">
 								<div class="modal-content">
@@ -60,14 +59,6 @@ class ApprovalController extends Controller
 								</div>
 							</div>
 						</div>';
-
-
-
-
-
-
-
-
             }elseif($approval->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($approval->status == 3){
@@ -132,12 +123,42 @@ class ApprovalController extends Controller
 
         if($leave->status == 2){
             // Mail::to($user)->send(new SendApprove($data));
-            return redirect()->route('approval.index')
-                        ->with('success', 'Leave Approved');
+            toastr()->success('Leave approved successfully','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('approval.index');
 
         }else{
-            return redirect()->route('approval.index')
-                        ->with('error', 'Failed approve. Please try again');
+            toastr()->error('Approve failed. Please try again','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('approval.index');
         }   
     }
 
@@ -165,12 +186,42 @@ class ApprovalController extends Controller
 
         if($leave->status == 3){
             // Mail::to($user)->send(new SendReject($data));
-            return redirect()->route('approval.index')
-                        ->with('success','Leave Rejected');
+            toastr()->success('Leave rejected successfully','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('approval.index');
 
         }else{
-            return redirect()->route('approval.index')
-                        ->with('error', 'Failed approve. Please try again');
+            toastr()->error('Approve failed. Please try again','', [ 
+                "closeButton"       => true,
+                "debug"             => false,
+                "newestOnTop"       => false,
+                "progressBar"       => false,
+                "positionClass"     => "toast-top-center",
+                "preventDuplicates" => false,
+                "onclick"           => null,
+                "showDuration"      => "300",
+                "hideDuration"      => "1000",
+                "timeOut"           => "3000",
+                "extendedTimeOut"   => "1000",
+                "showEasing"        => "swing",
+                "hideEasing"        => "linear",
+                "showMethod"        => "slideDown",
+                "hideMethod"        => "slideUp"]);
+            return redirect()->route('approval.index');
         }   
     }
 }

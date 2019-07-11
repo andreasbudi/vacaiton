@@ -16,14 +16,16 @@
         active: function() {
             sessionStorage.fonts = true;
         }
-      });
+	  });
+
     </script>
     <link href="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors -->
     <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
-    <link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
+	@toastr_css
 
     {{-- <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -368,10 +370,12 @@
         <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/jquery-ui/jquery-ui.bundle.js" type="text/javascript"></script>
-		{{-- <script src="../../assets/demo/default/custom/components/datatables/base/local-sort.js" type="text/javascript"></script> --}}	
 		<script src="../../assets/demo/default/custom/components/calendar/external-events.js" type="text/javascript"></script>
 		<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+		<script src="../../assets/demo/default/custom/components/base/toastr.js" type="text/javascript"></script>
 		@stack('scripts')
+		
+		@toastr_render
 	</body>
 	<!-- end::Body -->
 </html>

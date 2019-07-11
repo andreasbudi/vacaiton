@@ -38,9 +38,23 @@ class SupervisorController extends Controller
         $roleData = new Supervisor();
         $roleData->name_supervisor = $request->name_supervisor;
         $roleData->save();
-
-        return redirect()->route('home')
-                        ->with('success','You Have Add New Supervisor');
+        toastr()->success('Supervisor added successfully','', [ 
+            "closeButton"       => true,
+            "debug"             => false,
+            "newestOnTop"       => false,
+            "progressBar"       => false,
+            "positionClass"     => "toast-top-center",
+            "preventDuplicates" => false,
+            "onclick"           => null,
+            "showDuration"      => "300",
+            "hideDuration"      => "1000",
+            "timeOut"           => "3000",
+            "extendedTimeOut"   => "1000",
+            "showEasing"        => "swing",
+            "hideEasing"        => "linear",
+            "showMethod"        => "slideDown",
+            "hideMethod"        => "slideUp"]);
+        return redirect()->route('home');
     }
 
     /**
@@ -89,8 +103,23 @@ class SupervisorController extends Controller
     {
         $supervisor = Supervisor::find($id);
         $supervisor->delete();
-        return redirect()->route('showsupervisor')
-                        ->with('success','Supervisor have been deleted');
+        toastr()->success('Supervisor deleted successfully','', [ 
+            "closeButton"       => true,
+            "debug"             => false,
+            "newestOnTop"       => false,
+            "progressBar"       => false,
+            "positionClass"     => "toast-top-center",
+            "preventDuplicates" => false,
+            "onclick"           => null,
+            "showDuration"      => "300",
+            "hideDuration"      => "1000",
+            "timeOut"           => "3000",
+            "extendedTimeOut"   => "1000",
+            "showEasing"        => "swing",
+            "hideEasing"        => "linear",
+            "showMethod"        => "slideDown",
+            "hideMethod"        => "slideUp"]);
+        return redirect()->route('showsupervisor');
     }
 
 }
