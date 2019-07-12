@@ -30,6 +30,6 @@ class SendMailClient extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('New Leave created')->view('dynamic_email_client')->with('dataClient',$this->dataClient);
+        return $this->from('difinite2255@gmail.com')->subject('Your absence request at Difinite is pending')->view('dynamic_email_client')->with('dataClient',$this->dataClient);
     }
 }

@@ -201,7 +201,7 @@ class UserTableSeeder extends Seeder
         $admin = new User();
         $admin->name = 'admin';
         $admin->department = 'Administrator';
-        $admin->email = 'admin@difinite.com';
+        $admin->email = 'admin@gmail.com';
         $admin->password = bcrypt('adminadmin');
         $admin->role_id = '4';
         $admin->save();

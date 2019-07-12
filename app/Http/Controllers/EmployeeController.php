@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\SendAddEmployee;
 use App\User;
 use App\Supervisor;
 use App\Role;
@@ -83,6 +85,17 @@ class EmployeeController extends Controller
         $employeeData['role_id'] = $request->role_id;
         $employeeData['manager_id'] = $request->manager_id;
         $employeeData->save();
+
+        $data = array(
+            'name'              => $request->name,
+            'email'             => $request->email,
+            'password'          => $request->password,
+            'department'        => $request->department,
+            'leaves_available'  => $request->leaves_available,
+        );
+
+        Mail::to($request->email)->send(new SendAddEmployee($data));
+
         toastr()->success('Employee added successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,

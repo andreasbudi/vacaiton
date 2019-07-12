@@ -38,7 +38,6 @@ Route::get('/welcome', function () {
 
 
 Route::post('employee/{id}', 'EmployeeController@destroy');
-
 Route::get('/profile', 'EmployeeController@profile')->name('employee.profile');
 Route::get('/show', 'EmployeeController@show');
 Route::get('/showsupervisor', 'SupervisorController@show');

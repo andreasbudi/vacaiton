@@ -23,39 +23,34 @@ class ApprovalController extends Controller
         return Datatables::of($approval)
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){
-            return '<a class="btn btn-sm btn-success" value="send" style="margin-left:18%;" href="'.route('approval.show',$approval->id).'">Approve</a>
-            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m_modal_4">Reject</button>
+            return '<a class="btn btn-sm btn-success" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
+            <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4">Reject</button>
             <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="exampleModalLabel">
-											
 										</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">
 												&times;
 											</span>
 										</button>
-									</div>
+                                    </div>
+                                    <form action="'.route('approval.edit',$approval->id).'" method="get">
 									<div class="modal-body">
-										<form>
 											<div class="form-group">
-												<label for="recipient-name" class="form-control-label">
+												<label class="form-control-label">
 													Rejection message ?
 												</label>
-												<input type="text" class="form-control" id="recipient-name">
+												<input type="text" class="form-control" name="reject_message" id="reject_message">
 											</div>
-										</form>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
-											Close
-										</button>
-                                        <form>
-                                        <a class="btn btn-sm btn-danger" value="send" href="'.route('approval.edit',$approval->id).'">Reject</a>
-                                        </form>
-									</div>
+										<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                    </div>
+                                    </form>
 								</div>
 							</div>
 						</div>';
@@ -107,22 +102,27 @@ class ApprovalController extends Controller
      */
     public function show($id)
     {
+        //diapproved
         $leave = Leave::find($id);
         $leave->status = 2;
         $leave->save();
 
-        $user = $leave->users->email;
+        $user_email = $leave->users->email;
+        $user_name = $leave->users->name;
+        $spv_name = Auth::user()->name;
+        $spv_department = Auth::user()->department;
 
         $data = array(
+            'name' => $user_name,
+            'nameSpv' => $spv_name,
+            'spv_department' => $spv_department,
+            'email' => $user_email,
             'from' => $leave->from,
             'to' => $leave->to,
-            'duration' => $leave->duration,
-            'reason' => $leave->reason,
-            'status' => $leave->status
         );
 
         if($leave->status == 2){
-            // Mail::to($user)->send(new SendApprove($data));
+            // Mail::to($user_email)->send(new SendApprove($data));
             toastr()->success('Leave approved successfully','', [ 
                 "closeButton"       => true,
                 "debug"             => false,
@@ -165,12 +165,16 @@ class ApprovalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+
+        //direject
         $leave = Leave::find($id);
+        $leave->reject_message = $request->get('reject_message');
         $leave->status = 3;
         $leave->save();
 

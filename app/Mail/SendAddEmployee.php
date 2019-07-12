@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMailSpv extends Mailable
+class SendAddEmployee extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +18,9 @@ class SendMailSpv extends Mailable
      *
      * @return void
      */
-    public function __construct($dataSpv)
+    public function __construct($data)
     {
-        $this->dataSpv = $dataSpv;
+        $this->data = $data;
     }
 
     /**
@@ -30,6 +30,6 @@ class SendMailSpv extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Leave of Absence has been created')->view('dynamic_email_spv')->with('dataSpv',$this->dataSpv);
+        return $this->from('difinite2255@gmail.com')->subject('Welcome Abroad')->view('email_addEmployee')->with('data',$this->data);
     }
 }

@@ -9,6 +9,7 @@ use App\Mail\SendMailClient;
 use App\Mail\SendMailSpv;
 use App\Leave;
 use App\User;
+use App\Supervisor;
 use DB;
 use DataTables;
 
@@ -96,6 +97,7 @@ class LeaveController extends Controller
         ]);
 
         $dataClient = array(
+            'name' => Auth::user()->name,
             'from' => $request->from,
             'to' => $request->to,
             'duration' => $request->duration,
@@ -103,18 +105,24 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
+        $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)->first();
+        $username = $users->email;
+        $department = $users->department;
         $dataSpv = array(
+            'name' => Auth::user()->name,
+            'nameSpv' => $username,
             'from' => $request->from,
             'to' => $request->to,
             'duration' => $request->duration,
             'reason' => $request->reason,
-            'status' => $request->status
+            'status' => $request->status,
+            'department' => $department,
         );
 
         // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
-        //      $user = 'andika.pranata@difinite.com';
-        //         Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-        //         Mail::to($user)->send(new SendMailSpv($dataSpv));
+            //  $user = 'andika.pranata@difinite.com';
+                // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+                // Mail::to($user)->send(new SendMailSpv($dataSpv));
         // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
         //     $user = 'alexander.arda@difinite.com';
         //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));

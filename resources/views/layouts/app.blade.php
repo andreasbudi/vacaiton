@@ -25,6 +25,8 @@
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
 	<link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+	
 	@toastr_css
 
     {{-- <!-- Fonts -->
