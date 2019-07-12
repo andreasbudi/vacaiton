@@ -20,7 +20,7 @@ class ApprovalController extends Controller
         $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
                 ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status'])
                 ->where('leaves.status', '=', 1);
-        return Datatables::of($approval)
+        return Datatables::of($approval)->addIndexColumn()
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){
             return '<a class="btn btn-sm btn-success" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>

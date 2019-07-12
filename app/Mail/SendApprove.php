@@ -30,6 +30,6 @@ class SendApprove extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Leave of Absence approved')->view('email_approve')->with('data',$this->data);
+        return $this->from('difinite2255@gmail.com')->subject('Leave of Absence has been approved')->view('email_approve')->with('data',$this->data);
     }
 }

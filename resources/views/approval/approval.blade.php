@@ -173,7 +173,7 @@
                                     <th>To</th>
                                     <th>Duration</th>
                                     <th>Reason</th>
-                                    <th style="width:15%; text-align:center;">Action</th>
+                                    <th style="width:15%;">Action</th>
                                 </tr>
                             </thead>
                             </table>
@@ -184,14 +184,15 @@
                                         processing: true,
                                         serverSide: true,
                                         ajax: 'home/json',
+                                        columnDefs: [{"className": "text-center", "targets": "_all"}],
                                         columns: [
-                                            { data: 'id', name: 'leaves.id' },
+                                            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                             { data: 'name', name: 'users.name' },
                                             { data: 'from', name: 'from' },
                                             { data: 'to', name: 'to' },
                                             { data: 'duration', name: 'duration' },
                                             { data: 'reason', name: 'reason' },
-                                            {data: 'action', name: 'action', orderable: false, searchable: false}
+                                            { data: 'action', name: 'action', orderable: false, searchable: false}
                                         ]
                                     });
                                 });
@@ -264,13 +265,8 @@
         </div>
         @endif
     </div>
-
-
 @endsection
-
-
 @push('scripts')
-
 <script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
@@ -432,10 +428,5 @@
     jQuery(document).ready(function() {
         CalendarExternalEvents.init()
     });
-
-
-
-            </script>
-
-
+</script>
 @endpush
