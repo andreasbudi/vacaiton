@@ -178,18 +178,23 @@ class ApprovalController extends Controller
         $leave->status = 3;
         $leave->save();
 
-        $user = $leave->users->email;
+        $user_email = $leave->users->email;
+        $user_name = $leave->users->name;
+        $spv_name = Auth::user()->name;
+        $spv_department = Auth::user()->department;
 
         $data = array(
+            'name' => $user_name,
+            'nameSpv' => $spv_name,
+            'spv_department' => $spv_department,
             'from' => $leave->from,
             'to' => $leave->to,
-            'duration' => $leave->duration,
             'reason' => $leave->reason,
-            'status' => $leave->status
+            'reject_message' => $leave->reject_message,
         );
 
         if($leave->status == 3){
-            // Mail::to($user)->send(new SendReject($data));
+            // Mail::to($user_email)->send(new SendReject($data));
             toastr()->success('Leave rejected successfully','', [ 
                 "closeButton"       => true,
                 "debug"             => false,
