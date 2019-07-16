@@ -115,9 +115,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Update
                                     </button>
-                                    <button type="reset" class="btn btn-secondary">
-                                        Cancel
-                                    </button>
+                                    <a class="btn btn-sm" href="/home">Cancel</a>
                                 </div>
                             </div>
                         </div>
