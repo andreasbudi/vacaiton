@@ -25,15 +25,12 @@
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
 	<link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
-	<link rel="shortcut icon" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
-	
 	@toastr_css
 
     {{-- <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
- 
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
 		<!-- begin:: Page -->
@@ -56,6 +53,7 @@
 										<span></span>
 									</a>
 									<!-- END -->
+
 									<!-- BEGIN: Responsive Aside Left Menu Toggler -->
 									<a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
 										<span></span>
@@ -66,20 +64,32 @@
 									<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
 										<i class="flaticon-more"></i>
 									</a>
+
 									<!-- BEGIN: Topbar Toggler -->
 								</div>
 							</div>
 						</div>
 						<!-- END: Brand -->
+
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<!-- BEGIN: Horizontal Menu -->
 							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn">
 								<i class="la la-close"></i>
 							</button>
-						
+
+							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark "  >
+								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+									<h4>
+										Hi, {{ (Auth::user()->name) }}
+									</h4>
+							</div>	
+
 							<!-- END: Horizontal Menu -->
+
 							<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+								
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
 										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
@@ -181,7 +191,6 @@
 											<span class="m-menu__link-text">
 												Dashboard
 											</span>
-										
 										</span>
 									</span>
 								</a>
@@ -192,13 +201,13 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												Apply Form
+												Apply Leave
 											</span>
-										
 										</span>
 									</span>
 								</a>
                             </li>
+
                       {{--      <li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{route('leave.index')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon flaticon-folder"></i>
@@ -231,9 +240,8 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												Apply Form
+												Apply Leave
 											</span>
-										
 										</span>
 									</span>
 								</a>
@@ -246,11 +254,11 @@
 											<span class="m-menu__link-text">
 												Leaves History
 											</span>
-									
 										</span>
 									</span>
 								</a>
 							</li>
+
 						{{--	<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{route('approval.index')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon flaticon-folder"></i>
@@ -271,9 +279,8 @@
 										<span class="m-menu__link-title">
 											<span class="m-menu__link-wrap">
 												<span class="m-menu__link-text">
-													Approval
+													Home
 												</span>
-										
 											</span>
 										</span>
 									</a>
@@ -316,6 +323,7 @@
 									</span>
 								</a>
 							</li>
+
 						{{--	<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="{{ route('role.create')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon la la-user-plus"></i>
@@ -328,34 +336,29 @@
 									</span>
 								</a>
 							</li> --}}
+
 							@endif
-							
-							
+								
 						</ul>
 					</div>
 					<!-- END: Aside Menu -->
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-	
 					<div class="m-content">
 						<!--Begin::Main Portlet-->
-						
-                                
                                 <main>
                                     @yield('content')
                                 </main>
-                           
-						
 					</div>
 				</div>
+
 			</div>
 			<!-- end:: Body -->
 			<!-- begin::Footer -->
 			<footer class="m-grid__item		m-footer ">
 				<div class="m-container m-container--fluid m-container--full-height m-page__container">
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-						
 					</div>
 				</div>
 			</footer>
@@ -372,6 +375,9 @@
         <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<script src="../../assets/vendors/custom/jquery-ui/jquery-ui.bundle.js" type="text/javascript"></script>
+
+		<!-- <script src="../../assets/demo/default/custom/components/calendar/external-events.js" type="text/javascript"></script> -->
+		
 		<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 		<script src="../../assets/demo/default/custom/components/base/toastr.js" type="text/javascript"></script>
 		
