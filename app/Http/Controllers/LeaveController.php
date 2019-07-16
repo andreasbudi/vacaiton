@@ -19,19 +19,49 @@ class LeaveController extends Controller
 
         // spv query leave history dia sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status'])
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message'])
                 ->where('user_id', '=', Auth::user()->id);
         return Datatables::of($leaves)
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
             return '<form action="'.route('leave.show', $leaves->id).'" method="post" style="width:180px;"><a class="btn btn-sm btn-warning" href="'.route('leave.edit',$leaves->id).'">Edit</a>
-            <a class="btn btn-sm btn-danger" href="'.route('leave.show',$leaves->id).'">Cancel</a></form>';
+            <a class="btn btn-sm btn-danger" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_4">Cancel</a></form>
+            <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">
+										</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">
+												&times;
+											</span>
+										</button>
+                                    </div>
+                                    <form action="'.route('leave.show',$leaves->id).'" method="get">
+									<div class="modal-body">
+											<div class="form-group">
+												<label class="form-control-label">
+													Reason Canceled Leave Request?
+												</label>
+												<input type="text" class="form-control" name="reject_message" id="reject_message">
+											</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                                    </div>
+                                    </form>
+								</div>
+							</div>
+						</div>
+            ';
             }elseif($leaves->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($leaves->status == 3){
             return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
             }elseif($leaves->status == 4){
-            return '<center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>';
+            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);        
         }
 
@@ -39,19 +69,19 @@ class LeaveController extends Controller
 
         // spv query leave history dia sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id'])
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1);
         return Datatables::of($leaves)
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
-            return '<center><span class="m-badge m-badge--success m-badge--wide">Submitted</span></center>';
+            return '<center><span class="m-badge m-badge--warning m-badge--wide">Submitted</span></center>';
             }elseif($leaves->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($leaves->status == 3){
             return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
             }elseif($leaves->status == 4){
-            return '<center><span class="m-badge m-badge--danger m-badge--wide">Canceled</span></center>';
+            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);  
         }
     /**
@@ -79,7 +109,9 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        return view('leave.create');
+        //$leaves = Leave::where('user_id', '=', Auth::user()->id);
+        $leaves = Leave::with('users')->where('status',2)->get();
+        return view('leave.create', compact('leaves'));
     }
 
     /**
@@ -168,22 +200,25 @@ class LeaveController extends Controller
             "hideEasing"        => "linear",
             "showMethod"        => "slideDown",
             "hideMethod"        => "slideUp"]);
-        return redirect()->route('leave.index');
-
-                        
+        return redirect()->route('leave.index');                   
     }
 
     /**
-     * Display the specified resource.
+     * Cancel the leave Request.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $leave = Leave::find($id);
+        $leave->reject_message = $request->get('reject_message');
         $leave->status = 4;
         $leave->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->leaves_available = Auth::user()->leaves_available + $leave->duration;
+        $user->save();
         toastr()->success('Leave canceled successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,
