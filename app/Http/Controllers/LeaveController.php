@@ -21,11 +21,11 @@ class LeaveController extends Controller
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
                 ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message'])
                 ->where('user_id', '=', Auth::user()->id);
-        return Datatables::of($leaves)
+        return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
-            return '<form action="'.route('leave.show', $leaves->id).'" method="post" style="width:180px;"><a class="btn btn-sm btn-warning" href="'.route('leave.edit',$leaves->id).'">Edit</a>
-            <a class="btn btn-sm btn-danger" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_4">Cancel</a></form>
+            return '<form action="'.route('leave.show', $leaves->id).'" method="post" style="width:180px;"><a class="btn btn-sm btn-warning" style="width:40%;" href="'.route('leave.edit',$leaves->id).'">Edit</a>
+            <a class="btn btn-sm btn-danger" style="width:40%;" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_4">Cancel</a></form>
             <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg" role="document">
 								<div class="modal-content">
@@ -72,7 +72,7 @@ class LeaveController extends Controller
                 ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1);
-        return Datatables::of($leaves)
+        return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
             return '<center><span class="m-badge m-badge--warning m-badge--wide">Submitted</span></center>';

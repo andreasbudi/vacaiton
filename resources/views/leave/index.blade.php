@@ -28,13 +28,14 @@
                     <table class="table table-hover table-sm" id="ajax_data" >
                         <thead>
                         <tr>
-                            <th><b>No.</b></th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Duration</th>
-                            <th>Reason</th>
-                            <th style="width:1%; text-align:center;">Action</th>
-                            <th>Message</th>
+                            <th style="width:5%;"><b>No.</b></th>
+                            <th style="width:15%;">Name</th>
+                            <th style="width:10%;">From</th>
+                            <th style="width:10%;">To</th>
+                            <th style="width:10%;">Duration</th>
+                            <th style="width:20%;">Reason</th>
+                            <th style="width:10%;">Status</th>
+                            <th style="width:20%;">Message</th>
                         </tr>
                     </thead>
                     </table>
@@ -45,8 +46,10 @@
                                 processing: true,
                                 serverSide: true,
                                 ajax: 'leave/json',
+                                columnDefs: [{"className": "text-center", "targets": "_all"}],
                                 columns: [
-                                    { data: 'id', name: 'leaves.id' },
+                                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                                    { data: 'name', name: 'users.name' },
                                     { data: 'from', name: 'from' },
                                     { data: 'to', name: 'to' },
                                     { data: 'duration', name: 'duration' },
@@ -88,10 +91,10 @@
                             <th>Name</th>
                             <th>From</th>
                             <th>To</th>
-                            <th>Duration</th>
-                            <th>Reason</th>
-                            <th style="width:1%; text-align:center;">Status</th>
-                            <th>Message</th>
+                            <th style="width:5%;">Duration</th>
+                            <th style="width:30%;">Reason</th>
+                            <th style="width:1%;">Status</th>
+                            <th style="width:30%;">Message</th>
                         </tr>
                     </thead>
                     </table>
@@ -102,8 +105,9 @@
                                 processing: true,
                                 serverSide: true,
                                 ajax: 'leave/jsonTeamSpv',
+                                columnDefs: [{"className": "text-center", "targets": "_all"}],
                                 columns: [
-                                    { data: 'id', name: 'leaves.id' },
+                                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },
                                     { data: 'from', name: 'from' },
                                     { data: 'to', name: 'to' },

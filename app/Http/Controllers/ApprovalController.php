@@ -67,11 +67,11 @@ class ApprovalController extends Controller
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1)
                 ->where('leaves.status', '=', 1);
-        return Datatables::of($approval)
+        return Datatables::of($approval)->addIndexColumn()
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){
-            return '<form><a class="btn btn-sm btn-success" value="send" style="margin-left:18%;" href="'.route('approval.show',$approval->id).'">Approve</a>
-            <a class="btn btn-sm btn-danger" value="send" href="'.route('approval.edit',$approval->id).'">Reject</a></form>';
+            return '<form><a class="btn btn-sm btn-success" value="send" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
+            <a class="btn btn-sm btn-danger" value="send" style="float:right; width:45%;" href="'.route('approval.edit',$approval->id).'">Reject</a></form>';
             }elseif($approval->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($approval->status == 3){
