@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
+        @if (Auth::user()->leaves_available == '0')
+        <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
+
+        @else       
+
         <div class="row">
                 <div class="col-xl-6">
                     <!--begin:: Widgets/Tasks -->
@@ -127,6 +132,8 @@
                     <!--end:: Widgets/Support Tickets -->
                 </div>
         </div>
+        
+        @endif
 @endsection
 
 @push('scripts')
