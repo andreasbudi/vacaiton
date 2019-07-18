@@ -61,7 +61,7 @@ class LeaveController extends Controller
             }elseif($leaves->status == 3){
             return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected by '.$leaves->responded_by.'</span></center>';
             }elseif($leaves->status == 4){
-            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled by '.$leaves->responded_by.'</span></center>';
+            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);        
         }
 
@@ -81,7 +81,7 @@ class LeaveController extends Controller
             }elseif($leaves->status == 3){
             return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected by '.$leaves->responded_by.'</span></center>';
             }elseif($leaves->status == 4){
-            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled by '.$leaves->responded_by.'</span></center>';
+            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);  
         }
     /**
