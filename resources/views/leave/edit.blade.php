@@ -36,21 +36,13 @@
                             
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                        From:
-                                    </label>
-                                    <div class="col-lg-6">
-										<input type="date" name="from" id="from" value="{{$leave->from}}" class="form-control" onchange="run(this.value)">
-                                    </div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
                                         Duration:
                                     </label>
                                     <div class="col-lg-6">
-										<select name="duration" id="duration" class="form-control">
+										<select name="duration" id="duration" class="form-control" onchange="run(this.value)">
 											<script>
 											function run(val) {
-											document.getElementById("from").addEventListener("click", function() {	
+											document.getElementById("from").addEventListener("change", function() {	
 											var formDuration = document.getElementById("duration");
 											var getDuration = formDuration.options[formDuration.selectedIndex].value;
 										
@@ -76,7 +68,7 @@
 											(function() { // don't leak
 											var elm = document.getElementById('duration'), // get the select
 											df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-											for (var i = 1; i <= 12; i++) { 
+											for (var i = 0; i <= {{ (Auth::user()->leaves_available) }}; i++) { 
 											var option = document.createElement('option'); // create the option element
 											option.value = i; // set the value property
 											option.appendChild(document.createTextNode(i + " days")); // set the textContent in a safe way.
@@ -87,6 +79,14 @@
 											}()); 
 											</script>
 											</select>
+                                    </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                        From:
+                                    </label>
+                                    <div class="col-lg-6">
+										<input type="date" name="from" id="from" value="{{$leave->from}}" class="form-control" onchange="run(this.value)">
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -115,7 +115,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Update
                                     </button>
-                                    <a class="btn btn-sm" href="/home">Cancel</a>
+                                    <a class="btn btn-sm" href="/leave">Cancel</a>
                                 </div>
                             </div>
                         </div>

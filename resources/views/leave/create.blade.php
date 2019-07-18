@@ -15,7 +15,7 @@
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
                                         Apply Form Leave
-                                        ({{ (Auth::user()->leaves_available) }} Leaves Ballance to Apply)</h5>
+                                        ({{ (Auth::user()->leaves_available) }} Leaves Balance to Apply)</h5>
                                     </h3>
                                 </div>
                             </div>
@@ -38,20 +38,14 @@
 
                                         @csrf
                                         <div class="col-md-12">
-                                            <strong>From :</strong>
-                                            <input type="date" name="from" id="from" class="form-control">
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
                                             <strong>Duration :</strong>
-                                            {{-- <input type="text" name="duration" id="duration" class="form-control"> --}}
                                             <select name="duration" id="duration" class="form-control" onchange="run(this.value)">
                                             <script>
                                             function run(val) {
-                                                document.getElementById("from").addEventListener("click", function() {	
+                                                document.getElementById("from").addEventListener("change", function() {	
                                                 var formDuration = document.getElementById("duration");
                                                 var getDuration = formDuration.options[formDuration.selectedIndex].value;
-                                                // alert(getDuration);
+                                                //alert(getDuration);
                                                 
                                                 var input = new Date(this.value);
                                                 var newdate = new Date(input);
@@ -72,10 +66,11 @@
                                                 document.getElementById('to').value = someFormattedDate;
                                                 });
                                             }
+
                                             (function() { // don't leak
                                                 var elm = document.getElementById('duration'), // get the select
                                                     df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-                                                for (var i = 1; i <= 12; i++) { 
+                                                for (var i = 0; i <= {{ (Auth::user()->leaves_available) }}; i++) { 
                                                     var option = document.createElement('option'); // create the option element
                                                     option.value = i; // set the value property
                                                     option.appendChild(document.createTextNode(i + " days")); // set the textContent in a safe way.
@@ -90,9 +85,15 @@
                                         </div>
                                         <br>
                                         <div class="col-md-12">
+                                            <strong>From :</strong>
+                                            <input type="date" name="from" id="from" class="form-control" onchange="run(this.value)">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
                                             <strong>To :</strong>
-                                            {{-- <input type="date" name="to" id="to" class="form-control"> --}}
-                                            <input type="text" name="to" id="to" class="form-control">
+                                           <input type="text" name="to" id="to" class="form-control"> 
+
+                                             
                                         </div>
                                         <br>
                                         <div class="col-md-12">
