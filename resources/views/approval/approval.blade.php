@@ -6,9 +6,7 @@
             <div class="row">
                     
                     <div class="col-lg-9">
-                    <h3 class="m-portlet__head-text">
-                         Hi, {{(Auth::user()->name)}}
-                    </h3>
+
                         <!--begin::Portlet-->
                         <div class="m-portlet" id="m_portlet">
                             <div class="m-portlet__head">
@@ -18,86 +16,12 @@
                                             <i class="flaticon-calendar-2"></i>
                                         </span>
                                         <h3 class="m-portlet__head-text">
-                                            My Calendar
+                                            Calendar of Event
                                         </h3>
                                     </div>
                                 </div>
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
-                                        <li class="m-portlet__nav-item">
-                                            <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                <span>
-                                                    <i class="la la-plus"></i>
-                                                    <span>
-                                                        Add Event
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="m--hide m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-                                            <a href="#" class="btn btn-focus m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                <span>
-                                                    <i class="la la-cog"></i>
-                                                    <span>
-                                                        Settings
-                                                    </span>
-                                                </span>
-                                            </a>
-                                            <div class="m-dropdown__wrapper">
-                                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 52px;"></span>
-                                                <div class="m-dropdown__inner">
-                                                    <div class="m-dropdown__body">
-                                                        <div class="m-dropdown__content">
-                                                            <ul class="m-nav">
-                                                                <li class="m-nav__section m-nav__section--first">
-                                                                    <span class="m-nav__section-text">
-                                                                        Quick Actions
-                                                                    </span>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-share"></i>
-                                                                        <span class="m-nav__link-text">
-                                                                            Activity
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                        <span class="m-nav__link-text">
-                                                                            Messages
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                                                        <span class="m-nav__link-text">
-                                                                            FAQ
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                        <span class="m-nav__link-text">
-                                                                            Support
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-                                                                        Cancel
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -119,20 +43,24 @@
                                                 <i class="flaticon-add"></i>
                                             </span>
                                             <h3 class="m-portlet__head-text">
-                                                All employees
+                                                Leaves Summary
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-portlet__body">
+                                <div class="m-portlet__body" style="height:660px;">
                                     <div class="fc-unthemed">
                                         @foreach ($leaves as $leave)
-                                        <div class='fc-event fc-event-external fc-start m-fc-event--primary m--margin-bottom-15' data-color="m-fc-event--primary">
+                                        <div class='fc-event fc-event-external fc-start m-fc-event--primary m--margin-bottom-35' data-color="m-fc-event--primary">
                                             <div class="fc-title">
                                                 <div class="fc-content" style="margin-top:7px;">
-                                                    <p style="font-size:13px;">{{$leave->users->name}}</p>
-                                                    <p>{{$leave->from}} - {{$leave->to}}</p>
-                                                    <p style="font-size:12px;">{{$leave->duration}} days</p>
+                                                    <p style="font-size:15px; text-align:left">{{$leave->users->name}}
+                                                    <span style="float:right; font-size:13px;">{{$leave->from}} - {{$leave->to}}</span></p>
+                                                    @if ($leave->status == '2')
+                                                    <p style="font-size:13px;">Approved by <b>{{$leave->responded_by}}</b></p>
+                                                    @elseif ($leave->status == '3')
+                                                    <p style="font-size:13px;">Rejected by {{$leave->responded_by}}</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +92,7 @@
                     <div class="m-portlet__body">
                         <!--begin: Datatable -->
                         <div class="m_datatable" >
-                            <table class="table table-hover table-sm" id="ajax_data" >
+                            <table class="table table-striped table-bordered" id="ajax_data" >
                                 <thead>
                                 <tr>
                                     <th><b>No.</b></th>
@@ -184,6 +112,7 @@
                                         processing: true,
                                         serverSide: true,
                                         ajax: 'home/json',
+                                        dom: '<"top"f>rt<"bottom"lip><"clear">',
                                         columnDefs: [{"className": "text-center", "targets": "_all"}],
                                         columns: [
                                             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
@@ -210,7 +139,6 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                             Hi, {{(Auth::user()->name)}}<br>
                              Please Approve Your Team Leave Request
                         </h3>
                     </div>
@@ -226,7 +154,7 @@
             <div class="m-portlet__body">
                 <!--begin: Datatable -->
                 <div class="m_datatable" >
-                    <table class="table table-hover table-sm" id="ajax_data" >
+                    <table class="table table-striped table-bordered" id="ajax_data" >
                         <thead>
                         <tr>
                             <th><b>No.</b></th>
@@ -246,6 +174,7 @@
                                 processing: true,
                                 serverSide: true,
                                 ajax: 'home/json',
+                                dom: '<"top"f>rt<"bottom"lip><"clear">',
                                 columnDefs: [{"className": "text-center", "targets": "_all"}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
@@ -299,6 +228,7 @@
                     // defaultView: "listWeek",
                     eventLimit: !0,
                     navLinks: !0,
+                    height: 600,
                     events: [
                         {
                     title: "New Year's Day",

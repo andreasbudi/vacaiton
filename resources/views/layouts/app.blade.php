@@ -23,6 +23,8 @@
     <!--end::Page Vendors -->
     <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
 	<link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
 	@toastr_css
@@ -49,9 +51,7 @@
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">
 									<!-- BEGIN: Left Aside Minimize Toggle -->
-									<a href="javascript:;" id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block ">
-										<span></span>
-									</a>
+									
 									<!-- END -->
 
 									<!-- BEGIN: Responsive Aside Left Menu Toggler -->
@@ -172,15 +172,10 @@
 				<button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
 					<i class="la la-close"></i>
 				</button>
-				<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+				<div id="m_aside_left" class="m-grid__item 	m-aside-left  m-aside-left--skin-dark" >
 					<!-- BEGIN: Aside Menu -->
-					<div 
-		id="m_ver_menu" 
-		class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " 
-		data-menu-vertical="true"
-		 data-menu-scrollable="false" data-menu-dropdown-timeout="500"  
-		>
-						<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+					<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark"  data-menu-vertical="true" data-menu-scrollable="false" data-menu-dropdown-timeout="500">
+						<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow" style="position:fixed; width:13%">
 
 							@if (Auth::user()->role_id == '1')
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
@@ -234,7 +229,7 @@
 										</span>
 									</a>
 							</li>
-							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
+							<li class="m-menu__item  m-menu__item" aria-haspopup="true">
 								<a  href="{{ route('leave.create')}}" class="m-menu__link ">
 									<i class="m-menu__link-icon flaticon-interface-7"></i>
 									<span class="m-menu__link-title">
@@ -378,7 +373,8 @@
 
 		<!-- <script src="../../assets/demo/default/custom/components/calendar/external-events.js" type="text/javascript"></script> -->
 		
-		<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 		<script src="../../assets/demo/default/custom/components/base/toastr.js" type="text/javascript"></script>
 		
 		@stack('scripts')

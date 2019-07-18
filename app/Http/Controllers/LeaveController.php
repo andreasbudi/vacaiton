@@ -19,7 +19,7 @@ class LeaveController extends Controller
 
         // spv query leave history dia sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message'])
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message','leaves.responded_by'])
                 ->where('user_id', '=', Auth::user()->id);
         return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
@@ -57,11 +57,11 @@ class LeaveController extends Controller
 						</div>
             ';
             }elseif($leaves->status == 2){
-            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved by '.$leaves->responded_by.'</span></center>';
             }elseif($leaves->status == 3){
-            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected by '.$leaves->responded_by.'</span></center>';
             }elseif($leaves->status == 4){
-            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
+            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled by '.$leaves->responded_by.'</span></center>';
             }})->make(true);        
         }
 
@@ -69,7 +69,7 @@ class LeaveController extends Controller
 
         // spv query leave history dia sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message'])
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message','leaves.responded_by'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1);
         return Datatables::of($leaves)->addIndexColumn()
@@ -77,11 +77,11 @@ class LeaveController extends Controller
             if($leaves->status == 1){
             return '<center><span class="m-badge m-badge--warning m-badge--wide">Submitted</span></center>';
             }elseif($leaves->status == 2){
-            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved by '.$leaves->responded_by.'</span></center>';
             }elseif($leaves->status == 3){
-            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected by '.$leaves->responded_by.'</span></center>';
             }elseif($leaves->status == 4){
-            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
+            return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled by '.$leaves->responded_by.'</span></center>';
             }})->make(true);  
         }
     /**

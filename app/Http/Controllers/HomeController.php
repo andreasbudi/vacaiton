@@ -39,7 +39,10 @@ class HomeController extends Controller
             return view('approval.approval', compact('leaves'));
         }
         else if($getRole == 3){
-            $leaves = Leave::with('users')->where('status',2)->get();
+            $leaves = Leave::with('users')
+            ->where('status',2)->take(5)
+            ->orderBy('updated_at', 'desc')
+            ->get();
             return view('approval.approval', compact('leaves'));
         }
         else if($getRole == 4){

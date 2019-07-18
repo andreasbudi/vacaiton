@@ -88,7 +88,10 @@ class ApprovalController extends Controller
      */
     public function index()
     { 
-        $leaves = Leave::with('users')->where('status',2)->get();
+        $leaves = Leave::with('users')
+        ->where('status',2)->take(5)
+        ->orderBy('updated_at', 'desc')
+        ->get();
         return view('approval.approval', compact('leaves'));
     }
 
@@ -105,6 +108,7 @@ class ApprovalController extends Controller
         //diapproved
         $leave = Leave::find($id);
         $leave->status = 2;
+        $leave->responded_by = Auth::user()->name;
         $leave->save();
 
         $user_email = $leave->users->email;
@@ -176,6 +180,7 @@ class ApprovalController extends Controller
         $leave = Leave::find($id);
         $leave->reject_message = $request->get('reject_message');
         $leave->status = 3;
+        $leave->responded_by = Auth::user()->name;
         $leave->save();
 
         $user_email = $leave->users->email;
