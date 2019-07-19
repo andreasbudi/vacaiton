@@ -6,8 +6,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Hi, {{(Auth::user()->name)}}<br>
-                                This is List Member of Difinite 
+                                Employee Management 
                             </h3>
                         </div>
                     </div>
@@ -32,8 +31,8 @@
                     @endif
                   </script>
                     <!--begin: Datatable -->
-                    <div class="m_datatable" >
-                        <table class="table table-hover table-sm" id="ajax_data" >
+                    <div  class="m-portlet__body">
+                        <table class="table table-striped table-bordered" id="ajax_data" >
                             <thead>
                             <tr>
                                 <th><b>No.</b></th>
@@ -43,7 +42,8 @@
                                 <th>Leaves Available</th>
                                 <th>Role</th>
                                 <th>Supervisor</th>
-                                <th style=" text-align:center;">Action</th>
+                                <th>Action</th>
+                                <th>isActivated</th>
                             </tr>
                         </thead>
                         </table>
@@ -55,16 +55,24 @@
                                     processing: true,
                                     serverSide: true,
                                     ajax: 'show/json',
+                                    dom: '<"top"f>rt<"bottom"lip><"clear">',
+                                    columnDefs: [{"className": "text-center", "targets": "_all"},{"targets": [ 8 ],"visible": false}],
                                     columns: [
-                                        { data: 'id', name: 'users.id' },
+                                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                         { data: 'name', name: 'users.name' },
                                         { data: 'department', name: 'users.department' },
                                         { data: 'email', name: 'users.email' },
                                         { data: 'leaves_available', name: 'users.leaves_available' },
                                         { data: 'name_role', name: 'roles.name_role' },
                                         { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
-                                        {data: 'action', name: 'action', orderable: false, searchable: false}
-                                    ]
+                                        { data: 'action', name: 'action', orderable: false, searchable: false},
+                                        { data: 'isActivated', name: 'users.isActivated'},
+                                    ],
+                                    rowCallback: function( row, data, index ) {
+                                    if (data.isActivated == '0') {
+                                        $('td', row).css('background-color', '#ff706e');
+                                    }
+                                    } 
                                 });
                             });
                             </script>

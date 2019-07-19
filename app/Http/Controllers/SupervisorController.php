@@ -10,9 +10,28 @@ use Illuminate\Foundation\Auth\RegistersRoles;
 use App\User;
 use App\Supervisor;
 use App\Role;
+use DB;
+use DataTables;
 
 class SupervisorController extends Controller
 {
+    public function json(){
+
+        // query table supervisor sama isi tim nya
+        $supervisors = DB::table('supervisors')
+                ->select(['supervisors.id','supervisors.name_supervisor']);
+                return Datatables::of($supervisors)->addIndexColumn()
+        ->addColumn('action', function ($supervisors) {
+            return 
+            '<form class="delete-form" action="'.route('supervisor.destroy', $supervisors->id).'" method="post">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                <input type="hidden" name="_token" value="'.csrf_token().'">
+                <input type="hidden" name="_method" value="delete" />
+            </form>';
+        })->make(true);
+    }
+
+
       /**
      * Show the form for creating a new resource.
      *

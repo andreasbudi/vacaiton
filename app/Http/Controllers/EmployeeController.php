@@ -23,15 +23,11 @@ class EmployeeController extends Controller
 
         // spv query leave history dia sendiri
         $employees = DB::table('users')->leftjoin('roles', 'users.role_id', '=', 'roles.id')->leftjoin('supervisors', 'users.manager_id', '=', 'supervisors.id')
-                ->select(['users.id','users.name','users.department','users.email','users.leaves_available','roles.name_role','supervisors.name_supervisor']);
-                return Datatables::of($employees)
+                ->select(['users.id','users.name','users.department','users.email','users.leaves_available','roles.name_role','supervisors.name_supervisor','users.isActivated'])
+                ->where('users.role_id','!=',4);
+                return Datatables::of($employees)->addIndexColumn()
         ->addColumn('action', function ($employees) {
-            return '<a  style="float:left; width:45%;" class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>
-            <form class="delete-form" action="'.route('employee.destroy', $employees->id).'" method="post">
-                <button type="submit" style="float:right; width:45%;" class="btn btn-sm btn-danger">Delete</button>
-                <input type="hidden" name="_token" value="'.csrf_token().'">
-                <input type="hidden" name="_method" value="delete" />
-            </form>';
+            return '<a  style="width:45%;" class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>';
         })->make(true);
     }
 
@@ -82,6 +78,7 @@ class EmployeeController extends Controller
         $employeeData->email = $request->email;
         $employeeData->password = Hash::make($request->password);
         $employeeData->leaves_available = $request->leaves_available;
+        $employeeData->isActivated = '1';
         $employeeData['role_id'] = $request->role_id;
         $employeeData['manager_id'] = $request->manager_id;
         $employeeData->save();
@@ -94,7 +91,7 @@ class EmployeeController extends Controller
             'leaves_available'  => $request->leaves_available,
         );
 
-        Mail::to($request->email)->send(new SendAddEmployee($data));
+        // Mail::to($request->email)->send(new SendAddEmployee($data));
 
         toastr()->success('Employee added successfully','', [ 
             "closeButton"       => true,
@@ -287,8 +284,9 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $employee = User::find($id);
-        $employee->delete();
-        toastr()->success('Employee deleted successfully','', [ 
+        $employee->isActivated = '0';
+        $employee->save();
+        toastr()->success('Employee deactivated successfully','', [ 
         "closeButton"       => true,
         "debug"             => false,
         "newestOnTop"       => false,

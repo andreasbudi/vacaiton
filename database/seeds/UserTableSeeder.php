@@ -22,6 +22,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '1';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -32,6 +33,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '1';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -42,6 +44,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
         
 
@@ -53,6 +56,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -63,6 +67,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -73,6 +78,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -83,6 +89,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
         
         // $staff = new User();
@@ -93,6 +100,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -103,6 +111,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -113,6 +122,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -123,6 +133,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -133,6 +144,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -143,6 +155,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save();
 
         // $staff = new User();
@@ -153,6 +166,7 @@ class UserTableSeeder extends Seeder
         // $staff->leaves_available = '12';
         // $staff->role_id = '1';
         // $staff->manager_id = '2';
+        // $staff->isActivated = '1';
         // $staff->save(); 
         
         // $spv = new User();
@@ -162,6 +176,7 @@ class UserTableSeeder extends Seeder
         // $spv->password = bcrypt('');
         // $spv->leaves_available = '12';
         // $spv->role_id = '2';
+        // $spv->isActivated = '1';
         // $spv->save();
 
         // $spv = new User();
@@ -171,6 +186,7 @@ class UserTableSeeder extends Seeder
         // $spv->password = bcrypt('');
         // $spv->leaves_available = '12';
         // $spv->role_id = '2';
+        // $spv->isActivated = '1';
         // $spv->save();
 
         // $spv = new User();
@@ -180,6 +196,7 @@ class UserTableSeeder extends Seeder
         // $spv->password = bcrypt('');
         // $spv->leaves_available = '12';
         // $spv->role_id = '2';
+        // $spv->isActivated = '1';
         // $spv->save();
 
         // $manager = new User();
@@ -188,6 +205,7 @@ class UserTableSeeder extends Seeder
         // $manager->email = 'gde.bahagia@difinite.com';
         // $manager->password = bcrypt('');
         // $manager->role_id = '3';
+        // $manager->isActivated = '1';
         // $manager->save();
 
         // $manager = new User();
@@ -196,6 +214,7 @@ class UserTableSeeder extends Seeder
         // $manager->email = 'aries.susantio@difinite.com';
         // $manager->password = bcrypt('');
         // $manager->role_id = '3';
+        // $manager->isActivated = '1';
         // $manager->save();
 
         $admin = new User();
@@ -204,6 +223,7 @@ class UserTableSeeder extends Seeder
         $admin->email = 'admin@gmail.com';
         $admin->password = bcrypt('adminadmin');
         $admin->role_id = '4';
+        $admin->isActivated = '1';
         $admin->save();
 
         $testStaff = new User();
@@ -214,96 +234,7 @@ class UserTableSeeder extends Seeder
         $testStaff->leaves_available = '12';
         $testStaff->role_id = '1';
         $testStaff->manager_id = '1';
-        $testStaff->save();
-      
-        $testStaff = new User();
-        $testStaff->name = 'testStaff2';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test2@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '1';
-        $testStaff->save();
-
-        $testStaff = new User();
-        $testStaff->name = 'testStaff3';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test3@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
- 
-        $testStaff = new User();
-        $testStaff->name = 'testStaff4';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test4@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
-
-        $testStaff = new User();
-        $testStaff->name = 'testStaff5';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test5@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
-
-        $testStaff = new User();
-        $testStaff->name = 'testStaff6';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test6@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
- 
-        $testStaff = new User();
-        $testStaff->name = 'testStaff7';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test7@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
-
-        $testStaff = new User();
-        $testStaff->name = 'testStaff8';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test8@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
-
-        $testStaff = new User();
-        $testStaff->name = 'testStaff9';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test9@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
-        $testStaff->save();
-
-        $testStaff = new User();
-        $testStaff->name = 'testStaff10';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test10@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '2';
+        $testStaff->isActivated = '1';
         $testStaff->save();
 
         $testSpv = new User();
@@ -314,6 +245,7 @@ class UserTableSeeder extends Seeder
         $testSpv->leaves_available = '12';
         $testSpv->role_id = '2';
         $testSpv->manager_id = '1';
+        $testSpv->isActivated = '1';
         $testSpv->save();
 
         $testSpv = new User();
@@ -324,6 +256,7 @@ class UserTableSeeder extends Seeder
         $testSpv->leaves_available = '12';
         $testSpv->role_id = '2';
         $testSpv->manager_id = '2';
+        $testSpv->isActivated = '1';
         $testSpv->save();
 
         $testManager = new User();
@@ -332,6 +265,7 @@ class UserTableSeeder extends Seeder
         $testManager->email = 'manager@gmail.com';
         $testManager->password = bcrypt('adminadmin');
         $testManager->role_id = '3';
+        $testManager->isActivated = '1';
         $testManager->save();
     }
 }

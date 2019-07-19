@@ -104,6 +104,14 @@
                                         
                                     </div>
                             </div>
+                            <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                    </label>
+                                <div class="col-lg-6">
+                                    <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
+                                </div>
+                            </div>
+                            
                             @elseif (Auth::user()->role_id == '4' && $employee->role_id == 2)
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -165,6 +173,13 @@
                                        
                                     </div>   
                             </div>
+                            <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                        </label>
+                                    <div class="col-lg-6">
+                                        <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
+                                    </div>
+                                </div>
                             @elseif (Auth::user()->role_id == '4' && $employee->role_id == 3)
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -218,9 +233,13 @@
                                        
                                     </div>   
                             </div>
-
-
-
+                                <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                        </label>
+                                        <div class="col-lg-6">
+                                        <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
+                                        </div>
+                                </div>
                            @else
                             <div class="form-group m-form__group row">
                                 <label class="col-lg-2 col-form-label">
@@ -344,9 +363,13 @@
                                     <button type="submit" class="btn btn-primary">
                                         Submit
                                     </button>
-                                    <button type="reset" class="btn btn-secondary">
-                                        Cancel
-                                    </button>
+                                    <button type="submit" class="btn btn-secondary" style="color:black;" name="cancel" onclick="goPrev()">Cancel</button>
+                                    <script>
+                                    function goPrev()
+                                    {
+                                        window.history.back();
+                                    }
+                                    </script>
                                 </div>
                             </div>
                         </div>

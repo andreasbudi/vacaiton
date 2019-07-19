@@ -26,34 +26,34 @@ class ApprovalController extends Controller
             return '<a class="btn btn-sm btn-success" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
             <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4">Reject</button>
             <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-lg" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">
-										</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">
-												&times;
-											</span>
-										</button>
-                                    </div>
-                                    <form action="'.route('approval.edit',$approval->id).'" method="get">
-									<div class="modal-body">
-											<div class="form-group">
-												<label class="form-control-label">
-													Rejection message ?
-												</label>
-												<input type="text" class="form-control" name="reject_message" id="reject_message">
-											</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                    </div>
-                                    </form>
-								</div>
-							</div>
-						</div>';
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <form action="'.route('approval.edit',$approval->id).'" method="get">
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        Rejection message ?
+                                    </label>
+                                    <input type="text" class="form-control" name="reject_message" id="reject_message">
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+			</div>';
             }elseif($approval->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($approval->status == 3){

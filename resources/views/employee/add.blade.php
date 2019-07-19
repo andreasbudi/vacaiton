@@ -140,9 +140,13 @@
                                     <button type="submit" class="btn btn-primary">
                                         Register
                                     </button>
-                                    <button type="reset" class="btn btn-secondary">
-                                        Cancel
-                                    </button>
+                                    <button type="submit" class="btn btn-secondary" style="color:black;" name="cancel" onclick="goPrev()">Cancel</button>
+                                    <script>
+                                    function goPrev()
+                                    {
+                                        window.history.back();
+                                    }
+                                    </script>
                                 </div>
                             </div>
                         </div>

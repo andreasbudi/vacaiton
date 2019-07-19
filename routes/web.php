@@ -37,7 +37,7 @@ Route::get('/welcome', function () {
 });
 
 
-Route::post('employee/{id}', 'EmployeeController@destroy');
+
 Route::get('/profile', 'EmployeeController@profile')->name('employee.profile');
 Route::get('/show', 'EmployeeController@show');
 Route::get('/showsupervisor', 'SupervisorController@show');
@@ -47,7 +47,10 @@ Route::post('leave/send', 'LeaveController@send');
 Route::get('home/json', 'ApprovalController@json');
 Route::get('show/json', 'EmployeeController@json');
 Route::get('leave/json', 'LeaveController@json');
+Route::get('supervisor/json', 'SupervisorController@json');
 Route::get('leave/jsonTeamSpv', 'LeaveController@jsonTeamSpv');
+Route::get('employee/create', 'EmployeeController@create');
+Route::get('employee/{id}', 'EmployeeController@destroy');
 
 Auth::routes();
 
