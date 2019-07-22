@@ -76,7 +76,7 @@
                                                 document.getElementById("from").addEventListener("change", function() {	
                                                 var formDuration = document.getElementById("duration");
                                                 var getDuration = formDuration.options[formDuration.selectedIndex].value;
-                                                //alert(getDuration);
+                                                alert(getDuration);
                                                 
                                                 var input = new Date(this.value);
                                                 var newdate = new Date(input);

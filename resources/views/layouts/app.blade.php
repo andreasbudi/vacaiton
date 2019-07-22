@@ -134,7 +134,7 @@
 																<li class="m-nav__item">
 																	<a href="{{ route('logout')}}" onclick="event.preventDefault(); 
 																	document.getElementById('logout-form').submit();" 
-																	class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+																	class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" style="color:blue;">
 																	Logout
 																	</a>
 																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

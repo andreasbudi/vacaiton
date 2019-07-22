@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
+<style>
+td.details-control {
+    background: url('D:/Magang/Testing/vacation/public/assets/details_open.png');
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('D:/Magang/Testing/vacation/public/assets/details_close.png') no-repeat center center;
+}
+</style>
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
         <div class="d-flex align-items-center">
@@ -93,7 +103,7 @@
                 <table class="table table-striped table-bordered" id="ajax_data" >
                     <thead>
                     <tr>
-                        <th style="width:5%;"><b>No.</b></th>
+                        <th style="width:5%;"></th>
                         <th style="width:40%;">Name</th>
                         <th style="width:10%;">Action</th>
                     </tr>
@@ -101,20 +111,69 @@
                 </table>
                 @push('scripts')
                 <script>
-                $(function() {
-                    $('#ajax_data').DataTable({
+                // $(function() {
+                //     $('#ajax_data').DataTable({
+                //         processing: true,
+                //         serverSide: true,
+                //         ajax: 'supervisor/json',
+                //         dom: '<"top"f>rt<"bottom"lip><"clear">',
+                //         columnDefs: [{"className": "text-center", "targets": "_all"}],
+                //         columns: [
+                //             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                //             { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
+                //             { data: 'action', name: 'action', orderable: false, searchable: false}
+                //         ]
+                //     });
+                // });
+
+                /* Formatting function for row details - modify as you need */
+                function format ( d ) {
+                    // `d` is the original data object for the row
+                    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                        '<tr>'+
+                            '<td>Name:</td>'+
+                            '<td>'+d.name+'</td>'+
+                        '</tr>'+
+                    '</table>';
+                }
+                
+                $(document).ready(function() {
+                    var table =  $('#ajax_data').DataTable({
                         processing: true,
                         serverSide: true,
                         ajax: 'supervisor/json',
                         dom: '<"top"f>rt<"bottom"lip><"clear">',
                         columnDefs: [{"className": "text-center", "targets": "_all"}],
                         columns: [
-                            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                            {
+                            "className":      'details-control',
+                            "orderable":      false,
+                            "data":           null,
+                            "defaultContent": ''
+                            },
                             { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
                             { data: 'action', name: 'action', orderable: false, searchable: false}
                         ]
                     });
-                });
+                    
+                    // Add event listener for opening and closing details
+                    $('#ajax_data tbody').on('click', 'td.details-control', function () {
+                        var tr = $(this).closest('tr');
+                        var row = table.row( tr );
+                
+                        if ( row.child.isShown() ) {
+                            // This row is already open - close it
+                            row.child.hide();
+                            tr.removeClass('shown');
+                        }
+                        else {
+                            // Open this row
+                            row.child( format(row.data()) ).show();
+                            tr.addClass('shown');
+                        }
+                    } );
+                } );
+
                 </script>
                 @endpush
             </div>

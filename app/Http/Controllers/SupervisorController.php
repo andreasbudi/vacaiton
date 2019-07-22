@@ -18,9 +18,9 @@ class SupervisorController extends Controller
     public function json(){
 
         // query table supervisor sama isi tim nya
-        $supervisors = DB::table('supervisors')
-                ->select(['supervisors.id','supervisors.name_supervisor']);
-                return Datatables::of($supervisors)->addIndexColumn()
+        $supervisors = DB::table('supervisors')->join('users', 'users.manager_id', '=', 'supervisors.id')
+                ->select(['supervisors.id','supervisors.name_supervisor','users.name','users.manager_id']);
+                return Datatables::of($supervisors)
         ->addColumn('action', function ($supervisors) {
             return 
             '<form class="delete-form" action="'.route('supervisor.destroy', $supervisors->id).'" method="post">
