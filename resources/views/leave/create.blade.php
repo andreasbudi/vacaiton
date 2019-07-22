@@ -1,56 +1,27 @@
 @extends('layouts.app')
 @section('content')
-<!-- BEGIN: Subheader -->
-<div class="m-subheader ">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator">
-                        Apply Form
-                </h3>
-                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                    <li class="m-nav__item m-nav__item--home">
-                        <a href="/home" class="m-nav__link m-nav__link--icon">
-                            <i class="m-nav__link-icon la la-home"></i>
-                        </a>
-                    </li>
-                    <li class="m-nav__separator">
-                        -
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="{{ route('leave.create')}}" class="m-nav__link">
-                            <span class="m-nav__link-text">
-                                Apply Leaves
-                            </span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </div>
-            <div>
-                
-            </div>
-        </div>
-    </div>
-    <!-- END: Subheader -->
-<div class="m-content">
+
         @if (Auth::user()->leaves_available == '0')
         <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
 
         @else       
-
         <div class="row">
-                <div class="col-xl-6">
-                    <!--begin:: Widgets/Tasks -->
-                    <div class="m-portlet m-portlet--full-height ">
-                        <div class="m-portlet__head" style="text-align:right;">
+
+            <div class="col-xl-6">
+            <!--begin:: Widgets/Tasks -->
+                <div class="m-portlet m-portlet--full-height ">
+
+                        <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        <span style="color:#A0A0A0;">Leave remaining</span> {{ (Auth::user()->leaves_available) }} days
+                                        Apply Form Leave
+                                        ({{ (Auth::user()->leaves_available) }} Leaves Balance to Apply)</h5>
                                     </h3>
                                 </div>
                             </div>
                         </div>
+
                         <div class="m-portlet__body">
                             <div class="tab-content">
                                 <div class="m-widget2">
@@ -111,20 +82,17 @@
                                          
                                             }()); 
                                             </script>
-                                            </select>
-                                            
+                                            </select> 
                                         </div>
                                         <br>
                                         <div class="col-md-12">
-                                            <strong>From :</strong>
-                                            <input type="date" name="from" id="from" class="form-control" onchange="run(this.value)">
+                                            <strong for="from">From :</strong>
+                                            <input type="text" name="from" id="m_datepicker_1" class="form-control" autocomplete="off">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                           <input type="text" name="to" id="to" class="form-control"> 
-
-                                             
+                                           <input type="text" name="to" id="to" class="form-control" autocomplete="off">  
                                         </div>
                                         <br>
                                         <div class="col-md-12">
@@ -136,40 +104,47 @@
                                         <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!--end:: Widgets/Tasks -->
                 </div>
+
                 <div class="col-xl-6">
                     <!--begin:: Widgets/Support Tickets -->
                     <div class="m-portlet m-portlet--full-height ">
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Calendar of Events
+                                        Calendar of Holidays and Leave Record
                                     </h3>
                                 </div>
                             </div>
                         </div>
+
                         <div class="m-portlet__body">
                             <div class="m-widget3">
-                                    <div id="m_calendar"></div>
-                            
-                                </div>
+                                 <div id="m_calendar"></div>
+                            </div>
                         </div>
-                    </div>
-                    <!--end:: Widgets/Support Tickets -->
+
                 </div>
+            <!--end:: Widgets/Support Tickets -->
+            </div>
+
         </div>
         
         @endif
 @endsection
-</div>
+
 @push('scripts')
-<script>                     
+{{-- For the Event and Leave Record --}}
+    <script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
                 $("#m_calendar_external_events .fc-event").each(function() {
@@ -324,11 +299,38 @@
             init: function() {
                 t(), e()
             }
-        }
-    }();
-    jQuery(document).ready(function() {
-        CalendarExternalEvents.init()
-    });
+            }
+        }();
+        jQuery(document).ready(function() {
+            CalendarExternalEvents.init()
+        });
+    </script>
 
-            </script>
+{{-- For the calender datepicker --}}
+    <script>
+        var BootstrapDatepicker = function() {
+        var t = function() {
+            $("#m_datepicker_1, #m_datepicker_1_validate").datepicker({
+                todayHighlight: !0,
+                startDate : new Date(),
+                daysOfWeekDisabled: [0,6],
+                format: 'yyyy-mm-dd',
+                orientation: "bottom left",
+                templates: {
+                    leftArrow: '<i class="la la-angle-left"></i>',
+                    rightArrow: '<i class="la la-angle-right"></i>'
+                }
+            })
+            };
+        return {
+            init: function() {
+                t()
+            }
+            }
+        }();
+        jQuery(document).ready(function() {
+            BootstrapDatepicker.init()
+        });
+    </script>
+
 @endpush
