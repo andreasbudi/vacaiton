@@ -1,21 +1,27 @@
 @extends('layouts.app')
 @section('content')
+
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
+
                 <h3 class="m-subheader__title m-subheader__title--separator">
                         Apply Form
                 </h3>
+
                 <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+
                     <li class="m-nav__item m-nav__item--home">
                         <a href="/home" class="m-nav__link m-nav__link--icon">
                             <i class="m-nav__link-icon la la-home"></i>
                         </a>
                     </li>
+
                     <li class="m-nav__separator">
                         -
                     </li>
+
                     <li class="m-nav__item">
                         <a href="{{ route('leave.create')}}" class="m-nav__link">
                             <span class="m-nav__link-text">
@@ -26,12 +32,13 @@
                     
                 </ul>
             </div>
-            <div>
+        <div>
                 
             </div>
         </div>
     </div>
-    <!-- END: Subheader -->
+<!-- END: Subheader -->
+
 <div class="m-content">
         @if (Auth::user()->leaves_available == '0')
         <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
@@ -117,7 +124,7 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>From :</strong>
-                                            <input type="date" name="from" id="from" class="form-control" onchange="run(this.value)">
+                                            <input type="text" name="from" id="m_datepicker_1" class="form-control" autocomplete="off">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
@@ -331,4 +338,31 @@
     });
 
             </script>
+
+    {{-- For the calender datepicker --}}
+    <script>
+        var BootstrapDatepicker = function() {
+        var t = function() {
+            $("#m_datepicker_1, #m_datepicker_1_validate").datepicker({
+                todayHighlight: !0,
+                startDate : new Date(),
+                daysOfWeekDisabled: [0,6],
+                format: 'yyyy-mm-dd',
+                orientation: "bottom left",
+                templates: {
+                    leftArrow: '<i class="la la-angle-left"></i>',
+                    rightArrow: '<i class="la la-angle-right"></i>'
+                }
+            })
+            };
+        return {
+            init: function() {
+                t()
+            }
+            }
+        }();
+        jQuery(document).ready(function() {
+            BootstrapDatepicker.init()
+        });
+    </script>
 @endpush

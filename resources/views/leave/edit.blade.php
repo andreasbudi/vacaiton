@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> there where some problems with your input.<br>
@@ -15,6 +16,7 @@
         <div class="col-lg-12">
             <!--begin::Portlet-->
             <div class="m-portlet">
+
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
@@ -27,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!--begin::Form-->
                 <form  class="m-form m-form--label-align-right" action="{{route('leave.update',$leave->id)}}" method="post">
                     @csrf
@@ -86,7 +89,7 @@
                                         From:
                                     </label>
                                     <div class="col-lg-6">
-										<input type="date" name="from" id="from" value="{{$leave->from}}" class="form-control" onchange="run(this.value)">
+                                        <input type="text" name="from" id="m_datepicker_1" value="{{$leave->from}}" class="form-control" autocomplete="off">
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -111,23 +114,51 @@
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
                                 <div class="col-lg-2"></div>
-                                <div class="col-lg-6">
-                                    <button type="submit" class="btn btn-primary">
-                                        Update
-                                    </button>
-                                    <a class="btn btn-sm" href="/leave">Cancel</a>
+                                    <div class="col-lg-6">
+                                        <button type="submit" class="btn btn-primary">
+                                            Update
+                                        </button>
+                                        <a class="btn btn-sm" href="/leave">Cancel</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </form>
                 <!--end::Form-->
-            </div>
-            <!--end::Portlet-->
-            <!--begin::Portlet-->
             
+            </div>
             <!--end::Portlet-->
         </div>
     </div>          
 
 @endsection
+
+@push('scripts')
+ {{-- For the calender datepicker --}}
+    <script>
+        var BootstrapDatepicker = function() {
+        var t = function() {
+            $("#m_datepicker_1, #m_datepicker_1_validate").datepicker({
+                todayHighlight: !0,
+                startDate : new Date(),
+                daysOfWeekDisabled: [0,6],
+                format: 'yyyy-mm-dd',
+                orientation: "bottom left",
+                templates: {
+                    leftArrow: '<i class="la la-angle-left"></i>',
+                    rightArrow: '<i class="la la-angle-right"></i>'
+                }
+            })
+            };
+        return {
+            init: function() {
+                t()
+            }
+            }
+        }();
+        jQuery(document).ready(function() {
+            BootstrapDatepicker.init()
+        });
+    </script>
+@endpush
