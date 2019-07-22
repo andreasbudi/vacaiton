@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title">
+                Hi, {{ (Auth::user()->name) }}
+            </h3>
+        </div>
+    </div>
+</div>
+<!-- END: Subheader -->
     <div class="m-content">
 
             @if (Auth::user()->role_id == 3)
@@ -77,7 +89,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
-                                     Please Approve Your Team Leave Request
+                                     Waiting for Approval
                                 </h3>
                             </div>
                         </div>
@@ -139,7 +151,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                             Please Approve Your Team Leave Request
+                             Waiting for Approval
                         </h3>
                     </div>
                 </div>

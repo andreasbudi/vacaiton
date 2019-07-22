@@ -76,15 +76,6 @@
 							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn">
 								<i class="la la-close"></i>
 							</button>
-
-							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark "  >
-								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
-									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-									<h4>
-										Hi, {{ (Auth::user()->name) }}
-									</h4>
-							</div>	
-
 							<!-- END: Horizontal Menu -->
 
 							<!-- BEGIN: Topbar -->
@@ -274,7 +265,7 @@
 										<span class="m-menu__link-title">
 											<span class="m-menu__link-wrap">
 												<span class="m-menu__link-text">
-													Home
+													Dashboard
 												</span>
 											</span>
 										</span>
@@ -284,11 +275,11 @@
 							@else
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="/show" class="m-menu__link ">
-									<i class="m-menu__link-icon flaticon-list-2"></i>
+									<i class="m-menu__link-icon flaticon-folder"></i>
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												List Member
+													Dashboard
 											</span>
 										</span>
 									</span>
@@ -300,7 +291,7 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												Add Member
+												Add Employee
 											</span>
 										</span>
 									</span>
@@ -312,7 +303,7 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												Supervisor
+												Add Supervisor
 											</span>
 										</span>
 									</span>
@@ -340,12 +331,11 @@
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-					<div class="m-content">
-						<!--Begin::Main Portlet-->
+					
                                 <main>
                                     @yield('content')
                                 </main>
-					</div>
+					
 				</div>
 
 			</div>

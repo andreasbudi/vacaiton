@@ -1,5 +1,19 @@
 @extends('layouts.app')
 @section('content')
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title">
+                        Hi, {{ (Auth::user()->name) }}
+                </h3>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
     <div class="m-content">
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet__head">

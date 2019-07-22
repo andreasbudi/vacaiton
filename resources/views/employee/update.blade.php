@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
- 
+<div class="m-content">
 <div class="row">
         <div class="col-lg-12">
             <!--begin::Portlet-->
@@ -11,9 +11,7 @@
                             <span class="m-portlet__head-icon m--hide">
                                 <i class="la la-gear"></i>
                             </span>
-                            <h3 class="m-portlet__head-text">
-                                My Profile
-                            </h3>
+                         
                         </div>
                     </div>
                 </div>
@@ -383,4 +381,5 @@
             <!--end::Portlet-->
         </div>
     </div>          
+</div>          
 @endsection

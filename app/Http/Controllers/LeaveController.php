@@ -57,9 +57,9 @@ class LeaveController extends Controller
 						</div>
             ';
             }elseif($leaves->status == 2){
-            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved by '.$leaves->responded_by.'</span></center>';
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($leaves->status == 3){
-            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected by '.$leaves->responded_by.'</span></center>';
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
             }elseif($leaves->status == 4){
             return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);        
@@ -77,9 +77,9 @@ class LeaveController extends Controller
             if($leaves->status == 1){
             return '<center><span class="m-badge m-badge--warning m-badge--wide">Submitted</span></center>';
             }elseif($leaves->status == 2){
-            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved by '.$leaves->responded_by.'</span></center>';
+            return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($leaves->status == 3){
-            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected by '.$leaves->responded_by.'</span></center>';
+            return '<center><span class="m-badge m-badge--danger m-badge--wide">Rejected</span></center>';
             }elseif($leaves->status == 4){
             return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);  

@@ -1,6 +1,38 @@
 @extends('layouts.app')
 @section('content')
-
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                        Apply Form
+                </h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="/home" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="{{ route('leave.create')}}" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                Apply Leaves
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+<div class="m-content">
         @if (Auth::user()->leaves_available == '0')
         <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
 
@@ -10,12 +42,11 @@
                 <div class="col-xl-6">
                     <!--begin:: Widgets/Tasks -->
                     <div class="m-portlet m-portlet--full-height ">
-                        <div class="m-portlet__head">
+                        <div class="m-portlet__head" style="text-align:right;">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Apply Form Leave
-                                        ({{ (Auth::user()->leaves_available) }} Leaves Balance to Apply)</h5>
+                                        <span style="color:#A0A0A0;">Leave remaining</span> {{ (Auth::user()->leaves_available) }} days
                                     </h3>
                                 </div>
                             </div>
@@ -118,7 +149,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Calendar of Holidays and Leave Record
+                                        Calendar of Events
                                     </h3>
                                 </div>
                             </div>
@@ -136,7 +167,7 @@
         
         @endif
 @endsection
-
+</div>
 @push('scripts')
 <script>                     
     var CalendarExternalEvents = function() {
