@@ -46,9 +46,8 @@ class HomeController extends Controller
             return view('approval.approval', compact('leaves'));
         }
         else if($getRole == 4){
-        $employees = User::latest()->paginate(10);
-        return view('employee.show', compact('employees'))
-                    ->with('i',(request()->input('page',1) -1) *5); 
+        $employees = User::all()->where('users.role_id',1)->where('supervisors.id', '=', 'users.manager_id')->first();
+        return view('employee.show', compact('employees')); 
         }    
     }
 

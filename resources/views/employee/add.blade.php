@@ -24,15 +24,11 @@
                             </span>
                         </a>
                     </li>
-                    
                 </ul>
             </div>
-            <div>
-                
-            </div>
         </div>
-    </div>
-    <!-- END: Subheader -->
+</div>
+<!-- END: Subheader -->
 <div class="m-content">
     <div class="row">
         <div class="col-lg-12">
@@ -164,7 +160,7 @@
                         </div>
 
                         
-                    
+                    </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
@@ -188,10 +184,8 @@
                 <!--end::Form-->
             </div>
             <!--end::Portlet-->
-            <!--begin::Portlet-->
-            
-            <!--end::Portlet-->
+
         </div>
     </div>          
-    </div>          
+</div>          
 @endsection

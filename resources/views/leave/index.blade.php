@@ -92,7 +92,7 @@
                                 serverSide: true,
                                 ajax: 'leave/json',
                                 dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                columnDefs: [{"className": "text-center", "targets": "_all"}],
+                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('Do MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('Do MMMM YYYY'); }}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },
@@ -154,7 +154,7 @@
                                 serverSide: true,
                                 ajax: 'leave/jsonTeamSpv',
                                 dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                columnDefs: [{"className": "text-center", "targets": "_all"}],
+                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('Do MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('Do MMMM YYYY'); }}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },

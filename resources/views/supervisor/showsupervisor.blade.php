@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-
 <style>
 td.details-control {
-    background: url('D:/Magang/Testing/vacation/public/assets/details_open.png');
+    background: url('D:/Magang/Testing/vacation/public/assets/details_open.png')  no-repeat center center;
     cursor: pointer;
 }
 tr.shown td.details-control {
@@ -130,10 +129,12 @@ tr.shown td.details-control {
                 function format ( d ) {
                     // `d` is the original data object for the row
                     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                        @foreach($supervisors as $supervisor)
                         '<tr>'+
                             '<td>Name:</td>'+
-                            '<td>'+d.name+'</td>'+
+                            '<td>'+'{{$supervisor->name}}'+'</td>'+
                         '</tr>'+
+                        @endforeach
                     '</table>';
                 }
                 
@@ -173,6 +174,8 @@ tr.shown td.details-control {
                         }
                     } );
                 } );
+
+                
 
                 </script>
                 @endpush

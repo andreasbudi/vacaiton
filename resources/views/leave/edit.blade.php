@@ -1,6 +1,39 @@
 @extends('layouts.app')
 @section('content')
 
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                        Edit Leave
+                </h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="/home" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                Edit Leave
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+<div class="m-content">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> there where some problems with your input.<br>
@@ -24,7 +57,7 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Edit Leave Form
+                                Your Leave Form
                             </h3>
                         </div>
                     </div>
@@ -109,21 +142,19 @@
                                     </div>
                             </div>   
                         </div>
-
+                    </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
                                 <div class="col-lg-2"></div>
                                     <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary">
-                                            Update
-                                        </button>
-                                        <a class="btn btn-sm" href="/leave">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <a class="btn btn-danger" href="/leave">Cancel</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </form>
                 <!--end::Form-->
             
@@ -131,7 +162,7 @@
             <!--end::Portlet-->
         </div>
     </div>          
-
+</div>
 @endsection
 
 @push('scripts')

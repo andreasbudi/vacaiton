@@ -237,6 +237,60 @@ class UserTableSeeder extends Seeder
         $testStaff->isActivated = '1';
         $testStaff->save();
 
+        $testStaff = new User();
+        $testStaff->name = 'testStaff2';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test2@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '1';
+        $testStaff->isActivated = '1';
+        $testStaff->save();
+
+        $testStaff = new User();
+        $testStaff->name = 'testStaff3';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test3@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '1';
+        $testStaff->isActivated = '1';
+        $testStaff->save();
+
+        $testStaff = new User();
+        $testStaff->name = 'testStaff4';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test4@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '2';
+        $testStaff->isActivated = '1';
+        $testStaff->save();
+        $testStaff = new User();
+        $testStaff->name = 'testStaff5';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test5@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '2';
+        $testStaff->isActivated = '1';
+        $testStaff->save();
+
+        $testStaff = new User();
+        $testStaff->name = 'testStaff6';
+        $testStaff->department = 'testing';
+        $testStaff->email = 'test6@gmail.com';
+        $testStaff->password = bcrypt('adminadmin');
+        $testStaff->leaves_available = '12';
+        $testStaff->role_id = '1';
+        $testStaff->manager_id = '2';
+        $testStaff->isActivated = '1';
+        $testStaff->save();
+
         $testSpv = new User();
         $testSpv->name = 'testSpv1';
         $testSpv->department = 'testing';

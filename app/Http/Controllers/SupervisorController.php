@@ -17,9 +17,10 @@ class SupervisorController extends Controller
 {
     public function json(){
 
-        // query table supervisor sama isi tim nya
-        $supervisors = DB::table('supervisors')->join('users', 'users.manager_id', '=', 'supervisors.id')
-                ->select(['supervisors.id','supervisors.name_supervisor','users.name','users.manager_id']);
+        //query isi tim supervisor
+
+        $supervisors = DB::table('supervisors')
+                ->select(['supervisors.id','supervisors.name_supervisor']);
                 return Datatables::of($supervisors)
         ->addColumn('action', function ($supervisors) {
             return 
@@ -28,7 +29,8 @@ class SupervisorController extends Controller
                 <input type="hidden" name="_token" value="'.csrf_token().'">
                 <input type="hidden" name="_method" value="delete" />
             </form>';
-        })->make(true);
+        })
+        ->make(true);
     }
 
 
@@ -84,9 +86,10 @@ class SupervisorController extends Controller
      */
     public function show()
     {
-        $supervisors = Supervisor::latest()->paginate(10);
-        return view('supervisor.showsupervisor', compact('supervisors'))
-                    ->with('i',(request()->input('page',1) -1) *5); 
+        $supervisors = User::with('supervisors')
+        ->where('role_id',1)
+        ->get();
+        return view('supervisor.showsupervisor', compact('supervisors')); 
     }
 
     /**

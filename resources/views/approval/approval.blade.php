@@ -67,7 +67,7 @@
                                             <div class="fc-title">
                                                 <div class="fc-content" style="margin-top:7px;">
                                                     <p style="font-size:15px; text-align:left">{{$leave->users->name}}
-                                                    <span style="float:right; font-size:13px;">{{$leave->from}} - {{$leave->to}}</span></p>
+                                                    <span style="float:right; font-size:13px;"> {{ \Carbon\Carbon::parse($leave->from)->format('d F')}} -  {{ \Carbon\Carbon::parse($leave->to)->format('d F')}}</span></p>
                                                     @if ($leave->status == '2')
                                                     <p style="font-size:13px;">Approved by <b>{{$leave->responded_by}}</b></p>
                                                     @elseif ($leave->status == '3')
@@ -125,7 +125,7 @@
                                         serverSide: true,
                                         ajax: 'home/json',
                                         dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                        columnDefs: [{"className": "text-center", "targets": "_all"}],
+                                        columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('Do MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('Do MMMM YYYY'); }}],
                                         columns: [
                                             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                             { data: 'name', name: 'users.name' },
@@ -187,11 +187,11 @@
                                 serverSide: true,
                                 ajax: 'home/json',
                                 dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                columnDefs: [{"className": "text-center", "targets": "_all"}],
+                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('Do MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('Do MMMM YYYY'); }}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },
-                                    { data: 'from', name: 'from' },
+                                    { data: 'from', name: 'from'},
                                     { data: 'to', name: 'to' },
                                     { data: 'duration', name: 'duration' },
                                     { data: 'reason', name: 'reason' },

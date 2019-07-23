@@ -18,7 +18,9 @@
         }
 	  });
 
-    </script>
+	</script>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <link href="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors -->
     <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />

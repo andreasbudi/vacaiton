@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="m-content">
-<div class="row">
+    <div class="row">
         <div class="col-lg-12">
             <!--begin::Portlet-->
             <div class="m-portlet">
@@ -375,9 +375,6 @@
                 </form>
                 <!--end::Form-->
             </div>
-            <!--end::Portlet-->
-            <!--begin::Portlet-->
-            
             <!--end::Portlet-->
         </div>
     </div>          
