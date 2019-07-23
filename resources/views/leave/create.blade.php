@@ -11,7 +11,6 @@
                 </h3>
 
                 <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-
                     <li class="m-nav__item m-nav__item--home">
                         <a href="/home" class="m-nav__link m-nav__link--icon">
                             <i class="m-nav__link-icon la la-home"></i>
@@ -21,7 +20,7 @@
                     <li class="m-nav__separator">
                         -
                     </li>
-
+                    
                     <li class="m-nav__item">
                         <a href="{{ route('leave.create')}}" class="m-nav__link">
                             <span class="m-nav__link-text">
@@ -31,24 +30,26 @@
                     </li>
                     
                 </ul>
-            </div>
-        <div>
+                </div>
+                <div>
                 
             </div>
         </div>
-    </div>
+</div>
+
 <!-- END: Subheader -->
 
 <div class="m-content">
         @if (Auth::user()->leaves_available == '0')
         <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
 
-        @else       
-
+        @else    
         <div class="row">
                 <div class="col-xl-6">
+
                     <!--begin:: Widgets/Tasks -->
                     <div class="m-portlet m-portlet--full-height ">
+
                         <div class="m-portlet__head" style="text-align:right;">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -58,9 +59,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="m-portlet__body">
                             <div class="tab-content">
                                 <div class="m-widget2">
+
                                     <form action="{{route('leave.store')}}" method="post">
 
                                         @if ($errors->any())
@@ -76,62 +79,19 @@
 
                                         @csrf
                                         <div class="col-md-12">
-                                            <strong>Duration :</strong>
-                                            <select name="duration" id="duration" class="form-control" onchange="run(this.value)">
-                                            <script>
-                                            function run(val) {
-                                                document.getElementById("from").addEventListener("change", function() {	
-                                                var formDuration = document.getElementById("duration");
-                                                var getDuration = formDuration.options[formDuration.selectedIndex].value;
-                                                alert(getDuration);
-                                                
-                                                var input = new Date(this.value);
-                                                var newdate = new Date(input);
-                                                var temp = newdate.getDate();
-                                                var calculate = temp + parseInt(getDuration);
-                                                newdate.setDate(calculate);
-                                                var dd = newdate.getDate();
-                                                var mm = newdate.getMonth() + 1;
-                                                var yyyy =  newdate.getFullYear();
-                                                if (dd < 10) {
-                                                dd = '0' + dd;
-                                                } 
-                                                if (mm < 10) {
-                                                mm = '0' + mm;
-                                                } 
-                                                var someFormattedDate = yyyy + '/' + mm + '/' + dd;
-                                                // var someFormattedDate = mm + '/' + dd + '/' + yyyy;
-                                                document.getElementById('to').value = someFormattedDate;
-                                                });
-                                            }
-
-                                            (function() { // don't leak
-                                                var elm = document.getElementById('duration'), // get the select
-                                                    df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-                                                for (var i = 0; i <= {{ (Auth::user()->leaves_available) }}; i++) { 
-                                                    var option = document.createElement('option'); // create the option element
-                                                    option.value = i; // set the value property
-                                                    option.appendChild(document.createTextNode(i + " days")); // set the textContent in a safe way.
-                                                    df.appendChild(option); // append the option to the document fragment
-                                                }
-                                                elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
-                                         
-                                            }()); 
-                                            </script>
-                                            </select>
-                                            
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
                                             <strong>From :</strong>
-                                            <input type="text" name="from" id="m_datepicker_1" class="form-control" autocomplete="off">
+                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                           <input type="text" name="to" id="to" class="form-control"> 
-
-                                             
+                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off"> 
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>Duration :</strong>
+                                            <input type="text" name="duration" id="total" class="form-control" autocomplete="off"> 
+                                            </select>
                                         </div>
                                         <br>
                                         <div class="col-md-12">
@@ -143,15 +103,21 @@
                                         <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!--end:: Widgets/Tasks -->
+
                 </div>
+
                 <div class="col-xl-6">
+
                     <!--begin:: Widgets/Support Tickets -->
                     <div class="m-portlet m-portlet--full-height ">
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -161,22 +127,25 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="m-portlet__body">
                             <div class="m-widget3">
-                                    <div id="m_calendar"></div>
-                            
-                                </div>
+                                <div id="m_calendar"></div>
+                            </div>
                         </div>
+
                     </div>
                     <!--end:: Widgets/Support Tickets -->
+
                 </div>
         </div>
-        
         @endif
+
 @endsection
-</div>
+
 @push('scripts')
-<script>                     
+    {{-- For For the Event and Leave Record --}}
+    <script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
                 $("#m_calendar_external_events .fc-event").each(function() {
@@ -304,8 +273,7 @@
             
                 // from DB    
 
-                @foreach($leaves as $leave)
-                    ,{
+                @foreach($leaves as $leave),{
                     title: "{{$leave->users->name}}",
                     start:  "{{$leave->from}}",
                     end: "{{$leave->to}}",
@@ -336,33 +304,57 @@
     jQuery(document).ready(function() {
         CalendarExternalEvents.init()
     });
-
-            </script>
-
-    {{-- For the calender datepicker --}}
-    <script>
-        var BootstrapDatepicker = function() {
-        var t = function() {
-            $("#m_datepicker_1, #m_datepicker_1_validate").datepicker({
-                todayHighlight: !0,
-                startDate : new Date(),
-                daysOfWeekDisabled: [0,6],
-                format: 'yyyy-mm-dd',
-                orientation: "bottom left",
-                templates: {
-                    leftArrow: '<i class="la la-angle-left"></i>',
-                    rightArrow: '<i class="la la-angle-right"></i>'
-                }
-            })
-            };
-        return {
-            init: function() {
-                t()
-            }
-            }
-        }();
-        jQuery(document).ready(function() {
-            BootstrapDatepicker.init()
-        });
     </script>
+
+    {{-- For from calender datepicker --}}
+    <script>
+        $(function() {
+        // create from date
+        $('#from-date').datepicker({
+            orientation: "bottom left",
+            startDate : new Date(),
+            format: 'yyyy-mm-dd',
+            todayHighlight:'TRUE',
+            autoclose: true,
+            daysOfWeekDisabled: [0,6]
+        }).on('changeDate', function(ev) {
+            ConfigureToDate();
+        });
+
+        // create from date
+        $('#to-date').datepicker({
+            orientation: "bottom left",
+            startDate: $('#from-date').val(),
+            format: 'yyyy-mm-dd',
+            todayHighlight:'TRUE',
+            autoclose: true,
+            daysOfWeekDisabled: [0,6]
+        }).on('changeDate', function(ev) {
+            var fromDate = $('#from-date').data('datepicker').dates[0];
+            $('#total').val(getBusinessDatesCount(fromDate, ev.date));
+        });
+
+        // Set the min date on page load
+        ConfigureToDate();
+
+        // Resets the min date of the return date
+        function ConfigureToDate() {
+            $('#to-date').val("").datepicker("update");
+            $('#to-date').datepicker('setStartDate', $('#from-date').val());
+        }
+        });
+
+        function getBusinessDatesCount(startDate, endDate) {
+        var count = 0;
+        var curDate = new Date(startDate);
+        while (curDate <= endDate) {
+            var dayOfWeek = curDate.getDay();
+            if (!((dayOfWeek == 6) || (dayOfWeek == 0)))
+            count++;
+            curDate.setDate(curDate.getDate() + 1);
+            }
+        return count;
+        }
+    </script>
+
 @endpush

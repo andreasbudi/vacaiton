@@ -1,39 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<!-- BEGIN: Subheader -->
-<div class="m-subheader ">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator">
-                        Edit Leave
-                </h3>
-                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                    <li class="m-nav__item m-nav__item--home">
-                        <a href="/home" class="m-nav__link m-nav__link--icon">
-                            <i class="m-nav__link-icon la la-home"></i>
-                        </a>
-                    </li>
-                    <li class="m-nav__separator">
-                        -
-                    </li>
-                    <li class="m-nav__item">
-                        <a class="m-nav__link">
-                            <span class="m-nav__link-text">
-                                Edit Leave
-                            </span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </div>
-            <div>
-                
-            </div>
-        </div>
-    </div>
-    <!-- END: Subheader -->
-<div class="m-content">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> there where some problems with your input.<br>
@@ -57,7 +24,7 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Your Leave Form
+                                Edit Leave Form
                             </h3>
                         </div>
                     </div>
@@ -72,57 +39,10 @@
                             
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                        Duration:
-                                    </label>
-                                    <div class="col-lg-6">
-										<select name="duration" id="duration" class="form-control" onchange="run(this.value)">
-											<script>
-											function run(val) {
-											document.getElementById("from").addEventListener("change", function() {	
-											var formDuration = document.getElementById("duration");
-											var getDuration = formDuration.options[formDuration.selectedIndex].value;
-										
-											var input = new Date(this.value);
-											var newdate = new Date(input);
-											var temp = newdate.getDate();
-											var calculate = temp + parseInt(getDuration);
-											newdate.setDate(calculate);
-											var dd = newdate.getDate();
-											var mm = newdate.getMonth() + 1;
-											var yyyy =  newdate.getFullYear();
-												if (dd < 10) {
-													dd = '0' + dd;
-												} 
-												if (mm < 10) {
-													mm = '0' + mm;
-												} 
-											var someFormattedDate = yyyy + '/' + mm + '/' + dd;
-											// var someFormattedDate = mm + '/' + dd + '/' + yyyy;
-											document.getElementById('to').value = someFormattedDate;
-											});
-											}
-											(function() { // don't leak
-											var elm = document.getElementById('duration'), // get the select
-											df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-											for (var i = 0; i <= {{ (Auth::user()->leaves_available) }}; i++) { 
-											var option = document.createElement('option'); // create the option element
-											option.value = i; // set the value property
-											option.appendChild(document.createTextNode(i + " days")); // set the textContent in a safe way.
-											df.appendChild(option); // append the option to the document fragment
-											}
-											elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
-								 
-											}()); 
-											</script>
-											</select>
-                                    </div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
                                         From:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" name="from" id="m_datepicker_1" value="{{$leave->from}}" class="form-control" autocomplete="off">
+                                        <input type="text" name="from" id="from-date" value="{{$leave->from}}" class="form-control" autocomplete="off">
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -130,7 +50,15 @@
                                         To:
                                     </label>
                                     <div class="col-lg-6">     
-										<input type="text" name="to" id="to" value="{{$leave->to}}" class="form-control">
+										<input type="text" name="to" id="to-date" value="{{$leave->to}}" class="form-control" autocomplete="off">
+                                    </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                        Duration:
+                                    </label>
+                                    <div class="col-lg-6">
+										<input type="text" name="duration" id="total" value="{{$leave->duration}}" class="form-control" autocomplete="off"> 
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -142,19 +70,21 @@
                                     </div>
                             </div>   
                         </div>
-                    </div>
+
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
                                 <div class="col-lg-2"></div>
                                     <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary">Update</button>
-                                        <a class="btn btn-danger" href="/leave">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">
+                                            Update
+                                        </button>
+                                        <a class="btn btn-sm" href="/leave">Cancel</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </form>
                 <!--end::Form-->
             
@@ -162,34 +92,58 @@
             <!--end::Portlet-->
         </div>
     </div>          
-</div>
+
 @endsection
 
 @push('scripts')
- {{-- For the calender datepicker --}}
+ {{-- For from calender datepicker --}}
     <script>
-        var BootstrapDatepicker = function() {
-        var t = function() {
-            $("#m_datepicker_1, #m_datepicker_1_validate").datepicker({
-                todayHighlight: !0,
-                startDate : new Date(),
-                daysOfWeekDisabled: [0,6],
-                format: 'yyyy-mm-dd',
-                orientation: "bottom left",
-                templates: {
-                    leftArrow: '<i class="la la-angle-left"></i>',
-                    rightArrow: '<i class="la la-angle-right"></i>'
-                }
-            })
-            };
-        return {
-            init: function() {
-                t()
-            }
-            }
-        }();
-        jQuery(document).ready(function() {
-            BootstrapDatepicker.init()
+        $(function() {
+        // create from date
+        $('#from-date').datepicker({
+            orientation: "bottom left",
+            startDate : new Date(),
+            format: 'yyyy-mm-dd',
+            todayHighlight:'TRUE',
+            autoclose: true,
+            daysOfWeekDisabled: [0,6]
+        }).on('changeDate', function(ev) {
+            ConfigureToDate();
         });
+
+        // create from date
+        $('#to-date').datepicker({
+            orientation: "bottom left",
+            startDate: $('#from-date').val(),
+            format: 'yyyy-mm-dd',
+            todayHighlight:'TRUE',
+            autoclose: true,
+            daysOfWeekDisabled: [0,6]
+        }).on('changeDate', function(ev) {
+            var fromDate = $('#from-date').data('datepicker').dates[0];
+            $('#total').val(getBusinessDatesCount(fromDate, ev.date));
+        });
+
+        // Set the min date on page load
+        ConfigureToDate();
+
+        // Resets the min date of the return date
+        function ConfigureToDate() {
+            $('#to-date').val("").datepicker("update");
+            $('#to-date').datepicker('setStartDate', $('#from-date').val());
+        }
+        });
+
+        function getBusinessDatesCount(startDate, endDate) {
+        var count = 0;
+        var curDate = new Date(startDate);
+        while (curDate <= endDate) {
+            var dayOfWeek = curDate.getDay();
+            if (!((dayOfWeek == 6) || (dayOfWeek == 0)))
+            count++;
+            curDate.setDate(curDate.getDate() + 1);
+            }
+        return count;
+        }
     </script>
 @endpush
