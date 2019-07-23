@@ -150,18 +150,18 @@ class ApprovalController extends Controller
             'nameSpv' => $spv_name,
             'spv_department' => $spv_department,
             'email' => $user_email,
-            'from' => $leave->from,
-            'to' => $leave->to,
+            'from' => \Carbon\Carbon::parse($leave->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($leave->to)->format('d F Y')
         );
 
         if($leave->status == 2){
-            // Mail::to($user_email)->send(new SendApprove($data));
+            //  Mail::to($user_email)->send(new SendApprove($data));
             toastr()->success('Leave approved successfully','', [ 
                 "closeButton"       => true,
                 "debug"             => false,
                 "newestOnTop"       => false,
                 "progressBar"       => false,
-                "positionClass"     => "toast-top-center",
+                "positionClass"     => "toast-top-right",
                 "preventDuplicates" => false,
                 "onclick"           => null,
                 "showDuration"      => "300",
@@ -180,7 +180,7 @@ class ApprovalController extends Controller
                 "debug"             => false,
                 "newestOnTop"       => false,
                 "progressBar"       => false,
-                "positionClass"     => "toast-top-center",
+                "positionClass"     => "toast-top-right",
                 "preventDuplicates" => false,
                 "onclick"           => null,
                 "showDuration"      => "300",
@@ -221,8 +221,8 @@ class ApprovalController extends Controller
             'name' => $user_name,
             'nameSpv' => $spv_name,
             'spv_department' => $spv_department,
-            'from' => $leave->from,
-            'to' => $leave->to,
+            'from' => \Carbon\Carbon::parse($leave->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($leave->to)->format('d F Y'),
             'reason' => $leave->reason,
             'reject_message' => $leave->reject_message,
         );
@@ -234,7 +234,7 @@ class ApprovalController extends Controller
                 "debug"             => false,
                 "newestOnTop"       => false,
                 "progressBar"       => false,
-                "positionClass"     => "toast-top-center",
+                "positionClass"     => "toast-top-right",
                 "preventDuplicates" => false,
                 "onclick"           => null,
                 "showDuration"      => "300",
@@ -253,7 +253,7 @@ class ApprovalController extends Controller
                 "debug"             => false,
                 "newestOnTop"       => false,
                 "progressBar"       => false,
-                "positionClass"     => "toast-top-center",
+                "positionClass"     => "toast-top-right",
                 "preventDuplicates" => false,
                 "onclick"           => null,
                 "showDuration"      => "300",

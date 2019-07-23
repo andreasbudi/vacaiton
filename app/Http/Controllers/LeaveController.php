@@ -130,21 +130,22 @@ class LeaveController extends Controller
 
         $dataClient = array(
             'name' => Auth::user()->name,
-            'from' => $request->from,
-            'to' => $request->to,
+            'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
             'duration' => $request->duration,
             'reason' => $request->reason,
             'status' => $request->status
         );
 
         $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)->first();
-        $username = $users->email;
+        $username = $users->name;
+        $user_email = $users->email;
         $department = $users->department;
         $dataSpv = array(
             'name' => Auth::user()->name,
             'nameSpv' => $username,
-            'from' => $request->from,
-            'to' => $request->to,
+            'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
             'duration' => $request->duration,
             'reason' => $request->reason,
             'status' => $request->status,
@@ -168,7 +169,7 @@ class LeaveController extends Controller
             // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
             //     $user = 'andreas.b365@gmail.com';
             //         // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-            //         Mail::to($user)->send(new SendMailSpv($dataSpv));
+            //         // Mail::to($user)->send(new SendMailSpv($dataSpv));
             // }
 
         $leaveData = new Leave();
@@ -189,7 +190,7 @@ class LeaveController extends Controller
             "debug"             => false,
             "newestOnTop"       => false,
             "progressBar"       => false,
-            "positionClass"     => "toast-top-center",
+            "positionClass"     => "toast-top-right",
             "preventDuplicates" => false,
             "onclick"           => null,
             "showDuration"      => "300",
@@ -224,7 +225,7 @@ class LeaveController extends Controller
             "debug"             => false,
             "newestOnTop"       => false,
             "progressBar"       => false,
-            "positionClass"     => "toast-top-center",
+            "positionClass"     => "toast-top-right",
             "preventDuplicates" => false,
             "onclick"           => null,
             "showDuration"      => "300",
@@ -275,7 +276,7 @@ class LeaveController extends Controller
             "debug"             => false,
             "newestOnTop"       => false,
             "progressBar"       => false,
-            "positionClass"     => "toast-top-center",
+            "positionClass"     => "toast-top-right",
             "preventDuplicates" => false,
             "onclick"           => null,
             "showDuration"      => "300",
