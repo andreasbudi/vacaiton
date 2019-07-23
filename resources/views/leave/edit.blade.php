@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<div class="m-content">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> there where some problems with your input.<br>
@@ -70,7 +70,7 @@
                                     </div>
                             </div>   
                         </div>
-
+                    </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
@@ -79,20 +79,19 @@
                                         <button type="submit" class="btn btn-primary">
                                             Update
                                         </button>
-                                        <a class="btn btn-sm" href="/leave">Cancel</a>
+                                        <a class="btn btn-danger" href="/leave">Cancel</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </form>
                 <!--end::Form-->
-            
             </div>
             <!--end::Portlet-->
         </div>
     </div>          
-
+</div>
 @endsection
 
 @push('scripts')
