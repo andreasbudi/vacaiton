@@ -24,8 +24,8 @@ class ApprovalController extends Controller
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){
             return '<a class="btn btn-sm btn-success" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
-            <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4">Reject</button>
-            <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4_'.$approval->id.'">Reject</button>
+            <div class="modal fade" id="m_modal_4_'.$approval->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -71,8 +71,8 @@ class ApprovalController extends Controller
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){
             return '<a class="btn btn-sm btn-success" value="send" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
-            <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4">Reject</button>
-            <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4_'.$approval->id.'">Reject</button>
+            <div class="modal fade" id="m_modal_4_'.$approval->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

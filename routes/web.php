@@ -37,7 +37,6 @@ Route::get('/welcome', function () {
 });
 
 
-
 Route::get('/profile', 'EmployeeController@profile')->name('employee.profile');
 Route::get('/show', 'EmployeeController@show');
 Route::get('/showsupervisor', 'SupervisorController@show');
@@ -51,6 +50,7 @@ Route::get('supervisor/json', 'SupervisorController@json');
 Route::get('leave/jsonTeamSpv', 'LeaveController@jsonTeamSpv');
 Route::get('employee/create', 'EmployeeController@create');
 Route::get('employee/{id}', 'EmployeeController@destroy');
+
 
 Auth::routes();
 
