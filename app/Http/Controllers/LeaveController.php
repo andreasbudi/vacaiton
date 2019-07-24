@@ -24,37 +24,45 @@ class LeaveController extends Controller
         return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
-            return '<form action="'.route('leave.show', $leaves->id).'" method="post" style="width:180px;"><a class="btn btn-sm btn-warning" style="width:40%;" href="'.route('leave.edit',$leaves->id).'">Edit</a>
-            <a class="btn btn-sm btn-danger" style="width:40%;" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_4">Cancel</a></form>
+            return '<form action="'.route('leave.show', $leaves->id).'" method="post" style="width:180px;">
+            
+            <a class="btn btn-sm btn-warning" style="width:40%;" href="'.route('leave.edit',$leaves->id).'">Edit</a>
+            
+            <a class="btn btn-sm btn-danger" style="width:40%;" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_4">Cancel</a>
+
+                    </form>
+
             <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-lg" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">
-										</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">
-												&times;
-											</span>
-										</button>
-                                    </div>
-                                    <form action="'.route('leave.show',$leaves->id).'" method="get">
-									<div class="modal-body">
-											<div class="form-group">
-												<label class="form-control-label">
-													Reason Canceled Leave Request?
-												</label>
-												<input type="text" class="form-control" name="reject_message" id="reject_message">
-											</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                                    </div>
-                                    </form>
+				<div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">
+										&times;
+									</span>
+								</button>
+                        </div>
+
+                        <form action="'.route('leave.show',$leaves->id).'" method="get">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="form-control-label">
+										Reason Canceled Leave Request?
+									</label>
+									<input type="text" class="form-control" name="reject_message" id="reject_message">
 								</div>
 							</div>
-						</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                            </div>
+                        </form>
+
+					</div>
+				</div>
+			</div>
             ';
             }elseif($leaves->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
@@ -84,6 +92,7 @@ class LeaveController extends Controller
             return '<center><span class="m-badge m-badge--default m-badge--wide">Canceled</span></center>';
             }})->make(true);  
         }
+
     /**
      * Display a listing of the resource.
      *
@@ -99,7 +108,6 @@ class LeaveController extends Controller
 
         return view('leave.index', compact('leaves','team_leaves'))
                     ->with('i',(request()->input('page',1) -1) *5); 
-
     }
 
     /**
