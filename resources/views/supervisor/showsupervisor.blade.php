@@ -2,11 +2,11 @@
 @section('content')
 <style>
 td.details-control {
-    background: url('D:/Magang/Testing/vacation/public/assets/details_open.png')  no-repeat center center;
+    background: url('https://raw.githubusercontent.com/DataTables/DataTables/1.10.7/examples/resources/details_open.png') no-repeat center center;
     cursor: pointer;
 }
 tr.shown td.details-control {
-    background: url('D:/Magang/Testing/vacation/public/assets/details_close.png') no-repeat center center;
+    background: url('https://raw.githubusercontent.com/DataTables/DataTables/1.10.7/examples/resources/details_close.png') no-repeat center center;
 }
 </style>
 <!-- BEGIN: Subheader -->
@@ -99,12 +99,11 @@ tr.shown td.details-control {
             @endif
             <!--begin: Datatable -->
             <div>
-                <table class="table table-striped table-bordered" id="ajax_data" >
+                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" >
                     <thead>
                     <tr>
-                        <th style="width:5%;"></th>
+                        <th style="width:3%;"></th>
                         <th style="width:40%;">Name</th>
-                        <th style="width:10%;">Action</th>
                     </tr>
                 </thead>
                 </table>
@@ -128,13 +127,11 @@ tr.shown td.details-control {
                 /* Formatting function for row details - modify as you need */
                 function format ( d ) {
                     // `d` is the original data object for the row
-                    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-                        @foreach($supervisors as $supervisor)
+                    return '<table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" cellpadding="5" cellspacing="0" border="0">'+
                         '<tr>'+
-                            '<td>Name:</td>'+
-                            '<td>'+'{{$supervisor->name}}'+'</td>'+
+                            '<td style="width:15%; text-align:center;">Team Member :</td>'+
+                            '<td style="font-style: italic;">'+d.name+'</td>'+
                         '</tr>'+
-                        @endforeach
                     '</table>';
                 }
                 
@@ -152,8 +149,7 @@ tr.shown td.details-control {
                             "data":           null,
                             "defaultContent": ''
                             },
-                            { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
-                            { data: 'action', name: 'action', orderable: false, searchable: false}
+                            { data: 'name_supervisor', name: 'supervisors.name_supervisor' }
                         ]
                     });
                     

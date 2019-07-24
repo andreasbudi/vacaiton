@@ -19,18 +19,12 @@ class SupervisorController extends Controller
 
         //query isi tim supervisor
 
-        $supervisors = DB::table('supervisors')
-                ->select(['supervisors.id','supervisors.name_supervisor']);
-                return Datatables::of($supervisors)
-        ->addColumn('action', function ($supervisors) {
-            return 
-            '<form class="delete-form" action="'.route('supervisor.destroy', $supervisors->id).'" method="post">
-                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                <input type="hidden" name="_token" value="'.csrf_token().'">
-                <input type="hidden" name="_method" value="delete" />
-            </form>';
-        })
-        ->make(true);
+        $supervisors = DB::table('supervisors')->leftjoin('users','supervisors.id','=','users.manager_id')
+                ->select(['supervisors.id','supervisors.name_supervisor',DB::raw('GROUP_CONCAT(users.name SEPARATOR " - ") as name'),'users.manager_id','users.role_id'])
+                ->where('users.role_id',1)
+                ->orWhere('users.role_id',null)
+                ->groupBy('supervisors.name_supervisor');
+                return Datatables::of($supervisors)->make(true);
     }
 
 
@@ -88,6 +82,7 @@ class SupervisorController extends Controller
     {
         $supervisors = User::with('supervisors')
         ->where('role_id',1)
+        // ->where('users.manager_id','=','supervisors.id')
         ->get();
         return view('supervisor.showsupervisor', compact('supervisors')); 
     }

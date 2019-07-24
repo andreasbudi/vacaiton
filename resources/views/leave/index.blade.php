@@ -69,7 +69,7 @@
             <div class="m-portlet__body">
                 <!--begin: Datatable -->
                 <div>
-                    <table class="table table-striped table-bordered" id="ajax_data" >
+                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" >
                         <thead>
                         <tr>
                             <th style="width:5%;"><b>No.</b></th>
@@ -131,7 +131,7 @@
             <div class="m-portlet__body">
                 <!--begin: Datatable -->
                 <div class="m_datatable" >
-                    <table class="table table-striped table-bordered" id="ajax_dataTeamSpv" >
+                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_dataTeamSpv" >
                         <thead>
                         <tr>
                             <th style="width:5%;"><b>No.</b></th>
