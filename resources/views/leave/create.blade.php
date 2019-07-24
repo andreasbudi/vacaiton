@@ -90,18 +90,24 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Duration :</strong>
-                                            <input type="text" name="duration" id="total" class="form-control" autocomplete="off"> 
-                                            </select>
+                                            <input type="text" name="duration" id="total" class="form-control" autocomplete="off" readonly="readonly"> 
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
-                                            <textarea class="form-control" name="reason" rows="2" cols="80"></textarea>
+                                            <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80"></textarea>
+
+                                            @error('reason')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                         <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
                                         </div>
+
                                     </form>
 
                                 </div>
@@ -321,7 +327,7 @@
             ConfigureToDate();
         });
 
-        // create from date
+        // create to date
         $('#to-date').datepicker({
             orientation: "bottom left",
             startDate: $('#from-date').val(),
