@@ -114,6 +114,7 @@ class ApprovalController extends Controller
             }})->make(true);
             }
         }
+
     /**
      * Display a listing of the resource.
      *
@@ -128,17 +129,14 @@ class ApprovalController extends Controller
         return view('approval.approval', compact('leaves'));
     }
 
-
-
     /**
-     * Display the specified resource.
+     * Approve Leave Request
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //diapproved
         $leave = Leave::find($id);
         $leave->status = 2;
         $leave->responded_by = Auth::user()->name;
@@ -200,7 +198,7 @@ class ApprovalController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Reject Leave Request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -211,12 +209,19 @@ class ApprovalController extends Controller
         $request->validate([
             'reject_message' => 'required',
         ]);
-        //direject
+        
         $leave = Leave::find($id);
         $leave->reject_message = $request->get('reject_message');
         $leave->status = 3;
         $leave->responded_by = Auth::user()->name;
         $leave->save();
+
+        $leave = Leave::find($id);
+
+        $leave_user = $leave->user_id;
+        $user = User::find($leave_user);
+        $user->leaves_available = $user->leaves_available + $leave->duration;
+        $user->save();
 
         $user_email = $leave->users->email;
         $user_name = $leave->users->name;
