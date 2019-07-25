@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supervisor extends Model
 {
-    public function employees()
+    public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class,'manager_id');
     }
 
     public function leaves()
@@ -25,6 +25,6 @@ class Supervisor extends Model
      * @var array
      */
     protected $fillable = [
-        'name_supervisor',
+        'name_supervisor','email'
     ];
 }

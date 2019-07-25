@@ -132,9 +132,9 @@ class LeaveController extends Controller
             'status' => $request->status
         );
 
+        //query employee yg mengambil cuti
         $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)->first();
         $username = $users->name;
-        $user_email = $users->email;
         $department = $users->department;
         $dataSpv = array(
             'name' => Auth::user()->name,
@@ -147,25 +147,13 @@ class LeaveController extends Controller
             'department' => $department,
         );
 
-        // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
-            //  $user = 'andika.pranata@difinite.com';
+        //query email spv
+        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
+        $spv_email = $spv->email;
+        if (Auth::user()->role_id == 1) {
                 // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-                // Mail::to($user)->send(new SendMailSpv($dataSpv));
-        // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 2) {
-        //     $user = 'alexander.arda@difinite.com';
-        //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-        //        Mail::to($user)->send(new SendMailSpv($dataSpv));
-        // }elseif (Auth::user()->role_id == 1 && Auth::user()->manager_id == 3) {
-        //     $user = 'margaret.pratiwi@difinite.com';
-        //        Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-        //        Mail::to($user)->send(new SendMailSpv($dataSpv));
-        // }
-
-            // if (Auth::user()->role_id == 1 && Auth::user()->manager_id == 1) {
-            //     $user = 'andreas.b365@gmail.com';
-            //         // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-            //         // Mail::to($user)->send(new SendMailSpv($dataSpv));
-            // }
+                // Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
+        }
 
         $leaveData = new Leave();
         $leaveData->from = $request->from;

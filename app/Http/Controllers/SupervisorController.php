@@ -20,7 +20,7 @@ class SupervisorController extends Controller
         //query isi tim supervisor
 
         $supervisors = DB::table('supervisors')->leftjoin('users','supervisors.id','=','users.manager_id')
-                ->select(['supervisors.id','supervisors.name_supervisor',DB::raw('GROUP_CONCAT(users.name SEPARATOR " - ") as name'),'users.manager_id','users.role_id'])
+                ->select(['supervisors.id','supervisors.name_supervisor','supervisors.email',DB::raw('GROUP_CONCAT(users.name SEPARATOR " - ") as name'),'users.manager_id','users.role_id'])
                 ->where('users.role_id',1)
                 ->orWhere('users.role_id',null)
                 ->groupBy('supervisors.name_supervisor');
@@ -48,11 +48,13 @@ class SupervisorController extends Controller
     {
         $request->validate([
             'name_supervisor' => 'required',
+            'email' => 'required',
         ]);
 
-        $roleData = new Supervisor();
-        $roleData->name_supervisor = $request->name_supervisor;
-        $roleData->save();
+        $spv = new Supervisor();
+        $spv->name_supervisor = $request->name_supervisor;
+        $spv->email = $request->email;
+        $spv->save();
         toastr()->success('Supervisor added successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,

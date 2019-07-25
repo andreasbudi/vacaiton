@@ -56,7 +56,7 @@ tr.shown td.details-control {
                     <li class="m-portlet__nav-item">
                         <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
                             <button href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"  data-toggle="modal" data-target="#m_modal_4">Add Supervisor</button>
-                            <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="m_modal_4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -73,9 +73,15 @@ tr.shown td.details-control {
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label class="form-control-label" style="color:black;">
-                                                    Name please ?
+                                                    Name
                                                 </label>
                                                 <input id="name_supervisor" type="text" class="form-control @error('name_supervisor') is-invalid @enderror" name="name_supervisor"  required autocomplete="name_supervisor" autofocus>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control-label" style="color:black;">
+                                                    Email
+                                                </label>
+                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -104,6 +110,7 @@ tr.shown td.details-control {
                     <tr>
                         <th style="width:3%;"></th>
                         <th style="width:40%;">Name</th>
+                        <th style="width:30%;">Email</th>
                     </tr>
                 </thead>
                 </table>
@@ -149,7 +156,8 @@ tr.shown td.details-control {
                             "data":           null,
                             "defaultContent": ''
                             },
-                            { data: 'name_supervisor', name: 'supervisors.name_supervisor' }
+                            { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
+                            { data: 'email', name: 'supervisors.email' }
                         ]
                     });
                     

@@ -16,6 +16,7 @@ class CreateSupervisorsTable extends Migration
         Schema::create('supervisors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_supervisor')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

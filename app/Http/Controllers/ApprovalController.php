@@ -15,6 +15,8 @@ use DataTables;
 class ApprovalController extends Controller
 {
     public function json(){
+
+        
         // manager query all leaves
         if(empty(Auth::user()->manager_id)){
         $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
@@ -26,7 +28,7 @@ class ApprovalController extends Controller
             if($approval->status == 1){
             return '<a class="btn btn-sm btn-success" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
             <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4_'.$approval->id.'">Reject</button>
-            <div class="modal fade" id="m_modal_4_'.$approval->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="m_modal_4_'.$approval->id.'" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -38,13 +40,13 @@ class ApprovalController extends Controller
                                 </span>
                             </button>
                         </div>
-                        <form action="'.route('approval.edit',$approval->id).'" method="get">
+                        <form action="'.route('approval.edit',$approval->id).'" role="form" id="newModalForm" method="get">
                         <div class="modal-body">
                                 <div class="form-group">
                                     <label class="form-control-label">
                                         Rejection message ?
                                     </label>
-                                    <input type="text" class="form-control" name="reject_message" id="reject_message">
+                                    <input type="text" class="form-control" name="reject_message" id="reject_message" required autocomplete="reject_message" autofocus>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -74,7 +76,7 @@ class ApprovalController extends Controller
             if($approval->status == 1){
             return '<a class="btn btn-sm btn-success" value="send" style="float:left; width:45%;" href="'.route('approval.show',$approval->id).'">Approve</a>
             <button type="button" class="btn btn-sm btn-danger" style="float:right; width:45%;" data-toggle="modal" data-target="#m_modal_4_'.$approval->id.'">Reject</button>
-            <div class="modal fade" id="m_modal_4_'.$approval->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="m_modal_4_'.$approval->id.'" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -92,7 +94,7 @@ class ApprovalController extends Controller
                                     <label class="form-control-label">
                                         Rejection message ?
                                     </label>
-                                    <input type="text" class="form-control" name="reject_message" id="reject_message">
+                                    <input type="text" class="form-control" name="reject_message" id="reject_message" required autocomplete="reject_message" autofocus>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -206,7 +208,9 @@ class ApprovalController extends Controller
      */
     public function edit(Request $request, $id)
     {
-
+        $request->validate([
+            'reject_message' => 'required',
+        ]);
         //direject
         $leave = Leave::find($id);
         $leave->reject_message = $request->get('reject_message');
