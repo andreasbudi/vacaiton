@@ -40,7 +40,7 @@
 <!-- END: Subheader -->
 
 <div class="m-content">
-        @if (Auth::user()->leaves_available == '0')
+        @if (Auth::user()->leaves_available <= '0')
         <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
 
         @else    
@@ -90,7 +90,7 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Duration :</strong>
-                                            <input type="text" name="duration" id="total" class="form-control" autocomplete="off" readonly="readonly"> 
+                                            <input type="text" name="duration" id="total" class="form-control" readonly="readonly">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
@@ -322,19 +322,20 @@
             format: 'yyyy-mm-dd',
             todayHighlight:'TRUE',
             autoclose: true,
-            daysOfWeekDisabled: [0,6]
+            daysOfWeekDisabled: [0,6],
         }).on('changeDate', function(ev) {
             ConfigureToDate();
         });
 
-        // create to date
+        // // create to date
+        var endDate = {{ (Auth::user()->leaves_available) }}
         $('#to-date').datepicker({
             orientation: "bottom left",
             startDate: $('#from-date').val(),
             format: 'yyyy-mm-dd',
             todayHighlight:'TRUE',
             autoclose: true,
-            daysOfWeekDisabled: [0,6]
+            daysOfWeekDisabled: [0,6],
         }).on('changeDate', function(ev) {
             var fromDate = $('#from-date').data('datepicker').dates[0];
             $('#total').val(getBusinessDatesCount(fromDate, ev.date));
