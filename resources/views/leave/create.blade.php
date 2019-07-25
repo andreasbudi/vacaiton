@@ -95,7 +95,7 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
-                                            <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80"></textarea>
+                                            <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80" placeholder="Write your reason leave"></textarea>
 
                                             @error('reason')
                                             <span class="invalid-feedback" role="alert">
