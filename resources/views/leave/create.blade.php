@@ -80,12 +80,12 @@
                                         @csrf
                                         <div class="col-md-12">
                                             <strong>From :</strong>
-                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off">
+                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date">
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off"> 
+                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date"> 
                                         </div>
                                         <br>
                                         <div class="col-md-12">
