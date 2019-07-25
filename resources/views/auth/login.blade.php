@@ -24,7 +24,7 @@
 		<link href="../../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="../../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
-		<link rel="shortcut icon" href="../../../assets/demo/default/media/img/logo/favicon.ico" />
+		<link rel="shortcut icon" href="../../../assets/demo/default/media/img/logo/favicon.png" />
 	</head>
 	<!-- end::Head -->
 	<!-- end::Body -->
@@ -37,7 +37,7 @@
 					<div class="m-login__container">
 						<div class="m-login__logo">
 							<a href="#">
-								<img src="../../../assets/app/media/img//logos/logo-1.png">
+								<img src="../../../assets/app/media/img/logos/logo.png">
 							</a>
 						</div>
 						<div class="m-login__signin">

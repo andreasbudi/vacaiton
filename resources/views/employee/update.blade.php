@@ -327,7 +327,7 @@
                                     New Password:
                                 </label>
                                 <div class="col-lg-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"  onkeyup='check();'>
                     
                                     @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -335,6 +335,36 @@
                                             </span>
                                     @enderror
                                    
+                                    <meter max="4" id="password-strength-meter"></meter>
+                                    <p class="m-form__help" id="password-strength-text"></p>
+                                    <script>
+                                    var strength = {
+                                    0: "Worst ☹",
+                                    1: "Bad ☹",
+                                    2: "Weak ☹",
+                                    3: "Good ☺",
+                                    4: "Strong ☻"
+                                    }
+                                    var password = document.getElementById('password');
+                                    var meter = document.getElementById('password-strength-meter');
+                                    var text = document.getElementById('password-strength-text');
+
+                                    password.addEventListener('input', function() {
+                                    var val = password.value;
+                                    var result = zxcvbn(val);
+
+                                    // Update the password strength meter
+                                    meter.value = result.score;
+
+                                    // Update the text indicator
+                                    if(val !== "") {
+                                        text.innerHTML = "<strong>" + strength[result.score] + "</strong>" + "<span class='feedback'>" + result.feedback.warning + " " + result.feedback.suggestions + "</span"; 
+                                    } else {
+                                        text.innerHTML = "";
+                                    }
+                                    });
+                                    </script>
+
                                 </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -342,10 +372,22 @@
                                     Confirm Password:
                                 </label>
                                 <div class="col-lg-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                   
+                                    <input id="password_confirm" type="password" class="form-control" name="password_confirm" required autocomplete="new-password"  onkeyup='check();'>
+                                    <span class="m-form__help" id='message'></span>
                                 </div>
                             </div>
+                            <script>
+                                var check = function() {
+                                if (document.getElementById('password').value ==
+                                    document.getElementById('password_confirm').value) {
+                                    document.getElementById('message').style.color = 'green';
+                                    document.getElementById('message').innerHTML = 'Matching';
+                                } else {
+                                    document.getElementById('message').style.color = 'red';
+                                    document.getElementById('message').innerHTML = 'Not matching';
+                                }
+                                }
+                            </script>
                         </div>
                         @endif
 

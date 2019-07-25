@@ -85,7 +85,7 @@
                                         Password:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  onkeyup='check();' value="{{ old('password') }}" required autocomplete="password">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -99,15 +99,28 @@
                                         Confirm Password:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        <input id="password_confirm" type="password" class="form-control" name="password_confirm" required autocomplete="new-password"  onkeyup='check();'>
+                                        <span class="m-form__help" id='message'></span>
                                     </div>
                             </div>
+                            <script>
+                            var check = function() {
+                            if (document.getElementById('password').value ==
+                                document.getElementById('password_confirm').value) {
+                                document.getElementById('message').style.color = 'green';
+                                document.getElementById('message').innerHTML = 'Matching';
+                            } else {
+                                document.getElementById('message').style.color = 'red';
+                                document.getElementById('message').innerHTML = 'Not matching';
+                            }
+                            }
+                            </script>
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department">
                     
                                         @error('department')
                                         <span class="invalid-feedback" role="alert">
@@ -121,7 +134,7 @@
                                             Role:
                                     </label>
                                     <div class="col-lg-6">
-                                        <select name="role_id" id="role_id" class="form-control">
+                                        <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id">
                                             <option value="">SELECT ROLE</option>
                                             @foreach ($roles as $role)
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
@@ -169,7 +182,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Register
                                     </button>
-                                    <button type="submit" class="btn btn-secondary" style="color:black;" name="cancel" onclick="goPrev()">Cancel</button>
+                                    <button type="button" class="btn btn-secondary" style="color:black;" name="cancel" onclick="goPrev()">Cancel</button>
                                     <script>
                                     function goPrev()
                                     {
