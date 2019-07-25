@@ -142,6 +142,12 @@
             count++;
             curDate.setDate(curDate.getDate() + 1);
             }
+            
+            if(count > {{ (Auth::user()->leaves_available) }}){
+                alert('Your Leave Balance not sufficient');
+                
+                ConfigureToDate();
+            }
         return count;
         }
     </script>

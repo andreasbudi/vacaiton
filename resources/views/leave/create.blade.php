@@ -328,7 +328,6 @@
         });
 
         // // create to date
-        var endDate = {{ (Auth::user()->leaves_available) }}
         $('#to-date').datepicker({
             orientation: "bottom left",
             startDate: $('#from-date').val(),
@@ -339,6 +338,10 @@
         }).on('changeDate', function(ev) {
             var fromDate = $('#from-date').data('datepicker').dates[0];
             $('#total').val(getBusinessDatesCount(fromDate, ev.date));
+            // var durDate = $('#total').val(getBusinessDatesCount(fromDate, ev.date));
+            // alert(durDate);
+            
+            
         });
 
         // Set the min date on page load
@@ -359,6 +362,12 @@
             if (!((dayOfWeek == 6) || (dayOfWeek == 0)))
             count++;
             curDate.setDate(curDate.getDate() + 1);
+            }
+
+            if(count > {{ (Auth::user()->leaves_available) }}){
+                alert('Your Leave Balance not sufficient');
+                
+                ConfigureToDate();
             }
         return count;
         }
