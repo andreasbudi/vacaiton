@@ -18,8 +18,9 @@ class ApprovalController extends Controller
         // manager query all leaves
         if(empty(Auth::user()->manager_id)){
         $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status'])
-                ->where('leaves.status', '=', 1);
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.updated_at'])
+                ->where('leaves.status', '=', 1)
+                ->orderBy('leaves.updated_at');
         return Datatables::of($approval)->addIndexColumn()
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){
@@ -63,10 +64,11 @@ class ApprovalController extends Controller
             }})->make(true);
         }else{
         $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id'])
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.updated_at'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1)
-                ->where('leaves.status', '=', 1);
+                ->where('leaves.status', '=', 1)
+                ->orderBy('leaves.updated_at');
         return Datatables::of($approval)->addIndexColumn()
         ->addColumn('action', function ($approval) {
             if($approval->status == 1){

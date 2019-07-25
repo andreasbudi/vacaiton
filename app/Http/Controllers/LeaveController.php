@@ -17,10 +17,11 @@ class LeaveController extends Controller
 {
         public function json(){
 
-        // spv query leave history dia sendiri
+        //query leave history sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message','leaves.responded_by'])
-                ->where('user_id', '=', Auth::user()->id);
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
+                ->where('user_id', '=', Auth::user()->id)
+                ->orderBy('leaves.updated_at');
         return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
@@ -60,11 +61,12 @@ class LeaveController extends Controller
 
         public function jsonTeamSpv(){
 
-        // spv query leave history dia sendiri
+        // spv query team leaves
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message','leaves.responded_by'])
+                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
-                ->where('leaves.role_id',1);
+                ->where('leaves.role_id',1)
+                ->orderBy('leaves.updated_at');
         return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
