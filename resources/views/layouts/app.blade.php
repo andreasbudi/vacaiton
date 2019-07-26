@@ -52,6 +52,8 @@
 	meter[value="2"]::-moz-meter-bar { background: yellow; }
 	meter[value="3"]::-moz-meter-bar { background: orange; }
 	meter[value="4"]::-moz-meter-bar { background: green; }
+	.fc-sun { color:red; }
+	.fc-sat { color:red;  }
 	</style>
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
@@ -230,20 +232,6 @@
 									</span>
 								</a>
                             </li>
-
-                      {{--      <li class="m-menu__item  m-menu__item" aria-haspopup="true" >
-								<a  href="{{route('leave.index')}}" class="m-menu__link ">
-									<i class="m-menu__link-icon flaticon-folder"></i>
-									<span class="m-menu__link-title">
-										<span class="m-menu__link-wrap">
-											<span class="m-menu__link-text">
-												My Leaves History
-											</span>
-										</span>
-									</span>
-								</a>
-							</li> --}}
-
 							@elseif (Auth::user()->role_id == '2')
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 									<a href="{{route('approval.index')}}" class="m-menu__link ">
@@ -275,7 +263,7 @@
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
-												Leaves History
+												Leave History
 											</span>
 										</span>
 									</span>

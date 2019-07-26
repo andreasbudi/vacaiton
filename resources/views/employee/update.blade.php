@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                            Leaves Available:
+                                            Leave Available:
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" required autocomplete="leaves_available" autofocus>
@@ -150,7 +150,7 @@
                             </div>
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                            Leaves Available:
+                                            Leave Available:
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" required autocomplete="leaves_available" autofocus>
@@ -271,7 +271,7 @@
                             @if (Auth::user()->role_id != '3' && Auth::user()->role_id != '4')
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                            Leaves Available:
+                                            Leave Available:
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" class="form-control " value="{{{ (Auth::user()->leaves_available) }}}" disabled>

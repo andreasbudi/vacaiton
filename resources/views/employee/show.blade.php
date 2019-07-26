@@ -54,7 +54,7 @@
                                     <th>Name</th>
                                     <th>Department</th>
                                     <th>Email</th>
-                                    <th>Leaves Available</th>
+                                    <th>Leave Available</th>
                                     <th>Role</th>
                                     <th>Supervisor</th>
                                     <th>Action</th>

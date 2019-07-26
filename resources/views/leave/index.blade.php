@@ -12,7 +12,7 @@
             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                     <li class="m-nav__item">
                             <span class="m-nav__link-text">
-                                    <span style="color:#A0A0A0;">Leave remaining</span> <b>{{ (Auth::user()->leaves_available) }} days</b>
+                                    <span style="color:#A0A0A0;">Remaining leave</span> <b>{{ (Auth::user()->leaves_available) }} days</b>
                             </span>
                     </li>
                     
@@ -26,9 +26,6 @@
 <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator">
-                        Leaves History
-                </h3>
                 <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                     <li class="m-nav__item m-nav__item--home">
                         <a href="/home" class="m-nav__link m-nav__link--icon">
@@ -41,7 +38,7 @@
                     <li class="m-nav__item">
                         <a href="{{route('leave.index')}}" class="m-nav__link">
                             <span class="m-nav__link-text">
-                                Leaves History
+                                Leave History
                             </span>
                         </a>
                     </li>
@@ -61,7 +58,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Your Leaves History 
+                            Your Leave History 
                         </h3>                      
                     </div>
                 </div>
