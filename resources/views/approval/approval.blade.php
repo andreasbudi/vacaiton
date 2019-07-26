@@ -103,8 +103,8 @@
         
                     <div class="m-portlet__body">
                         <!--begin: Datatable -->
-                        <div class="m_datatable" >
-                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" >
+                        <div class="table-responsive">
+                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
                                 <thead>
                                 <tr>
                                     <th><b>No.</b></th>
@@ -165,8 +165,8 @@
 
             <div class="m-portlet__body">
                 <!--begin: Datatable -->
-                <div class="m_datatable" >
-                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" >
+                <div class="table-responsive">
+                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
                         <thead>
                         <tr>
                             <th><b>No.</b></th>

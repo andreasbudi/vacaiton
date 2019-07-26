@@ -298,7 +298,7 @@
 							@elseif (Auth::user()->role_id == '3')
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 									<a  href="{{route('approval.index')}}" class="m-menu__link ">
-										<i class="m-menu__link-icon flaticon-folder"></i>
+										<i class="m-menu__link-icon fa fa-glass"></i>
 										<span class="m-menu__link-title">
 											<span class="m-menu__link-wrap">
 												<span class="m-menu__link-text">
@@ -312,7 +312,7 @@
 							@else
 							<li class="m-menu__item  m-menu__item" aria-haspopup="true" >
 								<a  href="/show" class="m-menu__link ">
-									<i class="m-menu__link-icon flaticon-folder"></i>
+									<i class="m-menu__link-icon fa fa-glass"></i>
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">

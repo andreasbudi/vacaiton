@@ -45,52 +45,54 @@
                     @endif
                   </script>
                     <!--begin: Datatable -->
-                    <div  class="m-portlet__body">
-                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" >
-                            <thead>
-                            <tr>
-                                <th><b>No.</b></th>
-                                <th>Name</th>
-                                <th>Department</th>
-                                <th>Email</th>
-                                <th>Leaves Available</th>
-                                <th>Role</th>
-                                <th>Supervisor</th>
-                                <th>Action</th>
-                                <th>isActivated</th>
-                            </tr>
-                        </thead>
-                        </table>
+                    <div class="m-portlet__body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
+                                <thead>
+                                <tr>
+                                    <th><b>No.</b></th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Email</th>
+                                    <th>Leaves Available</th>
+                                    <th>Role</th>
+                                    <th>Supervisor</th>
+                                    <th>Action</th>
+                                    <th>isActivated</th>
+                                </tr>
+                            </thead>
+                            </table>
 
-                            @push('scripts')
-                            <script>
-                            $(function() {
-                                $('#ajax_data').DataTable({
-                                    processing: true,
-                                    serverSide: true,
-                                    ajax: 'show/json',
-                                    dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                    columnDefs: [{"className": "text-center", "targets": "_all"},{"targets": [ 8 ],"visible": false}],
-                                    columns: [
-                                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                                        { data: 'name', name: 'users.name' },
-                                        { data: 'department', name: 'users.department' },
-                                        { data: 'email', name: 'users.email' },
-                                        { data: 'leaves_available', name: 'users.leaves_available' },
-                                        { data: 'name_role', name: 'roles.name_role' },
-                                        { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
-                                        { data: 'action', name: 'action', orderable: false, searchable: false},
-                                        { data: 'isActivated', name: 'users.isActivated'},
-                                    ],
-                                    rowCallback: function( row, data, index ) {
-                                    if (data.isActivated == '0') {
-                                        $('td', row).css('background-color', '#ff706e');
-                                    }
-                                    } 
+                                @push('scripts')
+                                <script>
+                                $(function() {
+                                    $('#ajax_data').DataTable({
+                                        processing: true,
+                                        serverSide: true,
+                                        ajax: 'show/json',
+                                        dom: '<"top"f>rt<"bottom"lip><"clear">',
+                                        columnDefs: [{"className": "text-center", "targets": "_all"},{"targets": [ 8 ],"visible": false}],
+                                        columns: [
+                                            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                                            { data: 'name', name: 'users.name' },
+                                            { data: 'department', name: 'users.department' },
+                                            { data: 'email', name: 'users.email' },
+                                            { data: 'leaves_available', name: 'users.leaves_available' },
+                                            { data: 'name_role', name: 'roles.name_role' },
+                                            { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
+                                            { data: 'action', name: 'action', orderable: false, searchable: false},
+                                            { data: 'isActivated', name: 'users.isActivated'},
+                                        ],
+                                        rowCallback: function( row, data, index ) {
+                                        if (data.isActivated == '0') {
+                                            $('td', row).css('background-color', '#ff706e');
+                                        }
+                                        } 
+                                    });
                                 });
-                            });
-                            </script>
-                            @endpush
+                                </script>
+                                @endpush
+                        </div>
                     </div>
                     <!--end: Datatable -->
                     

@@ -104,8 +104,8 @@ tr.shown td.details-control {
             </div>
             @endif
             <!--begin: Datatable -->
-            <div>
-                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" >
+            <div class="table-responsive">
+                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
                     <thead>
                     <tr>
                         <th style="width:3%;"></th>
@@ -116,20 +116,6 @@ tr.shown td.details-control {
                 </table>
                 @push('scripts')
                 <script>
-                // $(function() {
-                //     $('#ajax_data').DataTable({
-                //         processing: true,
-                //         serverSide: true,
-                //         ajax: 'supervisor/json',
-                //         dom: '<"top"f>rt<"bottom"lip><"clear">',
-                //         columnDefs: [{"className": "text-center", "targets": "_all"}],
-                //         columns: [
-                //             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                //             { data: 'name_supervisor', name: 'supervisors.name_supervisor' },
-                //             { data: 'action', name: 'action', orderable: false, searchable: false}
-                //         ]
-                //     });
-                // });
 
                 /* Formatting function for row details - modify as you need */
                 function format ( d ) {
@@ -178,9 +164,6 @@ tr.shown td.details-control {
                         }
                     } );
                 } );
-
-                
-
                 </script>
                 @endpush
             </div>
