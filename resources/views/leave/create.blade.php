@@ -6,10 +6,6 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
 
-                <h3 class="m-subheader__title m-subheader__title--separator">
-                        Apply Form
-                </h3>
-
                 <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                     <li class="m-nav__item m-nav__item--home">
                         <a href="/home" class="m-nav__link m-nav__link--icon">
@@ -80,12 +76,24 @@
                                         @csrf
                                         <div class="col-md-12">
                                             <strong>From :</strong>
-                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date">
+                                            <input type="text" name="from" id="from-date" class="form-control @error('from') is-invalid @enderror" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
+
+                                            @error('from')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                             @enderror
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date"> 
+                                           <input type="text" name="to" id="to-date" class="form-control @error('to') is-invalid @enderror" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus> 
+
+                                           @error('to')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                             @enderror
                                         </div>
                                         <br>
                                         <div class="col-md-12">
@@ -95,13 +103,13 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
-                                            <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80" placeholder="Write your reason leave"></textarea>
+                                            <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus></textarea>
 
                                             @error('reason')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                             @enderror
                                         </div>
                                         <br>
                                         <div class="col-md-12">

@@ -42,7 +42,13 @@
                                         From:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" name="from" id="from-date" value="{{$leave->from}}" class="form-control" autocomplete="off">
+                                        <input type="text" name="from" id="from-date" value="{{$leave->from}}" class="form-control @error('from') is-invalid @enderror" autocomplete="off" required autocomplete="from" autofocus>
+
+                                        @error('from')
+                                         <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $message }}</strong>
+                                         </span>
+                                        @enderror
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -50,7 +56,13 @@
                                         To:
                                     </label>
                                     <div class="col-lg-6">     
-										<input type="text" name="to" id="to-date" value="{{$leave->to}}" class="form-control" autocomplete="off" >
+										<input type="text" name="to" id="to-date" value="{{$leave->to}}" class="form-control @error('to') is-invalid @enderror" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus>
+
+                                        @error('to')
+                                         <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $message }}</strong>
+                                         </span>
+                                        @enderror
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -58,7 +70,7 @@
                                         Duration:
                                     </label>
                                     <div class="col-lg-6">
-										<input type="text" name="duration" id="total" value="{{$leave->duration}}" class="form-control" readonly="readonly"> 
+										<input type="text" name="duration" id="total" class="form-control" readonly="readonly"> 
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -66,7 +78,13 @@
                                             Reason:
                                     </label>
                                     <div class="col-lg-6">   
-										<textarea class="form-control" name="reason" rows="2" cols="80">{{$leave->reason}}</textarea>
+										<textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80" required autocomplete="reason" autofocus>{{$leave->reason}}</textarea>
+
+                                        @error('reason')
+                                         <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $message }}</strong>
+                                         </span>
+                                        @enderror
                                     </div>
                             </div>   
                         </div>
