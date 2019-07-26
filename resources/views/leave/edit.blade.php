@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="m-content">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -144,9 +145,9 @@
             }
             
             if(count > {{ (Auth::user()->leaves_available) }}){
-                alert('Your Leave Balance not sufficient');
+                alert('Your remaining leave not sufficient');
                 
-                ConfigureToDate();
+                $('#to-date').val("");
             }
         return count;
         }
