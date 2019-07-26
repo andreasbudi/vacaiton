@@ -27,7 +27,7 @@ class EmployeeController extends Controller
                 ->where('users.role_id','!=',4);
                 return Datatables::of($employees)->addIndexColumn()
         ->addColumn('action', function ($employees) {
-            return '<a  style="width:45%;" class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>';
+            return '<a  style="width:80%;" class="btn btn-sm btn-warning" href="'.route('employee.edit',$employees->id).'">Edit</a>';
         })->make(true);
     }
 
