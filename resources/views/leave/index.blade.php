@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
+{{-- jika akun deactivated --}}
 @if (Auth::user()->isActivated == '0')
 <script>
 alert("Your account is deactivated. Please contact administrator")
 </script>
 @endif
-
+{{-- tampilan staff tanpa breadcrumbs --}}
 @if (Auth::user()->role_id == '1')
 
 <!-- BEGIN: Subheader -->
@@ -17,17 +17,17 @@ alert("Your account is deactivated. Please contact administrator")
                 Hi, {{ (Auth::user()->name) }}
             </h3>
             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                    <li class="m-nav__item">
-                            <span class="m-nav__link-text">
-                                    <span style="color:#A0A0A0;">Remaining leave</span> <b>{{ (Auth::user()->leaves_available) }} days</b>
-                            </span>
-                    </li>
-                    
-                </ul>
+                <li class="m-nav__item">
+                        <span class="m-nav__link-text">
+                                <span style="color:#A0A0A0;">Remaining leave</span> <b>{{ (Auth::user()->leaves_available) }} days</b>
+                        </span>
+                </li> 
+            </ul>
         </div>
     </div>
 </div>
-    <!-- END: Subheader -->
+<!-- END: Subheader -->
+{{-- jika spv keluarkan breadcrumbs --}}
 @elseif (Auth::user()->role_id == '2')
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
@@ -117,7 +117,7 @@ alert("Your account is deactivated. Please contact administrator")
             </div>
         </div>
 
-
+    {{-- tampilan spv dengan team history --}}
     @if (Auth::user()->role_id == '2')
  
         <div class="m-portlet m-portlet--mobile">

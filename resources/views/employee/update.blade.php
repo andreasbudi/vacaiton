@@ -26,7 +26,7 @@
                                     Employee Info:
                                 </h3>
                             </div>
-
+                            {{-- sebagai admin edit staff --}}
                             @if (Auth::user()->role_id == '4' && $employee->role_id == 1)
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -34,7 +34,6 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" required autocomplete="name" autofocus>
-                                        
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -48,7 +47,6 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror 
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -62,7 +60,6 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror 
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -71,7 +68,6 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" required autocomplete="leaves_available" autofocus>
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -85,7 +81,6 @@
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
                                                     @endforeach
                                             </select>
-                                       
                                     </div>   
                             </div>
                             <div class="form-group m-form__group row">
@@ -99,7 +94,6 @@
                                                     <option value="{{$manager->id}}">{{$manager->name_supervisor}}</option>
                                                     @endforeach
                                             </select>
-                                        
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -109,7 +103,7 @@
                                     <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
                                 </div>
                             </div>
-                            
+                            {{-- sebagai admin edit spv --}}
                             @elseif (Auth::user()->role_id == '4' && $employee->role_id == 2)
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -117,7 +111,6 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" required autocomplete="name" autofocus>
-                                        
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -131,7 +124,6 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror 
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -145,7 +137,6 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror 
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -154,7 +145,6 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="leaves_available" class="form-control " value="{{{ ($employee->leaves_available) }}}" required autocomplete="leaves_available" autofocus>
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -168,7 +158,6 @@
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
                                                     @endforeach
                                             </select>
-                                       
                                     </div>   
                             </div>
                             <div class="form-group m-form__group row">
@@ -178,6 +167,7 @@
                                         <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
                                     </div>
                                 </div>
+                            {{-- sebagai admin edit manager --}}
                             @elseif (Auth::user()->role_id == '4' && $employee->role_id == 3)
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -185,7 +175,6 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" name="name" class="form-control " value="{{{ ($employee->name) }}}" required autocomplete="name" autofocus>
-                                        
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -199,7 +188,6 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror 
-                                       
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -213,7 +201,6 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror 
-                                       
                                     </div>
                             </div>
                             
@@ -228,7 +215,6 @@
                                             <option value="{{$role->id}}">{{$role->name_role}}</option>
                                                     @endforeach
                                             </select>
-                                       
                                     </div>   
                             </div>
                                 <div class="form-group m-form__group row">
@@ -238,6 +224,7 @@
                                         <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
                                         </div>
                                 </div>
+                            {{-- sebagai staff,spv,manager buka my profile --}}
                            @else
                             <div class="form-group m-form__group row">
                                 <label class="col-lg-2 col-form-label">
@@ -245,7 +232,6 @@
                                 </label>
                                 <div class="col-lg-6">
                                         <input type="text" class="form-control " value="{{{ (Auth::user()->name) }}}" disabled>
-                                    
                                 </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -254,7 +240,6 @@
                                 </label>
                                 <div class="col-lg-6">
                                         <input type="text" class="form-control " value="{{{ (Auth::user()->email) }}}" disabled>
-                                   
                                 </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -263,11 +248,10 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" class="form-control " value="{{{ (Auth::user()->department) }}}" disabled>
-                                       
                                     </div>
                             </div>
 
-
+                            {{-- tambahan field sebagai staff,spv buka my profile --}}
                             @if (Auth::user()->role_id != '3' && Auth::user()->role_id != '4')
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -275,24 +259,19 @@
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" class="form-control " value="{{{ (Auth::user()->leaves_available) }}}" disabled>
-                                       
                                     </div>
                             </div>
                             @endif
-
+                            {{-- tambahan field sebagai staff,spv,manager,admin buka my profile --}}
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                             Role:
                                     </label>
                                     <div class="col-lg-6">
                                             <input type="text" class="form-control " value="{{Auth::user()->roles()->first()->name_role}}" disabled>     
-                                       
                                     </div>   
                             </div>
-
-
-
-
+                             {{-- tambahan field sebagai staff buka my profile --}}
                             @if (Auth::user()->role_id == '1')
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
@@ -313,15 +292,6 @@
                                     Edit your password?
                                 </h4>
                             </div>
-                            {{-- <div class="form-group m-form__group row">
-                                <label class="col-lg-2 col-form-label">
-                                    Old Password:
-                                </label>
-                                <div class="col-lg-6">
-                                        <input id="password-old" type="password" class="form-control @error('password-old') is-invalid @enderror" name="password-old" required autocomplete="old-password">
-                                   
-                                </div>
-                            </div> --}}
                             <div class="form-group m-form__group row">
                                 <label class="col-lg-2 col-form-label">
                                     New Password:
@@ -334,7 +304,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                     @enderror
-                                   
+                                   {{-- snippet password strength checker --}}
                                     <meter max="4" id="password-strength-meter"></meter>
                                     <p class="m-form__help" id="password-strength-text"></p>
                                     <script>
@@ -364,7 +334,7 @@
                                     }
                                     });
                                     </script>
-
+                                    {{-- snippet password strength checker --}}
                                 </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -376,6 +346,7 @@
                                     <span class="m-form__help" id='message'></span>
                                 </div>
                             </div>
+                            {{-- snippet cek password matching --}}
                             <script>
                                 var check = function() {
                                 if (document.getElementById('password').value ==
@@ -388,6 +359,7 @@
                                 }
                                 }
                             </script>
+                            {{-- snippet cek password matching --}}
                         </div>
                         @endif
 

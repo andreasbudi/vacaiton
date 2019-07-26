@@ -1,165 +1,97 @@
 @extends('layouts.app')
 @section('content')
-
-<!-- BEGIN: Subheader -->
-<div class="m-subheader ">
-    <div class="d-flex align-items-center">
-        <div class="mr-auto">
-            <h3 class="m-subheader__title m-subheader__title">
-                Hi, {{ (Auth::user()->name) }}
-            </h3>
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title">
+                    Hi, {{ (Auth::user()->name) }}
+                </h3>
+            </div>
         </div>
     </div>
-</div>
-<!-- END: Subheader -->
+    <!-- END: Subheader -->
     <div class="m-content">
+        {{-- jika tidak aktif tampilkan alert --}}
+        @if (Auth::user()->isActivated == '0')
+        <script>
+            alert("Your account is deactivated. Please contact administrator");
+        </script>
+        @endif
 
-            @if (Auth::user()->isActivated == '0')
-            <script>
-                alert("Your account is deactivated. Please contact administrator");
-            </script>
-            @endif
-
-            @if (Auth::user()->role_id == 3)
-            <div class="row">
-                    
-                    <div class="col-lg-9">
-
-                        <!--begin::Portlet-->
-                        <div class="m-portlet" id="m_portlet">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <span class="m-portlet__head-icon">
-                                            <i class="flaticon-calendar-2"></i>
-                                        </span>
-                                        <h3 class="m-portlet__head-text">
-                                            Calendar of Event
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-                                    <ul class="m-portlet__nav">
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                            
-                                <div id="m_calendar"></div>
-                                 
-                            </div>
-                        </div>
-                        <!--end::Portlet-->
-                    </div>
-                    <div class="col-lg-3">
-                            <!--begin::Portlet-->
-                            <div class="m-portlet" id="m_portlet">
-                                <div class="m-portlet__head">
-                                    <div class="m-portlet__head-caption">
-                                        <div class="m-portlet__head-title">
-                                            <span class="m-portlet__head-icon">
-                                                <i class="flaticon-add"></i>
-                                            </span>
-                                            <h3 class="m-portlet__head-text">
-                                                Leave Summary
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__body" style="height:660px;">
-                                    <div class="fc-unthemed">
-                                        @foreach ($leaves as $leave)
-                                        <div class='fc-event fc-event-external fc-start m-fc-event--primary m--margin-bottom-35' data-color="m-fc-event--primary">
-                                            <div class="fc-title">
-                                                <div class="fc-content" style="margin-top:7px;">
-                                                    <p style="font-size:15px; text-align:left">{{$leave->users->name}}
-                                                    <span style="float:right; font-size:13px;"> {{ \Carbon\Carbon::parse($leave->from)->format('d F')}} -  {{ \Carbon\Carbon::parse($leave->to)->format('d F')}}</span></p>
-                                                    @if ($leave->status == '2')
-                                                    <p style="font-size:13px;">Approved by <b>{{$leave->responded_by}}</b></p>
-                                                    @elseif ($leave->status == '3')
-                                                    <p style="font-size:13px;">Rejected by {{$leave->responded_by}}</p>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end::Portlet-->
-                        </div>
-            </div>
-
-            <div class="m-portlet m-portlet--mobile">
+        {{-- tampilan manager --}}
+        @if (Auth::user()->role_id == 3)
+        <div class="row">
+            <div class="col-lg-9">
+                <!--begin::Portlet-->
+                <div class="m-portlet" id="m_portlet">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon">
+                                    <i class="flaticon-calendar-2"></i>
+                                </span>
                                 <h3 class="m-portlet__head-text">
-                                     Waiting for Approval
+                                    Calendar of Event
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div id="m_calendar"></div>
+                    </div>
+                </div>
+                <!--end::Portlet-->
+            </div>
+            <div class="col-lg-3">
+                <!--begin::Portlet-->
+                <div class="m-portlet" id="m_portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon">
+                                    <i class="flaticon-add"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Leave Summary
                                 </h3>
                             </div>
                         </div>
                     </div>
-        
-                    @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{$message}}</p>
-                    </div>
-                    @endif
-        
-                    <div class="m-portlet__body">
-                        <!--begin: Datatable -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
-                                <thead>
-                                <tr>
-                                    <th><b>No.</b></th>
-                                    <th>Name</th>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Duration</th>
-                                    <th>Reason</th>
-                                    <th style="width:15%;">Action</th>
-                                </tr>
-                            </thead>
-                            </table>
-                            @if (Auth::user()->isActivated == '1')
-                                @push('scripts')
-                                <script>
-                                $(function() {
-                                    $('#ajax_data').DataTable({
-                                        processing: true,
-                                        serverSide: true,
-                                        ajax: 'home/json',
-                                        dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                        columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
-                                        columns: [
-                                            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                                            { data: 'name', name: 'users.name' },
-                                            { data: 'from', name: 'from' },
-                                            { data: 'to', name: 'to' },
-                                            { data: 'duration', name: 'duration' },
-                                            { data: 'reason', name: 'reason' },
-                                            { data: 'action', name: 'action', orderable: false, searchable: false}
-                                        ]
-                                    });
-                                });
-                                </script>
-                                @endpush
-                                @endif
+                    <div class="m-portlet__body" style="height:660px;">
+                        <div class="fc-unthemed">
+                            @foreach ($leaves as $leave)
+                            <div class='fc-event fc-event-external fc-start m-fc-event--primary m--margin-bottom-35' data-color="m-fc-event--primary">
+                                <div class="fc-title">
+                                    <div class="fc-content" style="margin-top:7px;">
+                                        <p style="font-size:15px; text-align:left">{{$leave->users->name}}
+                                        <span style="float:right; font-size:13px;"> {{ \Carbon\Carbon::parse($leave->from)->format('d F')}} -  {{ \Carbon\Carbon::parse($leave->to)->format('d F')}}</span></p>
+                                        @if ($leave->status == '2')
+                                        <p style="font-size:13px;">Approved by <b>{{$leave->responded_by}}</b></p>
+                                        @elseif ($leave->status == '3')
+                                        <p style="font-size:13px;">Rejected by {{$leave->responded_by}}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
-                        <!--end: Datatable -->
                     </div>
                 </div>
+                <!--end::Portlet-->
             </div>
+        </div>
 
-            @elseif(Auth::user()->role_id == 2)
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                             Waiting for Approval
+                            Waiting for Approval
                         </h3>
                     </div>
                 </div>
@@ -200,23 +132,86 @@
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },
-                                    { data: 'from', name: 'from'},
+                                    { data: 'from', name: 'from' },
                                     { data: 'to', name: 'to' },
                                     { data: 'duration', name: 'duration' },
                                     { data: 'reason', name: 'reason' },
-                                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                                    { data: 'action', name: 'action', orderable: false, searchable: false}
                                 ]
                             });
                         });
                         </script>
                         @endpush
-                        @endif
+                    @endif
                 </div>
                 <!--end: Datatable -->
             </div>
         </div>
-        @endif
     </div>
+    {{-- tampilan spv --}}
+    @elseif(Auth::user()->role_id == 2)
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                            Waiting for Approval
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{$message}}</p>
+        </div>
+        @endif
+
+        <div class="m-portlet__body">
+            <!--begin: Datatable -->
+            <div class="table-responsive">
+                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th><b>No.</b></th>
+                        <th>Name</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Duration</th>
+                        <th>Reason</th>
+                        <th style="width:15%;">Action</th>
+                    </tr>
+                </thead>
+                </table>
+                @if (Auth::user()->isActivated == '1')
+                    @push('scripts')
+                    <script>
+                    $(function() {
+                        $('#ajax_data').DataTable({
+                            processing: true,
+                            serverSide: true,
+                            ajax: 'home/json',
+                            dom: '<"top"f>rt<"bottom"lip><"clear">',
+                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
+                            columns: [
+                                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                                { data: 'name', name: 'users.name' },
+                                { data: 'from', name: 'from'},
+                                { data: 'to', name: 'to' },
+                                { data: 'duration', name: 'duration' },
+                                { data: 'reason', name: 'reason' },
+                                {data: 'action', name: 'action', orderable: false, searchable: false}
+                            ]
+                        });
+                    });
+                    </script>
+                    @endpush
+                @endif
+            </div>
+            <!--end: Datatable -->
+        </div>
+    </div>
+    @endif
 @endsection
 @push('scripts')
 {{-- For For the Event and Leave Record --}}

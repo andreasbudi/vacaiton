@@ -5,9 +5,7 @@
 <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator">
-                        Add Employee
-                </h3>
+                
                 <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                     <li class="m-nav__item m-nav__item--home">
                         <a href="/show" class="m-nav__link m-nav__link--icon">
@@ -103,6 +101,7 @@
                                         <span class="m-form__help" id='message'></span>
                                     </div>
                             </div>
+                            {{-- snippet cek matching password --}}
                             <script>
                             var check = function() {
                             if (document.getElementById('password').value ==
@@ -115,6 +114,7 @@
                             }
                             }
                             </script>
+                            {{-- snippet cek matching password --}}
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                         Department:
@@ -169,10 +169,7 @@
                                         <input id="leaves_available" type="text" class="form-control @error('leaves_available') is-invalid @enderror" name="leaves_available" value="{{ old('leaves_available') }}">  
                                     </div>
                             </div>
-
                         </div>
-
-                        
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
@@ -197,7 +194,6 @@
                 <!--end::Form-->
             </div>
             <!--end::Portlet-->
-
         </div>
     </div>          
 </div>          
