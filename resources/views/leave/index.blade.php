@@ -1,7 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
+@if (Auth::user()->isActivated == '0')
+<script>
+alert("Your account is deactivated. Please contact administrator")
+</script>
+@endif
+
 @if (Auth::user()->role_id == '1')
+
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
     <div class="d-flex align-items-center">
@@ -89,7 +96,7 @@
                                 serverSide: true,
                                 ajax: 'leave/json',
                                 dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('Do MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('Do MMMM YYYY'); }}],
+                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },
@@ -151,7 +158,7 @@
                                 serverSide: true,
                                 ajax: 'leave/jsonTeamSpv',
                                 dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('Do MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('Do MMMM YYYY'); }}],
+                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },

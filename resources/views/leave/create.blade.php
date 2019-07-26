@@ -20,7 +20,7 @@
                     <li class="m-nav__item">
                         <a href="{{ route('leave.create')}}" class="m-nav__link">
                             <span class="m-nav__link-text">
-                                Apply Leaves
+                                Apply Leave
                             </span>
                         </a>
                     </li>
@@ -36,10 +36,269 @@
 <!-- END: Subheader -->
 
 <div class="m-content">
-        @if (Auth::user()->leaves_available <= '0')
-        <h3>Sorry You Can't Apply The Leave Request<br>Because Your Leave Balance Already Empty </h3>
 
-        @else    
+        @if (Auth::user()->isActivated == '0')
+        <script>
+            alert("Your account is deactivated. Please contact administrator");
+        </script>
+
+    <div class="row">
+                <div class="col-xl-6">
+
+                    <!--begin:: Widgets/Tasks -->
+                    <div class="m-portlet m-portlet--full-height ">
+
+                        <div class="m-portlet__head" style="text-align:right;">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-portlet__body">
+                            <div class="tab-content">
+                                <div class="m-widget2">
+
+                                    <form>
+                                        <div class="col-md-12">
+                                            <strong>From :</strong>
+                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>To :</strong>
+                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>Duration :</strong>
+                                            <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>Reason :</strong>
+                                            <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                        <button type="button" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end:: Widgets/Tasks -->
+
+                </div>
+
+                <div class="col-xl-6">
+
+                    <!--begin:: Widgets/Support Tickets -->
+                    <div class="m-portlet m-portlet--full-height ">
+
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Calendar of Events
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-portlet__body">
+                            <div class="m-widget3">
+                                <div id="m_calendar"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end:: Widgets/Support Tickets -->
+
+                </div>
+        </div>
+
+        @push('scripts')
+    {{-- For For the Event and Leave Record --}}
+    <script>                     
+    var CalendarExternalEvents = function() {
+        var t = function() {
+                $("#m_calendar_external_events .fc-event").each(function() {
+                    $(this).data("event", {
+                        title: $.trim($(this).text()),
+                        stick: !0,
+                        className: $(this).data("color"),
+                        description: ""
+                    }), $(this).draggable({
+                        zIndex: 999,
+                        revert: !0,
+                        revertDuration: 0
+                    })
+                })
+            },
+            e = function() {
+                var t = moment().startOf("day"),
+                    e = t.format("YYYY-MM"),
+                    i = t.clone().subtract(1, "day").format("YYYY-MM-DD"),
+                    r = t.format("YYYY-MM-DD"),
+                    n = t.clone().add(1, "day").format("YYYY-MM-DD");
+                $("#m_calendar").fullCalendar({
+                    header: {
+                        left: "prev,next today",
+                        center: "title",
+                        right: "month,agendaWeek,agendaDay,listWeek"
+                    },
+                    // defaultView: "listWeek",
+                    eventLimit: !0,
+                    navLinks: !0,
+                    height: 600,
+                    events: [
+                        {
+                    title: "New Year's Day",
+                    start:  "2019-01-01",
+                    description: "New Year's Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Chinese New Year",
+                    start:  "2019-02-05",
+                    description: "Chinese New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Bali Hindu New Year",
+                    start:  "2019-03-07",
+                    description: "Bali Hindu New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Isra Mi'raj",
+                    start:  "2019-04-03",
+                    description: "Isra Mi'raj",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Good Friday",
+                    start:  "2019-04-19",
+                    description: "Good Friday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Labour Day",
+                    start:  "2019-05-01",
+                    description: "Labour Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Waisak Day",
+                    start:  "2019-05-19",
+                    description: "Waisak Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Ascension Day of Jesus Christ",
+                    start:  "2019-05-30",
+                    description: "Ascension Day of Jesus Christ",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Pancasila Day",
+                    start:  "2019-06-01",
+                    description: "Pancasila Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2019-06-03",
+                    end: "2019-06-04",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Hari Raya Idul Fitri",
+                    start:  "2019-06-05",
+                    end: "2019-06-06",
+                    description: "Hari Raya Idul Fitri",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2019-06-07",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Idul Adha",
+                    start:  "2019-08-11",
+                    description: "Idul Adha",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Independence Day",
+                    start:  "2019-08-17",
+                    description: "Independence Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Islamic New Year",
+                    start:  "2019-09-01",
+                    description: "Islamic New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Prophet Muhammad's Birthday",
+                    start:  "2019-11-09",
+                    description: "Prophet Muhammad's Birthday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Christmas Holiday",
+                    start:  "2019-12-24",
+                    description: "Christmas Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Christmas Day",
+                    start:  "2019-12-25",
+                    description: "Christmas Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                }
+
+                // from DB    
+
+                @foreach($leaves as $leave)
+                    ,{
+                    title: "{{$leave->users->name}}",
+                    start:  "{{$leave->from}}",
+                    end: "{{$leave->to}}",
+                    description: "{{$leave->reason}}",
+                    className: "m-fc-event--light m-fc-event--solid-success"
+                    }
+                @endforeach
+
+                    ],
+                    editable: !0,
+                    droppable: !0,
+                    drop: function(t, e, i, r) {
+                        var n = $.fullCalendar.moment(t.format());
+                        n.stripTime(), n.time("08:00:00");
+                        var a = $.fullCalendar.moment(t.format());
+                        a.stripTime(), a.time("12:00:00"), $(this).data("event").start = n, $(this).data("event").end = a, $("#m_calendar_external_events_remove").is(":checked") && $(this).remove()
+                    },
+                    eventRender: function(t, e) {
+                        e.hasClass("fc-day-grid-event") ? (e.data("content", t.description), e.data("placement", "top"), mApp.initPopover(e)) : e.hasClass("fc-time-grid-event") ? e.find(".fc-title").append('<div class="fc-description">' + t.description + "</div>") : 0 !== e.find(".fc-list-item-title").lenght && e.find(".fc-list-item-title").append('<div class="fc-description">' + t.description + "</div>")
+                    }
+                })
+            };
+        return {
+            init: function() {
+                t(), e()
+            }
+        }
+    }();
+    jQuery(document).ready(function() {
+        CalendarExternalEvents.init()
+    });
+</script>
+
+@endpush
+
+        @endif
+
+        @if (Auth::user()->leaves_available <= '0')
+        <script>
+            alert("Your remaining leave are zero. Please contact administrator");
+        </script>
+
         <div class="row">
                 <div class="col-xl-6">
 
@@ -50,7 +309,259 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        <span style="color:#A0A0A0;">Leave remaining</span> {{ (Auth::user()->leaves_available) }} days
+                                        <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-portlet__body">
+                            <div class="tab-content">
+                                <div class="m-widget2">
+
+                                    <form>
+                                        <div class="col-md-12">
+                                            <strong>From :</strong>
+                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>To :</strong>
+                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>Duration :</strong>
+                                            <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <strong>Reason :</strong>
+                                            <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                        <button type="button" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end:: Widgets/Tasks -->
+
+                </div>
+
+                <div class="col-xl-6">
+
+                    <!--begin:: Widgets/Support Tickets -->
+                    <div class="m-portlet m-portlet--full-height ">
+
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Calendar of Events
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-portlet__body">
+                            <div class="m-widget3">
+                                <div id="m_calendar"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end:: Widgets/Support Tickets -->
+
+                </div>
+        </div>
+
+        @push('scripts')
+    {{-- For For the Event and Leave Record --}}
+    <script>                     
+    var CalendarExternalEvents = function() {
+        var t = function() {
+                $("#m_calendar_external_events .fc-event").each(function() {
+                    $(this).data("event", {
+                        title: $.trim($(this).text()),
+                        stick: !0,
+                        className: $(this).data("color"),
+                        description: ""
+                    }), $(this).draggable({
+                        zIndex: 999,
+                        revert: !0,
+                        revertDuration: 0
+                    })
+                })
+            },
+            e = function() {
+                var t = moment().startOf("day"),
+                    e = t.format("YYYY-MM"),
+                    i = t.clone().subtract(1, "day").format("YYYY-MM-DD"),
+                    r = t.format("YYYY-MM-DD"),
+                    n = t.clone().add(1, "day").format("YYYY-MM-DD");
+                $("#m_calendar").fullCalendar({
+                    header: {
+                        left: "prev,next today",
+                        center: "title",
+                        right: "month,agendaWeek,agendaDay,listWeek"
+                    },
+                    // defaultView: "listWeek",
+                    eventLimit: !0,
+                    navLinks: !0,
+                    height: 600,
+                    events: [
+                        {
+                    title: "New Year's Day",
+                    start:  "2019-01-01",
+                    description: "New Year's Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Chinese New Year",
+                    start:  "2019-02-05",
+                    description: "Chinese New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Bali Hindu New Year",
+                    start:  "2019-03-07",
+                    description: "Bali Hindu New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Isra Mi'raj",
+                    start:  "2019-04-03",
+                    description: "Isra Mi'raj",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Good Friday",
+                    start:  "2019-04-19",
+                    description: "Good Friday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Labour Day",
+                    start:  "2019-05-01",
+                    description: "Labour Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Waisak Day",
+                    start:  "2019-05-19",
+                    description: "Waisak Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Ascension Day of Jesus Christ",
+                    start:  "2019-05-30",
+                    description: "Ascension Day of Jesus Christ",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Pancasila Day",
+                    start:  "2019-06-01",
+                    description: "Pancasila Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2019-06-03",
+                    end: "2019-06-04",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Hari Raya Idul Fitri",
+                    start:  "2019-06-05",
+                    end: "2019-06-06",
+                    description: "Hari Raya Idul Fitri",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2019-06-07",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Idul Adha",
+                    start:  "2019-08-11",
+                    description: "Idul Adha",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Independence Day",
+                    start:  "2019-08-17",
+                    description: "Independence Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Islamic New Year",
+                    start:  "2019-09-01",
+                    description: "Islamic New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Prophet Muhammad's Birthday",
+                    start:  "2019-11-09",
+                    description: "Prophet Muhammad's Birthday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Christmas Holiday",
+                    start:  "2019-12-24",
+                    description: "Christmas Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Christmas Day",
+                    start:  "2019-12-25",
+                    description: "Christmas Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                }
+
+                // from DB    
+
+                @foreach($leaves as $leave)
+                    ,{
+                    title: "{{$leave->users->name}}",
+                    start:  "{{$leave->from}}",
+                    end: "{{$leave->to}}",
+                    description: "{{$leave->reason}}",
+                    className: "m-fc-event--light m-fc-event--solid-success"
+                    }
+                @endforeach
+
+                    ],
+                    editable: !0,
+                    droppable: !0,
+                    drop: function(t, e, i, r) {
+                        var n = $.fullCalendar.moment(t.format());
+                        n.stripTime(), n.time("08:00:00");
+                        var a = $.fullCalendar.moment(t.format());
+                        a.stripTime(), a.time("12:00:00"), $(this).data("event").start = n, $(this).data("event").end = a, $("#m_calendar_external_events_remove").is(":checked") && $(this).remove()
+                    },
+                    eventRender: function(t, e) {
+                        e.hasClass("fc-day-grid-event") ? (e.data("content", t.description), e.data("placement", "top"), mApp.initPopover(e)) : e.hasClass("fc-time-grid-event") ? e.find(".fc-title").append('<div class="fc-description">' + t.description + "</div>") : 0 !== e.find(".fc-list-item-title").lenght && e.find(".fc-list-item-title").append('<div class="fc-description">' + t.description + "</div>")
+                    }
+                })
+            };
+        return {
+            init: function() {
+                t(), e()
+            }
+        }
+    }();
+    jQuery(document).ready(function() {
+        CalendarExternalEvents.init()
+    });
+</script>
+
+@endpush
+
+        @elseif (Auth::user()->isActivated == '1')
+   
+        <div class="row">
+                <div class="col-xl-6">
+
+                    <!--begin:: Widgets/Tasks -->
+                    <div class="m-portlet m-portlet--full-height ">
+
+                        <div class="m-portlet__head" style="text-align:right;">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
                                     </h3>
                                 </div>
                             </div>
@@ -61,7 +572,6 @@
                                 <div class="m-widget2">
 
                                     <form action="{{route('leave.store')}}" method="post">
-
                                         @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <strong>Whoops!</strong> there where some problems with your input.<br>
@@ -72,28 +582,15 @@
                                             </ul>
                                         </div>
                                         @endif
-
                                         @csrf
                                         <div class="col-md-12">
                                             <strong>From :</strong>
-                                            <input type="text" name="from" id="from-date" class="form-control @error('from') is-invalid @enderror" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
-
-                                            @error('from')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                             @enderror
+                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                             <strong>To :</strong>
-                                           <input type="text" name="to" id="to-date" class="form-control @error('to') is-invalid @enderror" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus> 
-
-                                           @error('to')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                             @enderror
+                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus> 
                                         </div>
                                         <br>
                                         <div class="col-md-12">
@@ -103,19 +600,12 @@
                                         <br>
                                         <div class="col-md-12">
                                             <strong>Reason :</strong>
-                                            <textarea class="form-control @error('reason') is-invalid @enderror" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus></textarea>
-
-                                            @error('reason')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                             @enderror
+                                            <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus></textarea>
                                         </div>
                                         <br>
                                         <div class="col-md-12">
                                         <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
                                         </div>
-
                                     </form>
 
                                 </div>
@@ -167,7 +657,7 @@
                         title: $.trim($(this).text()),
                         stick: !0,
                         className: $(this).data("color"),
-                        description: "Lorem ipsum dolor eius mod tempor labore"
+                        description: ""
                     }), $(this).draggable({
                         zIndex: 999,
                         revert: !0,
@@ -190,112 +680,115 @@
                     // defaultView: "listWeek",
                     eventLimit: !0,
                     navLinks: !0,
+                    height: 600,
                     events: [
                         {
                     title: "New Year's Day",
                     start:  "2019-01-01",
                     description: "New Year's Day",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Chinese New Year",
                     start:  "2019-02-05",
                     description: "Chinese New Year",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Bali Hindu New Year",
                     start:  "2019-03-07",
                     description: "Bali Hindu New Year",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Isra Mi'raj",
                     start:  "2019-04-03",
                     description: "Isra Mi'raj",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Good Friday",
                     start:  "2019-04-19",
                     description: "Good Friday",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Labour Day",
                     start:  "2019-05-01",
                     description: "Labour Day",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Waisak Day",
                     start:  "2019-05-19",
                     description: "Waisak Day",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Ascension Day of Jesus Christ",
                     start:  "2019-05-30",
                     description: "Ascension Day of Jesus Christ",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Pancasila Day",
                     start:  "2019-06-01",
                     description: "Pancasila Day",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Lebaran Holiday",
                     start:  "2019-06-03",
                     end: "2019-06-04",
                     description: "Lebaran Holiday",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Hari Raya Idul Fitri",
                     start:  "2019-06-05",
                     end: "2019-06-06",
                     description: "Hari Raya Idul Fitri",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Lebaran Holiday",
                     start:  "2019-06-07",
                     description: "Lebaran Holiday",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Idul Adha",
                     start:  "2019-08-11",
                     description: "Idul Adha",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Independence Day",
                     start:  "2019-08-17",
                     description: "Independence Day",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Islamic New Year",
                     start:  "2019-09-01",
                     description: "Islamic New Year",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Prophet Muhammad's Birthday",
                     start:  "2019-11-09",
                     description: "Prophet Muhammad's Birthday",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Christmas Holiday",
                     start:  "2019-12-24",
                     description: "Christmas Holiday",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 },{
                     title: "Christmas Day",
                     start:  "2019-12-25",
                     description: "Christmas Day",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 }
-            
+
                 // from DB    
 
-                @foreach($leaves as $leave),{
+                @foreach($leaves as $leave)
+                    ,{
                     title: "{{$leave->users->name}}",
                     start:  "{{$leave->from}}",
                     end: "{{$leave->to}}",
                     description: "{{$leave->reason}}",
-                    className: "m-fc-event--danger m-fc-event--solid-warning"
+                    className: "m-fc-event--light m-fc-event--solid-success"
                     }
                 @endforeach
-            ],
+
+                    ],
                     editable: !0,
                     droppable: !0,
                     drop: function(t, e, i, r) {
@@ -318,7 +811,7 @@
     jQuery(document).ready(function() {
         CalendarExternalEvents.init()
     });
-    </script>
+</script>
 
     {{-- For from calender datepicker --}}
     <script>
@@ -334,7 +827,6 @@
         }).on('changeDate', function(ev) {
             ConfigureToDate();
         });
-        
 
         // // create to date
         $('#to-date').datepicker({
@@ -370,9 +862,9 @@
             }
 
             if(count > {{ (Auth::user()->leaves_available) }}){
-                alert('Your Leave Balance not Sufficient');
-                
-                ConfigureToDate();
+                alert('Your remaining leave not sufficient');
+  
+                $('#to-date').val("");
             }
         return count;
         }
