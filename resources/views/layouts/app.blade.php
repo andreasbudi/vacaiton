@@ -65,7 +65,7 @@
     <link href="//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
-	<link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.png" />
 	@toastr_css
 
     {{-- <!-- Fonts -->
@@ -85,7 +85,7 @@
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
 									<a href="/home" class="m-brand__logo-wrapper">
-										<img alt="" src="../../assets/demo/default/media/img/logo/logo_default_dark.png"/>
+										<img alt="" style="margin-left: 22px;" src="../../assets/demo/default/media/img/logo/logo_default_dark.png"/>
 									</a>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">

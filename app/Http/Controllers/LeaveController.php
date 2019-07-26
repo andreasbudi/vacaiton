@@ -156,8 +156,8 @@ class LeaveController extends Controller
         }
 
         $leaveData = new Leave();
-        $leaveData->from = $request->from;
-        $leaveData->to = $request->to;
+        $leaveData->from = \Carbon\Carbon::parse($request->from)->format('y-m-d');
+        $leaveData->to = \Carbon\Carbon::parse($request->to)->format('y-m-d');
         $leaveData->duration = $request->duration;
         $leaveData->reason = $request->reason;
         $leaveData['user_id'] = Auth::user()->id;
@@ -248,8 +248,8 @@ class LeaveController extends Controller
             'reason' => 'required'
         ]);
         $leave = Leave::find($id);
-        $leave->from = $request->get('from');
-        $leave->to = $request->get('to');
+        $leave->from = \Carbon\Carbon::parse($request->from)->format('y-m-d');
+        $leave->to = \Carbon\Carbon::parse($request->to)->format('y-m-d');
         $leave->duration = $request->get('duration');
         $leave->reason = $request->get('reason');
         $leave->save();

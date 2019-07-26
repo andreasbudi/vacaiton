@@ -327,29 +327,26 @@
         $('#from-date').datepicker({
             orientation: "bottom left",
             startDate : new Date(),
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             todayHighlight:'TRUE',
             autoclose: true,
             daysOfWeekDisabled: [0,6],
         }).on('changeDate', function(ev) {
             ConfigureToDate();
         });
+        
 
         // // create to date
         $('#to-date').datepicker({
             orientation: "bottom left",
             startDate: $('#from-date').val(),
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             todayHighlight:'TRUE',
             autoclose: true,
             daysOfWeekDisabled: [0,6],
         }).on('changeDate', function(ev) {
             var fromDate = $('#from-date').data('datepicker').dates[0];
             $('#total').val(getBusinessDatesCount(fromDate, ev.date));
-            // var durDate = $('#total').val(getBusinessDatesCount(fromDate, ev.date));
-            // alert(durDate);
-            
-            
         });
 
         // Set the min date on page load
@@ -373,7 +370,7 @@
             }
 
             if(count > {{ (Auth::user()->leaves_available) }}){
-                alert('Your Leave Balance not sufficient');
+                alert('Your Leave Balance not Sufficient');
                 
                 ConfigureToDate();
             }

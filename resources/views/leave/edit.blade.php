@@ -120,7 +120,7 @@
         $('#from-date').datepicker({
             orientation: "bottom left",
             startDate : new Date(),
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             todayHighlight:'TRUE',
             autoclose: true,
             daysOfWeekDisabled: [0,6]
@@ -132,7 +132,7 @@
         $('#to-date').datepicker({
             orientation: "bottom left",
             startDate: $('#from-date').val(),
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             todayHighlight:'TRUE',
             autoclose: true,
             daysOfWeekDisabled: [0,6]
