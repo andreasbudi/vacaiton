@@ -50,7 +50,7 @@
                                         To:
                                     </label>
                                     <div class="col-lg-6">     
-										<input type="text" name="to" id="to-date" value="{{$leave->to}}" class="form-control" autocomplete="off">
+										<input type="text" name="to" id="to-date" value="{{$leave->to}}" class="form-control" autocomplete="off" >
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -58,7 +58,7 @@
                                         Duration:
                                     </label>
                                     <div class="col-lg-6">
-										<input type="text" name="duration" id="total" value="{{$leave->duration}}" class="form-control" autocomplete="off"> 
+										<input type="text" name="duration" id="total" value="{{$leave->duration}}" class="form-control" readonly="readonly"> 
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
