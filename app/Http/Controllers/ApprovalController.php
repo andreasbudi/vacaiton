@@ -15,8 +15,6 @@ use DataTables;
 class ApprovalController extends Controller
 {
     public function json(){
-
-        
         // manager query all leaves
         if(empty(Auth::user()->manager_id)){
         $approval = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')

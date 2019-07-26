@@ -16,7 +16,6 @@ use DataTables;
 class LeaveController extends Controller
 {
         public function json(){
-
         //query leave history sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
                 ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
@@ -60,7 +59,6 @@ class LeaveController extends Controller
         }
 
         public function jsonTeamSpv(){
-
         // spv query team leaves
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
                 ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message','leaves.responded_by','leaves.updated_at'])

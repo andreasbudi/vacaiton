@@ -161,7 +161,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $employee = User::find($id);
-
+        // sebagai admin update staff
         if(Auth::user()->role_id == '4' && $employee->role_id == 1){
         $request->validate([
             'department' => 'required',
@@ -193,7 +193,7 @@ class EmployeeController extends Controller
                 "hideMethod"        => "slideUp"]);
             return redirect()->route('home');
         }
-        
+        // sebagai admin update spv
         elseif (Auth::user()->role_id == '4' && $employee->role_id == 2){
         $request->validate([
             'department' => 'required',
@@ -223,6 +223,7 @@ class EmployeeController extends Controller
                 "hideMethod"        => "slideUp"]);
             return redirect()->route('home');
         }
+        // sebagai admin update manager
         elseif (Auth::user()->role_id == '4' && $employee->role_id == 3){
         $request->validate([
             'department' => 'required',
@@ -251,6 +252,7 @@ class EmployeeController extends Controller
                 "hideMethod"        => "slideUp"]);
             return redirect()->route('home');
         }
+        // update password
         else{
             $employee = User::find($id);
             $employee->password = Hash::make($request->password);
