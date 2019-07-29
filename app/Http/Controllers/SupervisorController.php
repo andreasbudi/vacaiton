@@ -16,9 +16,7 @@ use DataTables;
 class SupervisorController extends Controller
 {
     public function json(){
-
         //query isi tim supervisor
-
         $supervisors = DB::table('supervisors')->leftjoin('users','supervisors.id','=','users.manager_id')
                 ->select(['supervisors.id','supervisors.name_supervisor','supervisors.email',DB::raw('GROUP_CONCAT(users.name SEPARATOR " - ") as name'),'users.manager_id','users.role_id'])
                 ->where('users.role_id',1)
@@ -27,8 +25,7 @@ class SupervisorController extends Controller
                 return Datatables::of($supervisors)->make(true);
     }
 
-
-      /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
