@@ -2,16 +2,16 @@
 @section('content')
 
 <div class="m-content">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> there where some problems with your input.<br>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> there where some problems with your input.<br>
                 <ul>
                     @foreach ($errors as $error)
                         <li>{{$error}}</li>
-                    @endforeach
+                     @endforeach
                 </ul>
-            </div>
-        @endif	
+        </div>
+    @endif	
 
 	<div class="row">
         <div class="col-lg-12">
@@ -69,25 +69,29 @@
                                     <div class="col-lg-6">   
 										<textarea class="form-control" name="reason" rows="2" cols="80" required autocomplete="reason" autofocus>{{$leave->reason}}</textarea>
                                     </div>
-                            </div>   
+                            </div> 
+
                         </div>
                     </div>
+
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
-                                <div class="col-lg-2"></div>
-                                    <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary">
-                                            Update
-                                        </button>
-                                        <a class="btn btn-danger" href="/leave">Cancel</a>
-                                    </div>
+                                <div class="col-lg-2">
+                                </div>
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn btn-primary">
+                                         Update
+                                    </button>
+                                    <a class="btn btn-danger" href="/leave">Cancel</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </form>
                 <!--end::Form-->
+
             </div>
             <!--end::Portlet-->
         </div>
@@ -96,8 +100,8 @@
 @endsection
 
 @push('scripts')
- {{-- For from calender datepicker --}}
-    <script>
+{{-- For from calender datepicker --}}
+<script>
         $(function() {
         // create from date
         $('#from-date').datepicker({
@@ -151,5 +155,5 @@
             }
         return count;
         }
-    </script>
+</script>
 @endpush
