@@ -26,79 +26,74 @@
                     </li>
                     
                 </ul>
-                </div>
-                <div>
                 
             </div>
         </div>
 </div>
-
 <!-- END: Subheader -->
 
 <div class="m-content">
 
         @if (Auth::user()->isActivated == '0')
+        {{--For user account is deactivated--}}
         <script>
             alert("Your account is deactivated. Please contact administrator");
         </script>
 
     <div class="row">
-                <div class="col-xl-6">
+        <div class="col-xl-6">
+            <!--begin:: Widgets/Tasks -->
+            <div class="m-portlet m-portlet--full-height ">
 
-                    <!--begin:: Widgets/Tasks -->
-                    <div class="m-portlet m-portlet--full-height ">
-
-                        <div class="m-portlet__head" style="text-align:right;">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
-                                    </h3>
-                                </div>
-                            </div>
+                <div class="m-portlet__head" style="text-align:right;">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                <span style="color:#A0A0A0;">Apply Leave
+                            </h3>
                         </div>
-
-                        <div class="m-portlet__body">
-                            <div class="tab-content">
-                                <div class="m-widget2">
-
-                                    <form>
-                                        <div class="col-md-12">
-                                            <strong>From :</strong>
-                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>To :</strong>
-                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>Duration :</strong>
-                                            <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>Reason :</strong>
-                                            <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                        <button type="button" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <!--end:: Widgets/Tasks -->
-
                 </div>
 
-                <div class="col-xl-6">
+                <div class="m-portlet__body">
+                    <div class="tab-content">
+                        <div class="m-widget2">
 
+                            <form>
+                                <div class="col-md-12">
+                                    <strong>From :</strong>
+                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>To :</strong>
+                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>Duration :</strong>
+                                    <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>Reason :</strong>
+                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                <button type="button" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end:: Widgets/Tasks -->
+        </div>
+
+                <div class="col-xl-6">
                     <!--begin:: Widgets/Support Tickets -->
                     <div class="m-portlet m-portlet--full-height ">
 
@@ -120,13 +115,12 @@
 
                     </div>
                     <!--end:: Widgets/Support Tickets -->
-
                 </div>
-        </div>
+    </div>
 
-        @push('scripts')
-    {{-- For For the Event and Leave Record --}}
-    <script>                     
+@push('scripts')
+{{-- For For the Event and Leave Record --}}
+<script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
                 $("#m_calendar_external_events .fc-event").each(function() {
@@ -289,101 +283,99 @@
         CalendarExternalEvents.init()
     });
 </script>
-
 @endpush
 
         @endif
+        {{--endfor user account is deactivated--}}
 
         @if (Auth::user()->leaves_available <= '0')
+        {{--For user leave available is zero--}}
         <script>
             alert("Your remaining leave are zero. Please contact administrator");
         </script>
 
-        <div class="row">
-                <div class="col-xl-6">
+    <div class="row">
 
-                    <!--begin:: Widgets/Tasks -->
-                    <div class="m-portlet m-portlet--full-height ">
+        <div class="col-xl-6">
+            <!--begin:: Widgets/Tasks -->
+            <div class="m-portlet m-portlet--full-height ">
 
-                        <div class="m-portlet__head" style="text-align:right;">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
-                                    </h3>
-                                </div>
-                            </div>
+                <div class="m-portlet__head" style="text-align:right;">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
+                            </h3>
                         </div>
-
-                        <div class="m-portlet__body">
-                            <div class="tab-content">
-                                <div class="m-widget2">
-
-                                    <form>
-                                        <div class="col-md-12">
-                                            <strong>From :</strong>
-                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>To :</strong>
-                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>Duration :</strong>
-                                            <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>Reason :</strong>
-                                            <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                        <button type="button" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <!--end:: Widgets/Tasks -->
-
                 </div>
 
-                <div class="col-xl-6">
+                <div class="m-portlet__body">
+                    <div class="tab-content">
+                        <div class="m-widget2">
 
-                    <!--begin:: Widgets/Support Tickets -->
-                    <div class="m-portlet m-portlet--full-height ">
-
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        Calendar of Events
-                                    </h3>
+                            <form>
+                                <div class="col-md-12">
+                                    <strong>From :</strong>
+                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
                                 </div>
-                            </div>
-                        </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>To :</strong>
+                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>Duration :</strong>
+                                    <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>Reason :</strong>
+                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                <button type="button" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
+                                </div>
+                            </form>
 
-                        <div class="m-portlet__body">
-                            <div class="m-widget3">
-                                <div id="m_calendar"></div>
-                            </div>
                         </div>
-
                     </div>
-                    <!--end:: Widgets/Support Tickets -->
-
                 </div>
+
+             </div>
+            <!--end:: Widgets/Tasks -->
         </div>
 
-        @push('scripts')
-    {{-- For For the Event and Leave Record --}}
-    <script>                     
+        <div class="col-xl-6">
+            <!--begin:: Widgets/Support Tickets -->
+            <div class="m-portlet m-portlet--full-height ">
+
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Calendar of Events
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-portlet__body">
+                    <div class="m-widget3">
+                        <div id="m_calendar"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end:: Widgets/Support Tickets -->
+        </div>
+    </div>
+
+@push('scripts')
+{{-- For For the Event and Leave Record --}}
+<script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
                 $("#m_calendar_external_events .fc-event").each(function() {
@@ -546,110 +538,108 @@
         CalendarExternalEvents.init()
     });
 </script>
-
 @endpush
+{{--For user leave available is zero--}}
 
         @elseif (Auth::user()->isActivated == '1')
    
-        <div class="row">
-                <div class="col-xl-6">
+    <div class="row">
+        <div class="col-xl-6">
+            <!--begin:: Widgets/Tasks -->
+            <div class="m-portlet m-portlet--full-height ">
 
-                    <!--begin:: Widgets/Tasks -->
-                    <div class="m-portlet m-portlet--full-height ">
-
-                        <div class="m-portlet__head" style="text-align:right;">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
-                                    </h3>
-                                </div>
-                            </div>
+                <div class="m-portlet__head" style="text-align:right;">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
+                            </h3>
                         </div>
-
-                        <div class="m-portlet__body">
-                            <div class="tab-content">
-                                <div class="m-widget2">
-
-                                    <form action="{{route('leave.store')}}" method="post">
-                                        @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <strong>Whoops!</strong> there where some problems with your input.<br>
-                                            <ul>
-                                                @foreach ($errors as $error)
-                                                    <li>{{$error}}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        @endif
-                                        @csrf
-                                        <div class="col-md-12">
-                                            <strong>From :</strong>
-                                            <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>To :</strong>
-                                           <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus> 
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>Duration :</strong>
-                                            <input type="text" name="duration" id="total" class="form-control" readonly="readonly">
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                            <strong>Reason :</strong>
-                                            <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus></textarea>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12">
-                                        <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <!--end:: Widgets/Tasks -->
-
                 </div>
 
-                <div class="col-xl-6">
+                <div class="m-portlet__body">
+                    <div class="tab-content">
+                        <div class="m-widget2">
 
-                    <!--begin:: Widgets/Support Tickets -->
-                    <div class="m-portlet m-portlet--full-height ">
-
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        Calendar of Events
-                                    </h3>
+                            <form action="{{route('leave.store')}}" method="post">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> there where some problems with your input.<br>
+                                    <ul>
+                                        @foreach ($errors as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                            </div>
-                        </div>
+                                @endif
+                                @csrf
+                                <div class="col-md-12">
+                                    <strong>From :</strong>
+                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>To :</strong>
+                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus> 
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>Duration :</strong>
+                                    <input type="text" name="duration" id="total" class="form-control" readonly="readonly">
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <strong>Reason :</strong>
+                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus></textarea>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                <button type="submit" value="send" class="btn btn-sm btn-primary" style="float: right;">Submit</button>
+                                </div>
+                            </form>
 
-                        <div class="m-portlet__body">
-                            <div class="m-widget3">
-                                <div id="m_calendar"></div>
-                            </div>
                         </div>
-
                     </div>
-                    <!--end:: Widgets/Support Tickets -->
-
                 </div>
+
+            </div>
+            <!--end:: Widgets/Tasks -->
         </div>
+
+        <div class="col-xl-6">
+            <!--begin:: Widgets/Support Tickets -->
+             <div class="m-portlet m-portlet--full-height ">
+
+                 <div class="m-portlet__head">
+                     <div class="m-portlet__head-caption">
+                         <div class="m-portlet__head-title">
+                             <h3 class="m-portlet__head-text">
+                                 Calendar of Events
+                             </h3>
+                         </div>
+                     </div>
+                 </div>
+
+                <div class="m-portlet__body">
+                    <div class="m-widget3">
+                        <div id="m_calendar"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end:: Widgets/Support Tickets -->
+
+        </div>
+    </div>
         @endif
+        {{--Endfor user leave available is zero--}}
 
 @endsection
 
 @push('scripts')
-    {{-- For For the Event and Leave Record --}}
-    <script>                     
+{{-- For For the Event and Leave Record --}}
+<script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
                 $("#m_calendar_external_events .fc-event").each(function() {
@@ -868,6 +858,5 @@
             }
         return count;
         }
-    </script>
-
+</script>
 @endpush
