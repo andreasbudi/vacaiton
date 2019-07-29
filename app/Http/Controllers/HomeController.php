@@ -27,14 +27,12 @@ class HomeController extends Controller
     {
 
         $getRole = Auth::user()->role_id;
-        $leaves = Leave::where('user_id', '=', Auth::user()->id)->paginate(5);
 
         if($getRole == 1){
-        return view('leave.index', compact('leaves'))
-                    ->with('i',(request()->input('page',1) -1) *5); 
+            return view('leave.index'); 
         }
         else if($getRole == 2){
-        $leaves = Leave::where('manager_id', '=', Auth::user()->manager_id)
+            $leaves = Leave::where('manager_id', '=', Auth::user()->manager_id)
                             ->where('role_id',1)->get();
             return view('approval.approval', compact('leaves'));
         }
@@ -46,8 +44,8 @@ class HomeController extends Controller
             return view('approval.approval', compact('leaves'));
         }
         else if($getRole == 4){
-        $employees = User::all()->where('users.role_id',1)->where('supervisors.id', '=', 'users.manager_id')->first();
-        return view('employee.show', compact('employees')); 
+            $employees = User::all()->where('users.role_id',1)->where('supervisors.id', '=', 'users.manager_id')->first();
+            return view('employee.show', compact('employees')); 
         }    
     }
 

@@ -15,19 +15,19 @@ class SupervisorTableSeeder extends Seeder
         $spv = new Supervisor();
         $spv->name_supervisor = 'Andika';
         // $spv->email = 'andreas.b365@gmail.com';
-        // $spv->email = 'andika.pranata@difinite.com';
+        $spv->email = 'andika.pranata@difinite.com';
         $spv->save();
 
         $spv = new Supervisor();
         $spv->name_supervisor = 'Alex';
         // $spv->email = 'andreas.b365@gmail.com';
-        // $spv->email = 'alexander.arda@difinite.com';
+        $spv->email = 'alexander.arda@difinite.com';
         $spv->save();
 
         $spv = new Supervisor();
         $spv->name_supervisor = 'Margaret';
         // $spv->email = 'andreas.b365@gmail.com';
-        // $spv->email = 'margaret.pratiwi@difinite.com';
+        $spv->email = 'margaret.pratiwi@difinite.com';
         $spv->save();
     }
 }
