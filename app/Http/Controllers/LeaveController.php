@@ -24,31 +24,28 @@ class LeaveController extends Controller
         return Datatables::of($leaves)->addIndexColumn()
         ->addColumn('action', function ($leaves) {
             if($leaves->status == 1){
-            return '
+            return '<a class="btn btn-sm btn-warning" style="width:40%;" href="'.route('leave.edit',$leaves->id).'">Edit</a>
             
-            <a class="btn btn-sm btn-warning" style="width:40%;" href="'.route('leave.edit',$leaves->id).'">Edit</a>
-            
-            <a class="btn btn-sm btn-danger" style="width:40%;" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_5_'.$leaves->id.'">Cancel</a>
+                    <a class="btn btn-sm btn-danger" style="width:40%;" href="'.route('leave.show',$leaves->id).'" data-toggle="modal" data-target="#m_modal_5_'.$leaves->id.'">Cancel</a>
 
             <div class="modal fade" id="m_modal_5_'.$leaves->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-sm" role="document">
-                                <div class="modal-content">
-									<div class="modal-body">
-                                        <div class="form-group">
-                                        <br>
-                                        <label class="form-control-label">
-                                            Are you sure ?
-                                        </label>
-                                        <br>
-                                        <br>
-                                        <button type="button" class="btn btn-sm btn-secondary" style="color:black;" data-dismiss="modal">Close</button>
-                                        <a href="'.route('leave.show',$leaves->id).'" class="btn btn-sm btn-danger">Cancel</a>
-                                        </div>
-							        </div>
-								</div>
-							</div>
-                        </div>
-            ';
+			    <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+						<div class="modal-body">
+                            <div class="form-group">
+                                <br>
+                                    <label class="form-control-label">
+                                        Are you sure ?
+                                    </label>
+                                <br>
+                                <br>
+                                    <button type="button" class="btn btn-sm btn-secondary" style="color:black;" data-dismiss="modal">Close</button>
+                                    <a href="'.route('leave.show',$leaves->id).'" class="btn btn-sm btn-danger">Cancel</a>
+                            </div>
+						</div>
+					</div>
+				</div>
+            </div>';
             }elseif($leaves->status == 2){
             return '<center><span class="m-badge m-badge--success m-badge--wide">Approved</span></center>';
             }elseif($leaves->status == 3){
@@ -240,6 +237,12 @@ class LeaveController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $leave = Leave::find($id);
+        $leave_user = $leave->user_id;
+        $user = User::find($leave_user);
+        $user->leaves_available = $user->leaves_available + $leave->duration;
+        $user->save();
+
         $request->validate([
             'from' => 'required',
             'to' => 'required',
@@ -251,6 +254,10 @@ class LeaveController extends Controller
         $leave->duration = $request->get('duration');
         $leave->reason = $request->get('reason');
         $leave->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->leaves_available = Auth::user()->leaves_available - $request->duration;
+        $user->save();
         toastr()->success('Leave updated successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,
