@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 
 class SendMailClient extends Mailable
 {
@@ -30,6 +31,6 @@ class SendMailClient extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Your absence request at Difinite is pending')->view('dynamic_email_client')->with('dataClient',$this->dataClient);
+        return $this->from('difinite2255@gmail.com')->subject('Leave Request - '. Auth::user()->name)->view('dynamic_email_client')->with('dataClient',$this->dataClient);
     }
 }

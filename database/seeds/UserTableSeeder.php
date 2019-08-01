@@ -208,7 +208,7 @@ class UserTableSeeder extends Seeder
         $testStaff = new User();
         $testStaff->name = 'testStaff1';
         $testStaff->department = 'testing';
-        $testStaff->email = 'test1@gmail.com';
+        $testStaff->email = 'andreas.b365@gmail.com';
         $testStaff->password = bcrypt('adminadmin');
         $testStaff->leaves_available = '12';
         $testStaff->role_id = '1';
@@ -239,7 +239,7 @@ class UserTableSeeder extends Seeder
         $admin = new User();
         $admin->name = 'admin';
         $admin->department = 'Administrator';
-        $admin->email = 'admin@gmail.com';
+        $admin->email = 'admin@difinite.com';
         $admin->password = bcrypt('adminadmin');
         $admin->role_id = '4';
         $admin->isActivated = '1';

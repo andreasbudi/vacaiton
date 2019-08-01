@@ -30,6 +30,6 @@ class SendReject extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Rejection Letter for Leave Application')->view('email_reject')->with('data',$this->data);
+        return $this->from('difinite2255@gmail.com')->subject('Leave Request has been rejected')->view('email_reject')->with('data',$this->data);
     }
 }

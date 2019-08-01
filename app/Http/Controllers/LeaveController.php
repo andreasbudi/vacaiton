@@ -118,37 +118,7 @@ class LeaveController extends Controller
             'reason' => 'required'
         ]);
 
-        $dataClient = array(
-            'name' => Auth::user()->name,
-            'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
-            'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
-            'duration' => $request->duration,
-            'reason' => $request->reason,
-            'status' => $request->status
-        );
-
-        //query employee yg mengambil cuti
-        $users = User::all()->where('manager_id', '=', Auth::user()->manager_id)->first();
-        $username = $users->name;
-        $department = $users->department;
-        $dataSpv = array(
-            'name' => Auth::user()->name,
-            'nameSpv' => $username,
-            'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
-            'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
-            'duration' => $request->duration,
-            'reason' => $request->reason,
-            'status' => $request->status,
-            'department' => $department,
-        );
-
-        //query email spv
-        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
-        $spv_email = $spv->email;
-        if (Auth::user()->role_id == 1) {
-                // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-                // Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
-        }
+        
 
         $leaveData = new Leave();
         $leaveData->from = \Carbon\Carbon::parse($request->from)->format('y-m-d');
@@ -163,6 +133,31 @@ class LeaveController extends Controller
         $user = User::find(Auth::user()->id);
         $user->leaves_available = Auth::user()->leaves_available - $request->duration;
         $user->save();
+
+        $dataClient = array(
+            'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
+            'duration' => $request->duration,
+            'reason' => $request->reason,
+            'leaves_available' => $user->leaves_available,
+        );
+
+        //query employee yg mengambil cuti
+        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
+        $username = $spv->name_supervisor;
+        $dataSpv = array(
+            'name' => Auth::user()->name,
+            'nameSpv' => $username
+        );
+
+        //query email spv
+        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
+        $spv_email = $spv->email;
+        if (Auth::user()->role_id == 1) {
+            // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+            Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
+        }
+
         toastr()->success('New leave created successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,

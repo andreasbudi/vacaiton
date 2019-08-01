@@ -1,12 +1,10 @@
-<p><b>Leave of absence details :</b></p>
-<p>From     : {{ $dataSpv['from']}}</p>
-<p>To       : {{ $dataSpv['to']}}</p>
-<p>Duration : {{ $dataSpv['duration']}} days</p>
-<p>Reason   : <b>{{ $dataSpv['reason']}}</b></p>
-
+<p>Dear {{ $dataSpv['nameSpv']}},</p>
+<br>
+<p>Leave Request has been submitted by {{ $dataSpv['name']}} for your approval.</p>
+<p>Please <a class="btn btn-sm btn-success" href="http://localhost:8000/">click here</a> to approve or decline.</p>
+<br>
+<p>Note : Please do not reply to this automatically generated email. For any queries please contact admin@difinite.com</p>
 <br>
 <p>Regards,</p>
-<p>{{ $dataSpv['name']}}</p>
-<p>{{ $dataSpv['department']}}</p>
-<a class="btn btn-sm btn-success" value="send" href="http://localhost:8000/">http://localhost:8000/</a>
+<p><b>Leave Management System</b></p>
 

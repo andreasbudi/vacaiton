@@ -1,10 +1,8 @@
-<p><b>Your request details :</b></p>
-<p>From     : {{ $dataClient['from']}}</p>
-<p>To       : {{ $dataClient['to']}}</p>
-<p>Duration : {{ $dataClient['duration']}} days</p>
-<p>Reason   : {{ $dataClient['reason']}}</p>
-<p>Status   : <b>Waiting for approval</b></p>
+<p><b>Your Leave Request detail :</b></p>
+<p>Date          : From {{ $dataClient['from']}} to {{ $dataClient['to']}}</p>
+<p>Duration      : {{ $dataClient['duration']}} days</p>
+<p>Reason        : {{ $dataClient['reason']}}</p>
+<p>Status        : Waiting for approval</p>
+<p>Leave balance : {{ $dataClient['leaves_available']}} days</p>
 <br>
-<p>Regards,</p>
-<p>Admin</p>
-<a class="btn btn-sm btn-success" value="send" href="http://localhost:8000/">http://localhost:8000/</a>
+<p>You can edit or cancel your request by <a class="btn btn-sm btn-success" href="http://localhost:8000/home">clicking here</a></p>

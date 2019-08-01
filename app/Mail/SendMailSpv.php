@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 
 class SendMailSpv extends Mailable
 {
@@ -30,6 +31,6 @@ class SendMailSpv extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Leave of Absence has been created')->view('dynamic_email_spv')->with('dataSpv',$this->dataSpv);
+        return $this->from('difinite2255@gmail.com')->subject('Leave Request - '. Auth::user()->name)->view('dynamic_email_spv')->with('dataSpv',$this->dataSpv);
     }
 }

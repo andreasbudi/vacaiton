@@ -51,8 +51,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('leave/send', 'LeaveController@send');
 Route::get('home/json', 'ApprovalController@json');
 Route::get('show/json', 'EmployeeController@json');
-
-
 Route::get('leave/json', 'LeaveController@json');
 Route::get('supervisor/json', 'SupervisorController@json');
 Route::get('leave/jsonTeamSpv', 'LeaveController@jsonTeamSpv');
