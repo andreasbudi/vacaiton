@@ -43,7 +43,7 @@
                                         From:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
+                                        <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from">
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -51,7 +51,7 @@
                                         To:
                                     </label>
                                     <div class="col-lg-6">     
-										<input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus>
+										<input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to">
                                     </div>
                             </div>
                             <div class="form-group m-form__group row">
@@ -67,7 +67,7 @@
                                             Reason:
                                     </label>
                                     <div class="col-lg-6">   
-										<textarea class="form-control" name="reason" rows="2" cols="80" required autocomplete="reason" autofocus>{{$leave->reason}}</textarea>
+										<textarea class="form-control" name="reason" rows="2" cols="80" required autocomplete="reason">{{$leave->reason}}</textarea>
                                     </div>
                             </div> 
 

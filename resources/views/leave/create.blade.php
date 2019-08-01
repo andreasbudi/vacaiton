@@ -24,7 +24,6 @@
                             </span>
                         </a>
                     </li>
-                    
                 </ul>
                 
             </div>
@@ -542,6 +541,7 @@
 {{--For user leave available is zero--}}
 
         @elseif (Auth::user()->isActivated == '1')
+        {{--For user active and leave available > 0--}}
    
     <div class="row">
         <div class="col-xl-6">
@@ -576,12 +576,12 @@
                                 @csrf
                                 <div class="col-md-12">
                                     <strong>From :</strong>
-                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus>
+                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from">
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>To :</strong>
-                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus> 
+                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to"> 
                                 </div>
                                 <br>
                                 <div class="col-md-12">
@@ -591,7 +591,7 @@
                                 <br>
                                 <div class="col-md-12">
                                     <strong>Reason :</strong>
-                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus></textarea>
+                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason"></textarea>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
