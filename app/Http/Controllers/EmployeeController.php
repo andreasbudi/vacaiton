@@ -85,13 +85,9 @@ class EmployeeController extends Controller
 
         $data = array(
             'name'              => $request->name,
-            'email'             => $request->email,
-            'password'          => $request->password,
-            'department'        => $request->department,
-            'leaves_available'  => $request->leaves_available,
         );
 
-        // Mail::to($request->email)->send(new SendAddEmployee($data));
+         Mail::to($request->email)->send(new SendAddEmployee($data));
 
         toastr()->success('Employee added successfully','', [ 
             "closeButton"       => true,
