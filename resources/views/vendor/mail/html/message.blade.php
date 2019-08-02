@@ -1,5 +1,3 @@
-
-
 @component('mail::layout')
     {{-- Header --}}
     @slot('header')
@@ -9,20 +7,7 @@
     @endslot
 
     {{-- Body --}}
-    Your Leave Request detail :
-
-    Date          : From {{ $dataClient['from']}} to {{ $dataClient['to']}}
-
-    Duration      : {{ $dataClient['duration']}} days
-
-    Reason        : {{ $dataClient['reason']}}
-
-    Status        : Waiting for approval
-    
-    Leave balance : {{ $dataClient['leaves_available']}} days
-    
-    You can edit or cancel your request by clicking the link below
-    http://localhost:8000/home
+    {{ $slot }}
 
     {{-- Subcopy --}}
     @isset($subcopy)

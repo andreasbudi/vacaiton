@@ -83,11 +83,11 @@
                             <th style="width:15%;">Name</th>
                             <th style="width:10%;">From</th>
                             <th style="width:10%;">To</th>
-                            <th style="width:10%;">Duration</th>
-                            <th style="width:20%;">Reason</th>
+                            <th style="width:5%;">Duration</th>
+                            <th style="width:15%;">Reason</th>
                             <th style="width:15%;">Status</th>
                             <th style="width:10%;">Approver</th>
-                            <th style="width:20%;">Message</th>
+                            <th style="width:15%;">Message</th>
                         </tr>
                         </thead>
                     </table>
@@ -145,11 +145,11 @@
                             <th style="width:15%;">Name</th>
                             <th style="width:10%;">From</th>
                             <th style="width:10%;">To</th>
-                            <th style="width:10%;">Duration</th>
-                            <th style="width:20%;">Reason</th>
+                            <th style="width:5%;">Duration</th>
+                            <th style="width:15%;">Reason</th>
                             <th style="width:15%;">Status</th>
                             <th style="width:10%;">Approver</th>
-                            <th style="width:20%;">Message</th>
+                            <th style="width:15%;">Message</th>
                         </tr>
                         </thead>
                     </table>

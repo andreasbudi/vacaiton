@@ -155,7 +155,7 @@ class LeaveController extends Controller
         $spv_email = $spv->email;
         if (Auth::user()->role_id == 1) {
             // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-            Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
+            // Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
         }
 
         toastr()->success('New leave created successfully','', [ 

@@ -30,6 +30,8 @@ class SendAddEmployee extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Welcome Abroad')->view('email_addEmployee')->with('data',$this->data);
+        return $this->from('difinite2255@gmail.com')->subject('Welcome Abroad')->markdown('email_addEmployee')->with('data',$this->data);
     }
+
+    
 }

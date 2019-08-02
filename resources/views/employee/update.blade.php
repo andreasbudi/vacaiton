@@ -99,9 +99,17 @@
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                     </label>
+                                @if($employee->isActivated == 1)
                                 <div class="col-lg-6">
                                     <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
                                 </div>
+                                @elseif($employee->isActivated == 0)
+                                <div class="col-lg-6">
+                                <span class="m-form__help">
+                                    Submit will make this account active.
+                                </span>
+                                </div>
+                                @endif
                             </div>
                             {{-- sebagai admin edit spv --}}
                             @elseif (Auth::user()->role_id == '4' && $employee->role_id == 2)
@@ -163,10 +171,18 @@
                             <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                         </label>
-                                    <div class="col-lg-6">
-                                        <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
-                                    </div>
-                                </div>
+                                        @if($employee->isActivated == 1)
+                                        <div class="col-lg-6">
+                                            <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
+                                        </div>
+                                        @elseif($employee->isActivated == 0)
+                                        <div class="col-lg-6">
+                                        <span class="m-form__help">
+                                            Submit will make this account active.
+                                        </span>
+                                        </div>
+                                        @endif
+                            </div>
                             {{-- sebagai admin edit manager --}}
                             @elseif (Auth::user()->role_id == '4' && $employee->role_id == 3)
                             <div class="form-group m-form__group row">
@@ -220,9 +236,17 @@
                                 <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                         </label>
+                                        @if($employee->isActivated == 1)
                                         <div class="col-lg-6">
-                                        <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
+                                            <a href="{{route('employee.destroy',$employee->id)}}" style="color:red;">Deactivate this account ?</a>
                                         </div>
+                                        @elseif($employee->isActivated == 0)
+                                        <div class="col-lg-6">
+                                        <span class="m-form__help">
+                                            Submit will make this account active.
+                                        </span>
+                                        </div>
+                                        @endif
                                 </div>
                             {{-- sebagai staff,spv,manager buka my profile --}}
                            @else

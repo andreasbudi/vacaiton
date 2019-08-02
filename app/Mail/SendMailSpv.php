@@ -31,6 +31,6 @@ class SendMailSpv extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Leave Request - '. Auth::user()->name)->view('dynamic_email_spv')->with('dataSpv',$this->dataSpv);
+        return $this->from('difinite2255@gmail.com')->subject('Leave Request - '. Auth::user()->name)->markdown('dynamic_email_spv')->with('dataSpv',$this->dataSpv);
     }
 }

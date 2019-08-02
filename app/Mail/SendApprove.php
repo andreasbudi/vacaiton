@@ -30,6 +30,6 @@ class SendApprove extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Leave Request has been approved')->view('email_approve')->with('data',$this->data);
+        return $this->from('difinite2255@gmail.com')->subject('Leave Request has been approved')->markdown('email_approve')->with('data',$this->data);
     }
 }

@@ -68,15 +68,13 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'email' => 'required'
         ]);
 
         $employeeData = new User();
         $employeeData->name = $request->name;
         $employeeData->department = $request->department;
         $employeeData->email = $request->email;
-        $employeeData->password = Hash::make($request->password);
         $employeeData->leaves_available = $request->leaves_available;
         $employeeData->isActivated = '1';
         $employeeData['role_id'] = $request->role_id;
@@ -87,7 +85,7 @@ class EmployeeController extends Controller
             'name'              => $request->name,
         );
 
-         Mail::to($request->email)->send(new SendAddEmployee($data));
+        //  Mail::to($request->email)->send(new SendAddEmployee($data));
 
         toastr()->success('Employee added successfully','', [ 
             "closeButton"       => true,
@@ -168,6 +166,7 @@ class EmployeeController extends Controller
             $employee->department = $request->get('department');
             $employee->email = $request->get('email');
             $employee->leaves_available = $request->get('leaves_available');
+            $employee->isActivated = 1;
             $employee['role_id'] = $request->get('role_id');
             $employee['manager_id'] = $request->get('manager_id');
             $employee->save();
@@ -199,6 +198,7 @@ class EmployeeController extends Controller
             $employee->department = $request->get('department');
             $employee->email = $request->get('email');
             $employee->leaves_available = $request->get('leaves_available');
+            $employee->isActivated = 1;
             $employee['role_id'] = $request->get('role_id');
             $employee->save();
             toastr()->success('Employee updated successfully','', [ 
@@ -229,6 +229,7 @@ class EmployeeController extends Controller
             $employee->department = $request->get('department');
             $employee->email = $request->get('email');
             $employee['role_id'] = $request->get('role_id');
+            $employee->isActivated = 1;
             $employee->save();
             toastr()->success('Employee updated successfully','', [ 
                 "closeButton"       => true,

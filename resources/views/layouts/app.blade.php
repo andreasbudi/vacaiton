@@ -54,6 +54,16 @@
 	meter[value="4"]::-moz-meter-bar { background: green; }
 	.fc-sun { color:red; }
 	.fc-sat { color:red;  }
+	.dataTable > thead > tr > th[class*="sort"]:after{
+    content: "" !important;
+	}
+	.dataTable > thead > tr > th[class*="sort"]:before{
+    content: "" !important;
+	}
+
+	table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
+		padding-right: inherit;
+	}
 	</style>
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

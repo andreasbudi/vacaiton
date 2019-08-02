@@ -31,6 +31,6 @@ class SendMailClient extends Mailable
      */
     public function build()
     {
-        return $this->from('difinite2255@gmail.com')->subject('Leave Request - '. Auth::user()->name)->view('dynamic_email_client')->with('dataClient',$this->dataClient);
+        return $this->from('difinite2255@gmail.com')->subject('Leave Request - '. Auth::user()->name)->markdown('dynamic_email_client')->with('dataClient',$this->dataClient);
     }
 }

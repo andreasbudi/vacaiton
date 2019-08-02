@@ -80,43 +80,6 @@
                             </div>
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                        Password:
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  onkeyup='check();' value="{{ old('password') }}" required autocomplete="password">
-
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
-                                        Confirm Password:
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input id="password_confirm" type="password" class="form-control" name="password_confirm" required autocomplete="new-password"  onkeyup='check();'>
-                                        <span class="m-form__help" id='message'></span>
-                                    </div>
-                            </div>
-                            {{-- snippet cek matching password --}}
-                            <script>
-                            var check = function() {
-                            if (document.getElementById('password').value ==
-                                document.getElementById('password_confirm').value) {
-                                document.getElementById('message').style.color = 'green';
-                                document.getElementById('message').innerHTML = 'Matching';
-                            } else {
-                                document.getElementById('message').style.color = 'red';
-                                document.getElementById('message').innerHTML = 'Not matching';
-                            }
-                            }
-                            </script>
-                            {{-- snippet cek matching password --}}
-                            <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
                                         Department:
                                     </label>
                                     <div class="col-lg-6">
