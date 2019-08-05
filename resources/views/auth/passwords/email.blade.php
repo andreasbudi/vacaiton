@@ -47,20 +47,22 @@
 								</h3>
                             </div>
                             
-                            @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                            @endif
+                            
+							
 
 							<form class="m-login__form m-form" method="POST" action="{{ route('password.email') }}">
 								@csrf
+								@if (session('status'))
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+								{{ session('status') }}
+							</div>
+							@endif
 								<div class="form-group m-form__group">
 									<input id="email" class="form-control m-input @error('email') is-invalid @enderror"   type="text" placeholder="Email" name="email" style="text-align: center;" autocomplete="off" value="{{ old('email') }}" required autocomplete="email" autofocus>
 									
 									@error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <br><center><strong>{{ $message }}</strong></center>
                                     </span>
                                		@enderror									
 								</div>
