@@ -61,22 +61,22 @@
                             <form>
                                 <div class="col-md-12">
                                     <strong>From :</strong>
-                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
+                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required disabled>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>To :</strong>
-                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
+                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" disabled> 
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>Duration :</strong>
-                                    <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
+                                    <input type="text" name="duration" id="total" class="form-control" disabled>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>Reason :</strong>
-                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
+                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" disabled></textarea>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
@@ -118,7 +118,7 @@
     </div>
 
 @push('scripts')
-{{-- For For the Event and Leave Record --}}
+{{-- For show the Event and Leave Record --}}
 <script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
@@ -246,7 +246,7 @@
                     className: "m-fc-event--danger m-fc-event--solid-light"
                 }
 
-                // from DB    
+                // show leave employee from DB     
 
                 @foreach($leaves as $leave)
                     ,{
@@ -316,22 +316,22 @@
                             <form>
                                 <div class="col-md-12">
                                     <strong>From :</strong>
-                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" required autocomplete="from" autofocus disabled>
+                                    <input type="text" name="from" id="from-date" class="form-control" autocomplete="off" placeholder="Select start date" disabled>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>To :</strong>
-                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" required autocomplete="to" autofocus disabled> 
+                                   <input type="text" name="to" id="to-date" class="form-control" autocomplete="off" placeholder="Select end date" disabled> 
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>Duration :</strong>
-                                    <input type="text" name="duration" id="total" class="form-control" readonly="readonly" disabled>
+                                    <input type="text" name="duration" id="total" class="form-control" disabled>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
                                     <strong>Reason :</strong>
-                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason" autofocus disabled></textarea>
+                                    <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" disabled></textarea>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
@@ -373,7 +373,7 @@
     </div>
 
 @push('scripts')
-{{-- For For the Event and Leave Record --}}
+{{-- For show the Event and Leave Record --}}
 <script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
@@ -501,7 +501,7 @@
                     className: "m-fc-event--danger m-fc-event--solid-light"
                 }
 
-                // from DB    
+                // show leave employee from DB     
 
                 @foreach($leaves as $leave)
                     ,{
@@ -638,7 +638,7 @@
 @endsection
 
 @push('scripts')
-{{-- For For the Event and Leave Record --}}
+{{-- For show the Event and Leave Record --}}
 <script>                     
     var CalendarExternalEvents = function() {
         var t = function() {
@@ -764,9 +764,80 @@
                     start:  "2019-12-25",
                     description: "Christmas Day",
                     className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "New Year's Day",
+                    start:  "2020-01-01",
+                    description: "New Year's Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Chinese New Year",
+                    start:  "2020-02-25",
+                    description: "Chinese New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Bali Hindu New Year",
+                    start:  "2020-03-25",
+                    description: "Bali Hindu New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Isra Mi'raj",
+                    start:  "2020-03-22",
+                    description: "Isra Mi'raj",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Good Friday",
+                    start:  "2020-04-10",
+                    description: "Good Friday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Labour Day",
+                    start:  "2020-05-01",
+                    description: "Labour Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Waisak Day",
+                    start:  "2020-05-07",
+                    description: "Waisak Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Ascension Day of Jesus Christ",
+                    start:  "2020-05-21",
+                    description: "Ascension Day of Jesus Christ",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Pancasila Day",
+                    start:  "2020-06-01",
+                    description: "Pancasila Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2020-05-22",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Hari Raya Idul Fitri",
+                    start:  "2020-05-24",
+                    end: "2020-05-26",
+                    description: "Hari Raya Idul Fitri",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2020-05-26",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Idul Adha",
+                    start:  "2020-07-31",
+                    description: "Idul Adha",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Independence Day",
+                    start:  "2020-08-17",
+                    description: "Independence Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 }
 
-                // from DB    
+                // show leave employee from DB    
 
                 @foreach($leaves as $leave)
                     ,{
@@ -803,7 +874,7 @@
     });
 </script>
 
-    {{-- For from calender datepicker --}}
+    {{-- For calculate duration for calender datepicker --}}
     <script>
         $(function() {
         // create from date
@@ -814,6 +885,7 @@
             todayHighlight:'TRUE',
             autoclose: true,
             daysOfWeekDisabled: [0,6],
+            datesDisabled: ['07-08-2019'],
         }).on('changeDate', function(ev) {
             ConfigureToDate();
         });
@@ -826,6 +898,7 @@
             todayHighlight:'TRUE',
             autoclose: true,
             daysOfWeekDisabled: [0,6],
+            datesDisabled: ['07-08-2019'],
         }).on('changeDate', function(ev) {
             var fromDate = $('#from-date').data('datepicker').dates[0];
             $('#total').val(getBusinessDatesCount(fromDate, ev.date));
@@ -838,6 +911,7 @@
         function ConfigureToDate() {
             $('#to-date').val("").datepicker("update");
             $('#to-date').datepicker('setStartDate', $('#from-date').val());
+            $('#total').val("").datepicker("update");
         }
         });
 
@@ -846,6 +920,7 @@
         var curDate = new Date(startDate);
         while (curDate <= endDate) {
             var dayOfWeek = curDate.getDay();
+            
             if (!((dayOfWeek == 6) || (dayOfWeek == 0)))
             count++;
             curDate.setDate(curDate.getDate() + 1);

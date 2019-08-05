@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <!-- BEGIN: Subheader -->
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
@@ -11,45 +12,55 @@
         </div>
     </div>
     <!-- END: Subheader -->
+
     <div class="m-content">
-        {{-- jika tidak aktif tampilkan alert --}}
+        {{-- jika akun tidak aktif menampilkan alert --}}
         @if (Auth::user()->isActivated == '0')
-        <script>
-            alert("Your account is deactivated. Please contact administrator");
-        </script>
+            <script>
+                alert("Your account is deactivated. Please contact administrator");
+            </script>
         @endif
 
         {{-- tampilan manager --}}
         @if (Auth::user()->role_id == 3)
         <div class="row">
             <div class="col-lg-9">
+
                 <!--begin::Portlet-->
                 <div class="m-portlet" id="m_portlet">
                     <div class="m-portlet__head">
+
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon">
                                     <i class="flaticon-calendar-2"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Calendar of Event
+                                    Calendar
                                 </h3>
                             </div>
                         </div>
+
                         <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
-                            </ul>
+                            <ul class="m-portlet__nav"></ul>
                         </div>
+                        
                     </div>
+
                     <div class="m-portlet__body">
                         <div id="m_calendar"></div>
                     </div>
+
                 </div>
                 <!--end::Portlet-->
-            </div>
+
+            </div> {{--end div class="col-lg-9"--}}
+
             <div class="col-lg-3">
+
                 <!--begin::Portlet-->
                 <div class="m-portlet" id="m_portlet">
+
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
@@ -62,6 +73,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="m-portlet__body" style="height:660px;">
                         <div class="fc-unthemed">
                             @foreach ($leaves as $leave)
@@ -81,12 +93,15 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
                 <!--end::Portlet-->
-            </div>
-        </div>
+
+            </div> {{--end div class="col-lg-3"--}}
+        </div> {{--end div class="row"--}}
 
         <div class="m-portlet m-portlet--mobile">
+
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
@@ -117,7 +132,7 @@
                             <th>Reason</th>
                             <th style="width:15%;">Action</th>
                         </tr>
-                    </thead>
+                        </thead>
                     </table>
                     @if (Auth::user()->isActivated == '1')
                         @push('scripts')
@@ -147,7 +162,8 @@
                 <!--end: Datatable -->
             </div>
         </div>
-    </div>
+    </div> {{-- end div class="m-content" --}}
+
     {{-- tampilan spv --}}
     @elseif(Auth::user()->role_id == 2)
     <div class="m-portlet m-portlet--mobile">
@@ -181,7 +197,7 @@
                         <th>Reason</th>
                         <th style="width:15%;">Action</th>
                     </tr>
-                </thead>
+                    </thead>
                 </table>
                 @if (Auth::user()->isActivated == '1')
                     @push('scripts')
@@ -213,6 +229,7 @@
     </div>
     @endif
 @endsection
+
 @push('scripts')
 {{-- For For the Event and Leave Record --}}
 <script>                     
@@ -248,7 +265,7 @@
                     navLinks: !0,
                     height: 600,
                     events: [
-                        {
+                {{--Year 2019--}}{
                     title: "New Year's Day",
                     start:  "2019-01-01",
                     description: "New Year's Day",
@@ -340,9 +357,100 @@
                     start:  "2019-12-25",
                     description: "Christmas Day",
                     className: "m-fc-event--danger m-fc-event--solid-light"
+                },{{--Year 2020--}}{
+                    title: "New Year's Day",
+                    start:  "2020-01-01",
+                    description: "New Year's Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Chinese New Year",
+                    start:  "2020-02-25",
+                    description: "Chinese New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Bali Hindu New Year",
+                    start:  "2020-03-25",
+                    description: "Bali Hindu New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Isra Mi'raj",
+                    start:  "2020-03-22",
+                    description: "Isra Mi'raj",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Good Friday",
+                    start:  "2020-04-10",
+                    description: "Good Friday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Labour Day",
+                    start:  "2020-05-01",
+                    description: "Labour Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Waisak Day",
+                    start:  "2020-05-07",
+                    description: "Waisak Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Ascension Day of Jesus Christ",
+                    start:  "2020-05-21",
+                    description: "Ascension Day of Jesus Christ",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Pancasila Day",
+                    start:  "2020-06-01",
+                    description: "Pancasila Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2020-05-22",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Hari Raya Idul Fitri",
+                    start:  "2020-05-24",
+                    end: "2020-05-26",
+                    description: "Hari Raya Idul Fitri",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Lebaran Holiday",
+                    start:  "2020-05-26",
+                    description: "Lebaran Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Idul Adha",
+                    start:  "2020-07-31",
+                    description: "Idul Adha",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Independence Day",
+                    start:  "2020-08-17",
+                    description: "Independence Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Islamic New Year",
+                    start:  "2020-08-20",
+                    description: "Islamic New Year",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Prophet Muhammad's Birthday",
+                    start:  "2020-10-29",
+                    description: "Prophet Muhammad's Birthday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Christmas Holiday",
+                    start:  "2020-12-24",
+                    description: "Christmas Holiday",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
+                },{
+                    title: "Christmas Day",
+                    start:  "2020-12-25",
+                    description: "Christmas Day",
+                    className: "m-fc-event--danger m-fc-event--solid-light"
                 }
 
-                // from DB    
+                // show leave employee from DB     
 
                 @foreach($leaves as $leave)
                     ,{

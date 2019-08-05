@@ -135,6 +135,7 @@
         function ConfigureToDate() {
             $('#to-date').val("").datepicker("update");
             $('#to-date').datepicker('setStartDate', $('#from-date').val());
+             $('#total').val("").datepicker("update");
         }
         });
 
