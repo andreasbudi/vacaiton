@@ -316,6 +316,7 @@
                                     Edit your password?
                                 </h4>
                             </div>
+                            <br>
                             <div class="form-group m-form__group row">
                                 <label class="col-lg-2 col-form-label">
                                     New Password:
@@ -329,8 +330,8 @@
                                             </span>
                                     @enderror
                                    {{-- snippet password strength checker --}}
-                                    <meter max="4" id="password-strength-meter"></meter>
-                                    <p class="m-form__help" id="password-strength-text"></p>
+                                    <meter max="4" id="password-strength-meter" style="visibility: hidden;"></meter>
+                                    <span class="m-form__help" id="password-strength-text"></span>
                                     <script>
                                     var strength = {
                                     0: "Worst ☹",
@@ -367,6 +368,7 @@
                                 </label>
                                 <div class="col-lg-6">
                                     <input id="password_confirm" type="password" class="form-control" name="password_confirm" required autocomplete="new-password"  onkeyup='check();'>
+                                    <br>
                                     <span class="m-form__help" id='message'></span>
                                 </div>
                             </div>
