@@ -205,7 +205,7 @@ class LeaveController extends Controller
             'nameSpv' => $username,
         );
 
-        Mail::to($spv->email)->send(new SendCancel($dataClient));
+        // Mail::to($spv->email)->send(new SendCancel($dataClient));
 
         toastr()->success('Leave canceled successfully','', [ 
             "closeButton"       => true,
