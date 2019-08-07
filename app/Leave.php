@@ -30,5 +30,5 @@ class Leave extends Model
 
     
 
-    protected $fillable = ['from', 'to', 'duration', 'reason', 'status', 'user_id','role_id', 'manager_id' ];
+    protected $fillable = ['from', 'to', 'duration', 'reason', 'status', 'user_id','role_id', 'manager_id','leave_type' ];
 }

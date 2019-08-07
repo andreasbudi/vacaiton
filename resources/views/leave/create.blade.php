@@ -33,7 +33,7 @@
 
 <div class="m-content">
 
-        @if (Auth::user()->isActivated == '0')
+        @if (Auth::user()->isActivated == '0' && Auth::user()->leaves_available > 0)
         {{--For user account is deactivated--}}
         <script>
             alert("Your account is deactivated. Please contact administrator");
@@ -47,7 +47,7 @@
                 <div class="m-portlet__head" style="text-align:right;">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
+                            <h3 class="m-portlet__head-text m--font-brand">
                                 <span style="color:#A0A0A0;">Apply Leave
                             </h3>
                         </div>
@@ -75,6 +75,13 @@
                                 </div>
                                 <br>
                                 <div class="col-md-12">
+                                    <strong>Leave type :</strong>
+                                    <select name="leave_type" id="leave_type" class="form-control" required autocomplete="leave_type" disabled>
+                                            <option value="Annual Leave">Annual Leave</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
                                     <strong>Reason :</strong>
                                     <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" disabled></textarea>
                                 </div>
@@ -99,7 +106,10 @@
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
+                                    <span class="m-portlet__head-icon">
+                                            <i class="flaticon-calendar-2"></i>
+                                    </span>
+                                    <h3 class="m-portlet__head-text m--font-brand">
                                         Calendar of Events
                                     </h3>
                                 </div>
@@ -252,7 +262,7 @@
                     ,{
                     title: "{{$leave->users->name}}",
                     start:  "{{$leave->from}}",
-                    end: "{{$leave->to}}",
+                    end: "{{$leave->to}}T23:59:00",
                     description: "{{$leave->reason}}",
                     className: "m-fc-event--light m-fc-event--solid-success"
                     }
@@ -302,7 +312,7 @@
                 <div class="m-portlet__head" style="text-align:right;">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
+                            <h3 class="m-portlet__head-text m--font-brand">
                                 <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
                             </h3>
                         </div>
@@ -330,6 +340,13 @@
                                 </div>
                                 <br>
                                 <div class="col-md-12">
+                                    <strong>Leave type :</strong>
+                                    <select name="leave_type" id="leave_type" class="form-control" required autocomplete="leave_type" disabled>
+                                            <option value="Annual Leave">Annual Leave</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
                                     <strong>Reason :</strong>
                                     <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" disabled></textarea>
                                 </div>
@@ -354,7 +371,10 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
+                            <span class="m-portlet__head-icon">
+                                    <i class="flaticon-calendar-2"></i>
+                            </span> 
+                            <h3 class="m-portlet__head-text m--font-brand">
                                 Calendar of Events
                             </h3>
                         </div>
@@ -507,7 +527,7 @@
                     ,{
                     title: "{{$leave->users->name}}",
                     start:  "{{$leave->from}}",
-                    end: "{{$leave->to}}",
+                    end: "{{$leave->to}}T23:59:00",
                     description: "{{$leave->reason}}",
                     className: "m-fc-event--light m-fc-event--solid-success"
                     }
@@ -551,7 +571,7 @@
                 <div class="m-portlet__head" style="text-align:right;">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
+                            <h3 class="m-portlet__head-text m--font-brand">
                                 <span style="color:#A0A0A0;">Remaining leave </span> {{ (Auth::user()->leaves_available) }} days
                             </h3>
                         </div>
@@ -590,6 +610,13 @@
                                 </div>
                                 <br>
                                 <div class="col-md-12">
+                                    <strong>Leave type :</strong>
+                                    <select name="leave_type" id="leave_type" class="form-control" required autocomplete="leave_type">
+                                            <option value="Annual Leave">Annual Leave</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
                                     <strong>Reason :</strong>
                                     <textarea class="form-control" name="reason" rows="2" cols="80" placeholder="Write your leave reason" required autocomplete="reason"></textarea>
                                 </div>
@@ -614,7 +641,10 @@
                  <div class="m-portlet__head">
                      <div class="m-portlet__head-caption">
                          <div class="m-portlet__head-title">
-                             <h3 class="m-portlet__head-text">
+                            <span class="m-portlet__head-icon">
+                                    <i class="flaticon-calendar-2"></i>
+                            </span>
+                             <h3 class="m-portlet__head-text m--font-brand">
                                  Calendar of Events
                              </h3>
                          </div>
@@ -843,7 +873,7 @@
                     ,{
                     title: "{{$leave->users->name}}",
                     start:  "{{$leave->from}}",
-                    end: "{{$leave->to}}",
+                    end: "{{$leave->to}}T23:59:00",
                     description: "{{$leave->reason}}",
                     className: "m-fc-event--light m-fc-event--solid-success"
                     }

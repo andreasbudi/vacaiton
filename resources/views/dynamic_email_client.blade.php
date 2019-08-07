@@ -15,6 +15,8 @@
 
     Duration      : {{ $dataClient['duration']}} days
 
+    Leave Type    : {{ $dataClient['leave_type']}}
+
     Reason        : {{ $dataClient['reason']}}
 
     Status        : Waiting for approval

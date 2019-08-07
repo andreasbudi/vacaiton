@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMailClient;
 use App\Mail\SendMailSpv;
+use App\Mail\SendCancel;
 use App\Leave;
 use App\User;
 use App\Supervisor;
@@ -18,7 +19,7 @@ class LeaveController extends Controller
         public function json(){
         //query leave history sendiri
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
+                ->select(['leaves.id','users.name','leaves.leave_type','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
                 ->where('user_id', '=', Auth::user()->id)
                 ->orderBy('leaves.updated_at');
         return Datatables::of($leaves)->addIndexColumn()
@@ -58,7 +59,7 @@ class LeaveController extends Controller
         public function jsonTeamSpv(){
         // spv query team leaves
         $leaves = DB::table('leaves')->join('users', 'leaves.user_id', '=', 'users.id')
-                ->select(['leaves.id','users.name','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
+                ->select(['leaves.id','users.name','leaves.leave_type','leaves.from','leaves.to','leaves.duration','leaves.reason','leaves.status','leaves.manager_id','leaves.role_id','leaves.reject_message','leaves.responded_by','leaves.updated_at'])
                 ->where('leaves.manager_id', Auth::user()->manager_id)
                 ->where('leaves.role_id',1)
                 ->orderBy('leaves.updated_at');
@@ -125,6 +126,7 @@ class LeaveController extends Controller
         $leaveData->to = \Carbon\Carbon::parse($request->to)->format('y-m-d');
         $leaveData->duration = $request->duration;
         $leaveData->reason = $request->reason;
+        $leaveData->leave_type = $request->leave_type;
         $leaveData['user_id'] = Auth::user()->id;
         $leaveData['role_id'] = Auth::user()->role_id;
         $leaveData['manager_id'] = Auth::user()->manager_id;
@@ -138,6 +140,7 @@ class LeaveController extends Controller
             'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
             'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
             'duration' => $request->duration,
+            'leave_type' => $request->leave_type,
             'reason' => $request->reason,
             'leaves_available' => $user->leaves_available,
         );
@@ -192,6 +195,18 @@ class LeaveController extends Controller
         $user = User::find(Auth::user()->id);
         $user->leaves_available = Auth::user()->leaves_available + $leave->duration;
         $user->save();
+
+        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
+        $username = $spv->name_supervisor;
+        $dataClient = array(
+            'from' => \Carbon\Carbon::parse($user->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($user->to)->format('d F Y'),
+            'name' => $user->name,
+            'nameSpv' => $username,
+        );
+
+        Mail::to($spv->email)->send(new SendCancel($dataClient));
+
         toastr()->success('Leave canceled successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,
@@ -247,6 +262,7 @@ class LeaveController extends Controller
         $leave->from = \Carbon\Carbon::parse($request->from)->format('y-m-d');
         $leave->to = \Carbon\Carbon::parse($request->to)->format('y-m-d');
         $leave->duration = $request->get('duration');
+        $leave->leave_type = $request->get('leave_type');
         $leave->reason = $request->get('reason');
         $leave->save();
 

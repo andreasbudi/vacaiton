@@ -61,12 +61,14 @@
 @endif
 
     <div class="m-content">
-
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">
+                            <span class="m-portlet__head-icon">
+                                    <i class="flaticon-user"></i>
+                            </span> 
+                        <h3 class="m-portlet__head-text m--font-brand">
                             Your Leave History 
                         </h3>                      
                     </div>
@@ -79,11 +81,12 @@
                     <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_data" style="width:100%;">
                         <thead>
                         <tr>
-                            <th style="width:5%;"><b>No.</b></th>
-                            <th style="width:15%;">Name</th>
+                            <th style="width:1%;"><b>No.</b></th>
+                            <th style="width:10%;">Name</th>
+                            <th style="width:9%;">Leave Type</th>
                             <th style="width:10%;">From</th>
                             <th style="width:10%;">To</th>
-                            <th style="width:5%;">Duration</th>
+                            <th style="width:1%;">Duration</th>
                             <th style="width:15%;">Reason</th>
                             <th style="width:15%;">Status</th>
                             <th style="width:10%;">Approver</th>
@@ -100,10 +103,11 @@
                             serverSide: true,
                             ajax: 'leave/json',
                             dom: '<"top"f>rt<"bottom"lip><"clear">',
-                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
+                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:4, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
                             columns: [
                                  { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                  { data: 'name', name: 'users.name' },
+                                 { data: 'leave_type', name: 'leave_type' },
                                  { data: 'from', name: 'from' },
                                  { data: 'to', name: 'to' },
                                  { data: 'duration', name: 'duration'},
@@ -127,8 +131,11 @@
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title"> 
-                        <h3 class="m-portlet__head-text">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                                <i class="flaticon-users"></i>
+                        </span> 
+                        <h3 class="m-portlet__head-text m--font-brand">
                             Your Team History
                         </h3>                       
                     </div>
@@ -141,11 +148,12 @@
                     <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand table-hover" id="ajax_dataTeamSpv" style="width:100%;">
                         <thead>
                         <tr>
-                            <th style="width:5%;"><b>No.</b></th>
-                            <th style="width:15%;">Name</th>
+                            <th style="width:1%;"><b>No.</b></th>
+                            <th style="width:10%;">Name</th>
+                            <th style="width:9%;">Leave Type</th>
                             <th style="width:10%;">From</th>
                             <th style="width:10%;">To</th>
-                            <th style="width:5%;">Duration</th>
+                            <th style="width:1%;">Duration</th>
                             <th style="width:15%;">Reason</th>
                             <th style="width:15%;">Status</th>
                             <th style="width:10%;">Approver</th>
@@ -162,10 +170,11 @@
                             serverSide: true,
                             ajax: 'leave/jsonTeamSpv',
                             dom: '<"top"f>rt<"bottom"lip><"clear">',
-                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
+                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:4, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
                             columns: [
                                  { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                  { data: 'name', name: 'users.name' },
+                                 { data: 'leave_type', name: 'leave_type' },
                                  { data: 'from', name: 'from' },
                                  { data: 'to', name: 'to' },
                                  { data: 'duration', name: 'duration'},

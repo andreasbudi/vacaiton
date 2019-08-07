@@ -64,6 +64,16 @@
                             </div>
                             <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
+                                        Leave Type:
+                                    </label>
+                                    <div class="col-lg-6">
+										<select name="leave_type" id="leave_type" class="form-control" required autocomplete="leave_type">
+                                            <option value="Annual Leave">Annual Leave</option>
+                                    </select> 
+                                    </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
                                             Reason:
                                     </label>
                                     <div class="col-lg-6">   

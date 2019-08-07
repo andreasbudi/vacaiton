@@ -7,11 +7,9 @@
     @endslot
 
     {{-- Body --}}
-    Dear {{ $dataSpv['nameSpv']}},
+    Dear {{ $dataClient['nameSpv']}},
     
-    Leave Request has been submitted by {{ $dataSpv['name']}} for your approval,
-    please click the link below to approve or decline.
-    http://localhost:8000  
+    Leave Request has been canceled by {{ $dataClient['name']}} from {{ $dataClient['from']}} to {{ $dataClient['to']}}.
 
     {{-- Subcopy --}}
     @isset($subcopy)

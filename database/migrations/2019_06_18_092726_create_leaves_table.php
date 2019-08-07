@@ -21,6 +21,7 @@ class CreateLeavesTable extends Migration
             $table->string('reason');
             $table->string('reject_message');
             $table->string('responded_by');
+            $table->string('leave_type');
             $table->integer('status')->default('1')->unsigned();
             $table->integer('user_id')->nullable()->unsigned();
             $table->integer('role_id')->nullable()->unsigned();

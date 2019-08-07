@@ -65,7 +65,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon">
-                                    <i class="flaticon-add"></i>
+                                    <i class="flaticon-paper-plane"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
                                     Leave Summary
@@ -94,7 +94,7 @@
                             @empty
                                 <div class="fc-title">
                                     <div class="fc-content" style="margin-top:7px;">
-                                        <p style="font-size:15px; text-align:center; font-style:italic;">No one took leave..</p> 
+                                        <p style="font-size:15px; text-align:center; font-style:italic;">No data available..</p> 
                                     </div>
                                 </div>
                             @endforelse
@@ -108,10 +108,12 @@
         </div> {{--end div class="row"--}}
 
         <div class="m-portlet m-portlet--mobile">
-
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                                <i class="flaticon-time-3"></i>
+                        </span>
                         <h3 class="m-portlet__head-text">
                             Waiting for Approval
                         </h3>
@@ -133,6 +135,7 @@
                         <tr>
                             <th><b>No.</b></th>
                             <th>Name</th>
+                            <th>Leave Type</th>
                             <th>From</th>
                             <th>To</th>
                             <th>Duration</th>
@@ -150,10 +153,11 @@
                                 serverSide: true,
                                 ajax: 'home/json',
                                 dom: '<"top"f>rt<"bottom"lip><"clear">',
-                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
+                                columnDefs: [{"className": "text-center", "targets": "_all"},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:4, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
                                 columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                     { data: 'name', name: 'users.name' },
+                                    { data: 'leave_type', name: 'leave_type' },
                                     { data: 'from', name: 'from' },
                                     { data: 'to', name: 'to' },
                                     { data: 'duration', name: 'duration' },
@@ -177,7 +181,10 @@
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
+                    <span class="m-portlet__head-icon">
+                            <i class="flaticon-time-3"></i>
+                    </span>
+                    <h3 class="m-portlet__head-text m--font-brand">
                             Waiting for Approval
                     </h3>
                 </div>
@@ -198,6 +205,7 @@
                     <tr>
                         <th><b>No.</b></th>
                         <th>Name</th>
+                        <th>Leave Type</th>
                         <th>From</th>
                         <th>To</th>
                         <th>Duration</th>
@@ -215,10 +223,11 @@
                             serverSide: true,
                             ajax: 'home/json',
                             dom: '<"top"f>rt<"bottom"lip><"clear">',
-                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:2, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
+                            columnDefs: [{"className": "text-center", "targets": "_all"},{targets:3, render:function(data){return moment(data).format('D MMMM YYYY'); }},{targets:4, render:function(data){return moment(data).format('D MMMM YYYY'); }}],
                             columns: [
                                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                                 { data: 'name', name: 'users.name' },
+                                { data: 'leave_type', name: 'leave_type' },
                                 { data: 'from', name: 'from'},
                                 { data: 'to', name: 'to' },
                                 { data: 'duration', name: 'duration' },
