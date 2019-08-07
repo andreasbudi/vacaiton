@@ -35,10 +35,10 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <span class="m-portlet__head-icon m--hide">
-                                <i class="la la-gear"></i>
+                            <span class="m-portlet__head-icon">
+                                <i class="m-menu__link-icon la la-user-plus"></i>
                             </span>
-                            <h3 class="m-portlet__head-text">
+                            <h3 class="m-portlet__head-text m--font-brand">
                                    Employee Form
                                 </h3>
                         </div>

@@ -19,7 +19,10 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
+                            <span class="m-portlet__head-icon">
+                                <i class="flaticon-users"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text m--font-brand">
                                 Employee Management 
                             </h3>
                         </div>

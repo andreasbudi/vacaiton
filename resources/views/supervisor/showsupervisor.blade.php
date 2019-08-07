@@ -43,7 +43,10 @@ tr.shown td.details-control {
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
+                    <span class="m-portlet__head-icon">
+                        <i class="m-menu__link-icon flaticon-profile"></i>
+                    </span>
+                    <h3 class="m-portlet__head-text m--font-brand">
                         Supervisor Management
                     </h3>
                 </div>

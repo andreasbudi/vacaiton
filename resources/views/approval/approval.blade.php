@@ -35,7 +35,7 @@
                                 <span class="m-portlet__head-icon">
                                     <i class="flaticon-calendar-2"></i>
                                 </span>
-                                <h3 class="m-portlet__head-text">
+                                <h3 class="m-portlet__head-text m--font-brand">
                                     Calendar of Events
                                 </h3>
                             </div>
@@ -67,7 +67,7 @@
                                 <span class="m-portlet__head-icon">
                                     <i class="flaticon-paper-plane"></i>
                                 </span>
-                                <h3 class="m-portlet__head-text">
+                                <h3 class="m-portlet__head-text m--font-brand">
                                     Leave Summary
                                 </h3>
                             </div>
@@ -114,7 +114,7 @@
                         <span class="m-portlet__head-icon">
                                 <i class="flaticon-time-3"></i>
                         </span>
-                        <h3 class="m-portlet__head-text">
+                        <h3 class="m-portlet__head-text m--font-brand">
                             Waiting for Approval
                         </h3>
                     </div>
