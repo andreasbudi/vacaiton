@@ -36,7 +36,7 @@
                                     <i class="flaticon-calendar-2"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Calendar
+                                    Calendar of Events
                                 </h3>
                             </div>
                         </div>
@@ -76,7 +76,8 @@
 
                     <div class="m-portlet__body" style="height:660px;">
                         <div class="fc-unthemed">
-                            @foreach ($leaves as $leave)
+                            @forelse ($leaves as $leave)
+                            
                             <div class='fc-event fc-event-external fc-start m-fc-event--primary m--margin-bottom-35' data-color="m-fc-event--primary">
                                 <div class="fc-title">
                                     <div class="fc-content" style="margin-top:7px;">
@@ -90,7 +91,13 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @empty
+                                <div class="fc-title">
+                                    <div class="fc-content" style="margin-top:7px;">
+                                        <p style="font-size:15px; text-align:center; font-style:italic;">No one took leave..</p> 
+                                    </div>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
 
@@ -456,7 +463,7 @@
                     ,{
                     title: "{{$leave->users->name}}",
                     start:  "{{$leave->from}}",
-                    end: "{{$leave->to}}",
+                    end: "{{$leave->to}}T23:59:00",
                     description: "{{$leave->reason}}",
                     className: "m-fc-event--light m-fc-event--solid-success"
                     }
@@ -472,7 +479,7 @@
                         a.stripTime(), a.time("12:00:00"), $(this).data("event").start = n, $(this).data("event").end = a, $("#m_calendar_external_events_remove").is(":checked") && $(this).remove()
                     },
                     eventRender: function(t, e) {
-                        e.hasClass("fc-day-grid-event") ? (e.data("content", t.description), e.data("placement", "top"), mApp.initPopover(e)) : e.hasClass("fc-time-grid-event") ? e.find(".fc-title").append('<div class="fc-description">' + t.description + "</div>") : 0 !== e.find(".fc-list-item-title").lenght && e.find(".fc-list-item-title").append('<div class="fc-description">' + t.description + "</div>")
+                        e.hasClass("fc-day-grid-event") ? (e.data("content", t.description), e.data("placement", "top"), mApp.initPopover(e)) : e.hasClass("fc-time-grid-event") ? e.find(".fc-title").append('<div class="fc-description">' + t.description + "</div>") : 0 !== e.find(".fc-list-item-title").length && e.find(".fc-list-item-title").append('<div class="fc-description">' + t.description + "</div>")
                     }
                 })
             };

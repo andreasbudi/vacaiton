@@ -208,7 +208,7 @@ class UserTableSeeder extends Seeder
         $testStaff = new User();
         $testStaff->name = 'testStaff1';
         $testStaff->department = 'testing';
-        $testStaff->email = 'andreas.b365@gmail.com';
+        $testStaff->email = 'test1@gmail.com';
         $testStaff->password = bcrypt('adminadmin');
         $testStaff->leaves_available = '12';
         $testStaff->role_id = '1';

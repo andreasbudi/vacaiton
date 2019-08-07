@@ -54,6 +54,9 @@
 	meter[value="4"]::-moz-meter-bar { background: green; }
 	.fc-sun { color:red; }
 	.fc-sat { color:red;  }
+	.fc-time{
+   display : none;
+}
 	.dataTable > thead > tr > th[class*="sort"]:after{
     content: "" !important;
 	}
