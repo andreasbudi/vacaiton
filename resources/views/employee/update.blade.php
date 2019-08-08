@@ -78,7 +78,7 @@
                                             <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id" autofocus>
                                                     <option value="">SELECT ROLE</option>
                                                     @foreach ($roles as $role)
-                                            <option value="{{$role->id}}">{{$role->name_role}}</option>
+                                                    <option value="{{ $role->id }}" {{$employee->role_id == $role->id  ? 'selected' : ''}}>{{ $role->name_role}}</option>
                                                     @endforeach
                                             </select>
                                     </div>   
@@ -91,7 +91,7 @@
                                             <select name="manager_id" id="manager_id" class="form-control" required autocomplete="manager_id" autofocus>
                                                     <option value="">SELECT SUPERVISOR</option>
                                                     @foreach ($managers as $manager)
-                                                    <option value="{{$manager->id}}">{{$manager->name_supervisor}}</option>
+                                                    <option value="{{ $manager->id }}" {{$employee->manager_id == $manager->id  ? 'selected' : ''}}>{{ $manager->name_supervisor}}</option>
                                                     @endforeach
                                             </select>
                                     </div>
@@ -163,7 +163,7 @@
                                             <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id" autofocus>
                                                     <option value="">SELECT ROLE</option>
                                                     @foreach ($roles as $role)
-                                            <option value="{{$role->id}}">{{$role->name_role}}</option>
+                                                    <option value="{{ $role->id }}" {{$employee->role_id == $role->id  ? 'selected' : ''}}>{{ $role->name_role}}</option>
                                                     @endforeach
                                             </select>
                                     </div>   
@@ -228,7 +228,7 @@
                                             <select name="role_id" id="role_id" class="form-control" required autocomplete="role_id" autofocus>
                                                     <option value="">SELECT ROLE</option>
                                                     @foreach ($roles as $role)
-                                            <option value="{{$role->id}}">{{$role->name_role}}</option>
+                                                    <option value="{{ $role->id }}" {{$employee->role_id == $role->id  ? 'selected' : ''}}>{{ $role->name_role}}</option>
                                                     @endforeach
                                             </select>
                                     </div>   
@@ -401,7 +401,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Submit
                                     </button>
-                                    <button type="submit" class="btn btn-secondary" style="color:black;" name="cancel" onclick="goPrev()">Cancel</button>
+                                    <button type="button" class="btn btn-danger" name="cancel" onclick="goPrev()">Cancel</button>
                                     <script>
                                     function goPrev()
                                     {

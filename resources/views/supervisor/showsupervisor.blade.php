@@ -85,8 +85,8 @@ tr.shown td.details-control {
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" style="color:black;">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-primary">{{ __('Add') }}</button>
+                                            <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-sm btn-primary">{{ __('Submit') }}</button>
                                         </div>
                                         </form>
                                     </div>

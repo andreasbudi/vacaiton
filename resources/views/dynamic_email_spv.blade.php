@@ -10,7 +10,7 @@
     Dear {{ $dataSpv['nameSpv']}},
     
     Leave Request has been submitted by {{ $dataSpv['name']}} for your approval,
-    please click the link below to approve or decline.
+    please click this link below to approve or decline.
     http://localhost:8000  
 
     {{-- Subcopy --}}

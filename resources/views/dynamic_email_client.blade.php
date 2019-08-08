@@ -23,7 +23,7 @@
     
     Leave balance : {{ $dataClient['leaves_available']}} days
     
-    You can edit or cancel your request by clicking the link below
+    You can edit or cancel your request by clicking this link below
     http://localhost:8000/home
 
     {{-- Subcopy --}}

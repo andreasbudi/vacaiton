@@ -142,7 +142,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Register
                                     </button>
-                                    <button type="button" class="btn btn-secondary" style="color:black;" name="cancel" onclick="goPrev()">Cancel</button>
+                                    <button type="button" class="btn btn-danger" name="cancel" onclick="goPrev()">Cancel</button>
                                     <script>
                                     function goPrev()
                                     {

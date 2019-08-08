@@ -13,7 +13,7 @@
 
     Here's your access to our People Portal,
     
-    please click the link below to activate your account
+    please click this link below to activate your account
     http://localhost:8000/password/reset
 
     {{-- Subcopy --}}
