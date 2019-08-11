@@ -120,22 +120,26 @@
             format: 'dd-mm-yyyy',
             todayHighlight:'TRUE',
             autoclose: true,
-            daysOfWeekDisabled: [0,6]
+            daysOfWeekDisabled: [0,6],
+            //datesDisabled: ['07-08-2019'],
         }).on('changeDate', function(ev) {
             ConfigureToDate();
         });
 
-        // create from date
+        // // create to date
         $('#to-date').datepicker({
             orientation: "bottom left",
             startDate: $('#from-date').val(),
             format: 'dd-mm-yyyy',
             todayHighlight:'TRUE',
             autoclose: true,
-            daysOfWeekDisabled: [0,6]
+            daysOfWeekDisabled: [0,6],
+            //datesDisabled: ['07-08-2019'],
         }).on('changeDate', function(ev) {
             var fromDate = $('#from-date').data('datepicker').dates[0];
-            $('#total').val(getBusinessDatesCount(fromDate, ev.date));
+            (async function(){
+                $('#total').val(await getBusinessDatesCount(fromDate, ev.date));
+            })();
         });
 
         // Set the min date on page load
@@ -145,26 +149,114 @@
         function ConfigureToDate() {
             $('#to-date').val("").datepicker("update");
             $('#to-date').datepicker('setStartDate', $('#from-date').val());
-             $('#total').val("").datepicker("update");
+            $('#total').val("").datepicker("update");
         }
         });
 
-        function getBusinessDatesCount(startDate, endDate) {
-        var count = 0;
-        var curDate = new Date(startDate);
-        while (curDate <= endDate) {
-            var dayOfWeek = curDate.getDay();
-            if (!((dayOfWeek == 6) || (dayOfWeek == 0)))
-            count++;
-            curDate.setDate(curDate.getDate() + 1);
-            }
-            
-            if(count > {{ (Auth::user()->leaves_available) }}){
-                alert('Your remaining leave not sufficient');
+        // function holidayPromiseThisYear(){
+        //     return new Promise((resolve, reject)=>{
+        //         $.get("/holidays/"+new Date().getFullYear(), function(data) {
+        //     // do your data manipulation and transformation here
+        //             resolve(data);
+        //         });
+        //         //resolve(["i", "love", "angiestee"]);
+        //     })
+        // } 
+
+        // function holidayPromiseNextYear(){
+        //     return new Promise((resolve, reject)=>{
+        //         $.get("/holidays/"+(new Date().getFullYear()+1), function(data) {
+        //     // do your data manipulation and transformation here
+        //             resolve(data);
+        //         });
+        //         //resolve(["i", "love", "angiestee"]);
+        //     })
+        // } 
+
+        async function getBusinessDatesCount(startDate, endDate) {
+            console.log("Test tststs");
+            var count = 1;
+            var curDate = new Date(startDate);
+            //console.log("Yang ini" + curDate);
+            // var holidayThisYear = await holidayPromiseThisYear();
+            // var holidayNextYear = await holidayPromiseNextYear();
+            var holiday = [
+              "2019-1-1",
+              "2019-2-5",
+              "2019-3-7",
+              "2019-4-3",
+              "2019-4-17",
+              "2019-4-19",
+              "2019-5-1",
+              "2019-5-19",
+              "2019-5-30",
+              "2019-6-1",
+              "2019-6-3",
+              "2019-6-4",
+              "2019-6-5",
+              "2019-6-6",
+              "2019-6-7",
+              "2019-8-11",
+              "2019-8-17",
+              "2019-9-1",
+              "2019-11-9",
+              "2019-12-24",
+              "2019-12-25",
+              "2019-12-31",
+              "2020-1-1",
+              "2020-1-25",
+              "2020-3-22",
+              "2020-3-25",
+              "2020-4-10",
+              "2020-4-12",
+              "2020-5-1",
+              "2020-5-7",
+              "2020-5-21",
+              "2020-5-24",
+              "2020-5-25",
+              "2020-6-1",
+              "2020-7-31",
+              "2020-8-17",
+              "2020-8-20",
+              "2020-10-29",
+              "2020-12-24",
+              "2020-12-25",
+              "2020-12-31",
+              "2021-01-1"
+            ]
+            while (curDate <= endDate) {
+                var dayOfWeek = curDate.getDay();
+                var isExistThisYear = false;
+                holiday.forEach((item, index)=>{
+                    //console.log("This date " +new Date(item));
+                    if(curDate.valueOf() == new Date(item).valueOf()){
+                        isExistThisYear = true;
+                        return; 
+                    }
+                })  
+                // var isExistNextYear = false;
+                // holidayNextYear.forEach((item, index)=>{
+                //     console.log("This date " +new Date(item));
+                //     if(curDate.valueOf() == new Date(item).valueOf()){
+                //         isExistNextYear = true;
+                //         return; 
+                //     }
+                // })  
+
+                //console.log("Ada gk yaa "+isExist);
                 
-                $('#to-date').val("");
-            }
-        return count;
+                
+                if (!((dayOfWeek == 6) || (dayOfWeek == 0) || isExistThisYear) )
+                count++;
+                curDate.setDate(curDate.getDate() + 1);
+                }
+
+                if(count > {{ (Auth::user()->leaves_available) }}){
+                    alert('Your remaining leave not sufficient');
+    
+                    $('#to-date').val("");
+                }
+            return count;
         }
 </script>
 @endpush
