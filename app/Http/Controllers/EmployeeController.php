@@ -85,7 +85,7 @@ class EmployeeController extends Controller
             'name'              => $request->name,
         );
 
-        //  Mail::to($request->email)->send(new SendAddEmployee($data));
+        Mail::to($request->email)->send(new SendAddEmployee($data));
 
         toastr()->success('Employee added successfully','', [ 
             "closeButton"       => true,

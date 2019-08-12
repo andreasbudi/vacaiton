@@ -32,7 +32,7 @@
 		
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
-			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(../../../assets/app/media/img//bg/bg-3.jpg);">
+			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(../../../assets/app/media/img//bg/bg-5.png);">
 				<div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
 					<div class="m-login__container">
 						<div class="m-login__logo">
@@ -69,7 +69,7 @@
 								</div>
 								<div class="row m-login__form-sub">
 									<div class="col m--align-left m-login__form-left">
-										<label class="m-checkbox  m-checkbox--focus">
+										<label class="m-checkbox  m-checkbox--focus" style="color:black;">
 											<input type="checkbox" name="remember">
 											Remember me
 											<span></span>
@@ -77,7 +77,7 @@
 									</div>
 									<div class="col m--align-right m-login__form-right">
 										@if (Route::has('password.request'))
-										<a href="{{ route('password.request') }}" id="m_login_forget_password" class="m-link">
+										<a href="{{ route('password.request') }}" id="m_login_forget_password" class="m-link" style="color:black;">
 											Forget Password ?
 										</a>
 										@endif

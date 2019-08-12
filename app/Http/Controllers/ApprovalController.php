@@ -159,7 +159,7 @@ class ApprovalController extends Controller
         );
 
         if($leave->status == 2){
-            //  Mail::to($user_email)->send(new SendApprove($data));
+            Mail::to($user_email)->send(new SendApprove($data));
             toastr()->success('Leave approved successfully','', [ 
                 "closeButton"       => true,
                 "debug"             => false,
@@ -241,7 +241,7 @@ class ApprovalController extends Controller
         );
 
         if($leave->status == 3){
-            // Mail::to($user_email)->send(new SendReject($data));
+            Mail::to($user_email)->send(new SendReject($data));
             toastr()->success('Leave rejected successfully','', [ 
                 "closeButton"       => true,
                 "debug"             => false,

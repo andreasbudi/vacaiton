@@ -164,6 +164,7 @@ class UserTableSeeder extends Seeder
         $spv->password = bcrypt('');
         $spv->leaves_available = '12';
         $spv->role_id = '2';
+        $spv->manager_id = '1';
         $spv->isActivated = '1';
         $spv->save();
 
@@ -174,6 +175,7 @@ class UserTableSeeder extends Seeder
         $spv->password = bcrypt('');
         $spv->leaves_available = '12';
         $spv->role_id = '2';
+        $spv->manager_id = '2';
         $spv->isActivated = '1';
         $spv->save();
 
@@ -184,6 +186,7 @@ class UserTableSeeder extends Seeder
         $spv->password = bcrypt('');
         $spv->leaves_available = '12';
         $spv->role_id = '2';
+        $spv->manager_id = '3';
         $spv->isActivated = '1';
         $spv->save();
 
@@ -205,36 +208,58 @@ class UserTableSeeder extends Seeder
         $manager->isActivated = '1';
         $manager->save();
 
-        $testStaff = new User();
-        $testStaff->name = 'testStaff1';
-        $testStaff->department = 'testing';
-        $testStaff->email = 'test1@gmail.com';
-        $testStaff->password = bcrypt('adminadmin');
-        $testStaff->leaves_available = '12';
-        $testStaff->role_id = '1';
-        $testStaff->manager_id = '1';
-        $testStaff->isActivated = '1';
-        $testStaff->save();
+        // $testStaff = new User();
+        // $testStaff->name = 'testStaff1';
+        // $testStaff->department = 'testing';
+        // $testStaff->email = 'test1@gmail.com';
+        // $testStaff->password = bcrypt('adminadmin');
+        // $testStaff->leaves_available = '12';
+        // $testStaff->role_id = '1';
+        // $testStaff->manager_id = '1';
+        // $testStaff->isActivated = '1';
+        // $testStaff->save();
 
-        $testSpv = new User();
-        $testSpv->name = 'testSpv1';
-        $testSpv->department = 'testing';
-        $testSpv->email = 'testspv1@gmail.com';
-        $testSpv->password = bcrypt('adminadmin');
-        $testSpv->leaves_available = '12';
-        $testSpv->role_id = '2';
-        $testSpv->manager_id = '1';
-        $testSpv->isActivated = '1';
-        $testSpv->save();
+        // $testStaff = new User();
+        // $testStaff->name = 'testStaff2';
+        // $testStaff->department = 'testing';
+        // $testStaff->email = 'test2@gmail.com';
+        // $testStaff->password = bcrypt('adminadmin');
+        // $testStaff->leaves_available = '12';
+        // $testStaff->role_id = '1';
+        // $testStaff->manager_id = '2';
+        // $testStaff->isActivated = '1';
+        // $testStaff->save();
 
-        $testManager = new User();
-        $testManager->name = 'testManager';
-        $testManager->department = 'testing';
-        $testManager->email = 'manager@gmail.com';
-        $testManager->password = bcrypt('adminadmin');
-        $testManager->role_id = '3';
-        $testManager->isActivated = '1';
-        $testManager->save();
+        // $testSpv = new User();
+        // $testSpv->name = 'testSpv1';
+        // $testSpv->department = 'testing';
+        // $testSpv->email = 'testspv1@gmail.com';
+        // $testSpv->password = bcrypt('adminadmin');
+        // $testSpv->leaves_available = '12';
+        // $testSpv->role_id = '2';
+        // $testSpv->manager_id = '1';
+        // $testSpv->isActivated = '1';
+        // $testSpv->save();
+
+        // $testSpv = new User();
+        // $testSpv->name = 'testSpv2';
+        // $testSpv->department = 'testing';
+        // $testSpv->email = 'testspv2@gmail.com';
+        // $testSpv->password = bcrypt('adminadmin');
+        // $testSpv->leaves_available = '12';
+        // $testSpv->role_id = '2';
+        // $testSpv->manager_id = '2';
+        // $testSpv->isActivated = '1';
+        // $testSpv->save();
+
+        // $testManager = new User();
+        // $testManager->name = 'testManager';
+        // $testManager->department = 'testing';
+        // $testManager->email = 'manager@gmail.com';
+        // $testManager->password = bcrypt('adminadmin');
+        // $testManager->role_id = '3';
+        // $testManager->isActivated = '1';
+        // $testManager->save();
 
         $admin = new User();
         $admin->name = 'admin';

@@ -119,8 +119,6 @@ class LeaveController extends Controller
             'reason' => 'required'
         ]);
 
-        
-
         $leaveData = new Leave();
         $leaveData->from = \Carbon\Carbon::parse($request->from)->format('y-m-d');
         $leaveData->to = \Carbon\Carbon::parse($request->to)->format('y-m-d');
@@ -157,8 +155,8 @@ class LeaveController extends Controller
         $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
         $spv_email = $spv->email;
         if (Auth::user()->role_id == 1) {
-            // Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
-            // Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
+            Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+            Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
         }
 
         toastr()->success('New leave created successfully','', [ 
@@ -205,7 +203,7 @@ class LeaveController extends Controller
             'nameSpv' => $username,
         );
 
-        // Mail::to($spv->email)->send(new SendCancel($dataClient));
+        Mail::to($spv->email)->send(new SendCancel($dataClient));
 
         toastr()->success('Leave canceled successfully','', [ 
             "closeButton"       => true,
@@ -269,6 +267,32 @@ class LeaveController extends Controller
         $user = User::find(Auth::user()->id);
         $user->leaves_available = Auth::user()->leaves_available - $request->duration;
         $user->save();
+
+        $dataClient = array(
+            'from' => \Carbon\Carbon::parse($request->from)->format('d F Y'),
+            'to' => \Carbon\Carbon::parse($request->to)->format('d F Y'),
+            'duration' => $request->duration,
+            'leave_type' => $request->leave_type,
+            'reason' => $request->reason,
+            'leaves_available' => $user->leaves_available,
+        );
+
+        //query employee yg mengambil cuti
+        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
+        $username = $spv->name_supervisor;
+        $dataSpv = array(
+            'name' => Auth::user()->name,
+            'nameSpv' => $username
+        );
+
+        //query email spv
+        $spv = Supervisor::with('users')->where('supervisors.id', '=', Auth::user()->manager_id)->first();
+        $spv_email = $spv->email;
+        if (Auth::user()->role_id == 1) {
+            Mail::to(Auth::user()->email)->send(new SendMailClient($dataClient));
+            Mail::to($spv_email)->send(new SendMailSpv($dataSpv));
+        }
+
         toastr()->success('Leave updated successfully','', [ 
             "closeButton"       => true,
             "debug"             => false,
