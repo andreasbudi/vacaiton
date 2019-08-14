@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Krisna';
         $staff->department = 'Developer';
         $staff->email = 'krisna.mustikarani@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '1';
@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Wendy';
         $staff->department = 'Developer';
         $staff->email = 'wendy@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '1';
@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Maulana';
         $staff->department = 'Developer';
         $staff->email = 'mkamal.pasya@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -51,7 +51,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Aulia';
         $staff->department = 'Developer';
         $staff->email = 'aulia.fitri@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -62,7 +62,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Tiara';
         $staff->department = 'Developer';
         $staff->email = 'tiaramadhanty@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -73,7 +73,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Rachmat';
         $staff->department = 'Developer';
         $staff->email = 'rachmat.siyamsyah@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -95,7 +95,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Adyo';
         $staff->department = 'Developer';
         $staff->email = 'adyo.subhodo@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -106,7 +106,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Faisal';
         $staff->department = 'Developer';
         $staff->email = 'faisal.albana@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -117,7 +117,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Amir';
         $staff->department = 'Developer';
         $staff->email = 'amir.munajad@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -128,7 +128,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Erlangga';
         $staff->department = 'Developer';
         $staff->email = 'erlangga.laimena@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -139,7 +139,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Ivan';
         $staff->department = 'Developer';
         $staff->email = 'ivan.fathurohman@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -150,7 +150,7 @@ class UserTableSeeder extends Seeder
         $staff->name = 'Ageng';
         $staff->department = 'Developer';
         $staff->email = 'ageng.pribadi@difinite.com';
-        $staff->password = bcrypt('');
+        $staff->password = bcrypt('adminadmin');
         $staff->leaves_available = '12';
         $staff->role_id = '1';
         $staff->manager_id = '2';
@@ -161,7 +161,7 @@ class UserTableSeeder extends Seeder
         $spv->name = 'Andika';
         $spv->department = 'Supervisor';
         $spv->email = 'andika.pranata@difinite.com';
-        $spv->password = bcrypt('');
+        $spv->password = bcrypt('adminadmin');
         $spv->leaves_available = '12';
         $spv->role_id = '2';
         $spv->manager_id = '1';
@@ -172,7 +172,7 @@ class UserTableSeeder extends Seeder
         $spv->name = 'Alex';
         $spv->department = 'Supervisor';
         $spv->email = 'alexander.arda@difinite.com';
-        $spv->password = bcrypt('');
+        $spv->password = bcrypt('adminadmin');
         $spv->leaves_available = '12';
         $spv->role_id = '2';
         $spv->manager_id = '2';
@@ -183,7 +183,7 @@ class UserTableSeeder extends Seeder
         $spv->name = 'Margaret';
         $spv->department = 'Supervisor';
         $spv->email = 'margaret.pratiwi@difinite.com';
-        $spv->password = bcrypt('');
+        $spv->password = bcrypt('adminadmin');
         $spv->leaves_available = '12';
         $spv->role_id = '2';
         $spv->manager_id = '3';
@@ -194,7 +194,7 @@ class UserTableSeeder extends Seeder
         $manager->name = 'Gde';
         $manager->department = 'Manager';
         $manager->email = 'gde.bahagia@difinite.com';
-        $manager->password = bcrypt('');
+        $manager->password = bcrypt('adminadmin');
         $manager->role_id = '3';
         $manager->isActivated = '1';
         $manager->save();
@@ -203,7 +203,7 @@ class UserTableSeeder extends Seeder
         $manager->name = 'Aries';
         $manager->department = 'Manager';
         $manager->email = 'aries.susantio@difinite.com';
-        $manager->password = bcrypt('');
+        $manager->password = bcrypt('adminadmin');
         $manager->role_id = '3';
         $manager->isActivated = '1';
         $manager->save();
